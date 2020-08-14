@@ -1,1 +1,21 @@
-/* No CSS *//*# sourceMappingURL=tasks.css.map */
+/* Dropdown 
+=======================================================*/
+.dd-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 38px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.dd-wrapper .dd-header {
+  background-color: white;
+  border-radius: 4px;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/*# sourceMappingURL=tasks.css.map */
