@@ -11,7 +11,6 @@ function Login(props) {
 
   function login() {
     props.loginUser(username, password);
-    // props.history.push('./dashboard) ???
   };
 
   return (
