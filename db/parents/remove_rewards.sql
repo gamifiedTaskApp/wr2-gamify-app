@@ -1,0 +1,1 @@
+delete from rewards WHERE parent_id = $1 AND name = $2;
