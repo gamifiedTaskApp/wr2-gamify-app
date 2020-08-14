@@ -50,6 +50,7 @@ module.exports = {
 
     req.session.user = {
       id: user.user_id,
+      username: user.username,
       firstName: user.first_name,
       lastName: user.last_name,
       email: user.email,
