@@ -1,5 +1,5 @@
 import React from 'react';
-import 'store.js'
+import './store.css'
 function Store(props){
     return(<div>
 
