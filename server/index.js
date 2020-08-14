@@ -1,5 +1,6 @@
 require('dotenv').config();
 const parentCtrl = require("./controllers/ParentController");
+const childCtrl = require("./controllers/ChildController");
 const express = require('express'),
   massive = require('massive'),
   app = express(),
@@ -37,9 +38,15 @@ app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
 app.delete('/api/remove/reward/:id', parentCtrl.removeRewardFromOne);
 app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 
+//child endpoints
+app.put('/api/add/points', childCtrl.addPoints)
+app.put('/api/remove/points', childCtrl.spendPoints)
+
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 
+app.post('/auth/register/child', authCtrl.registerChild);
+app.post('/auth/login/child', authCtrl.loginChild);
 
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
 //AUTH ENDPOINTS
