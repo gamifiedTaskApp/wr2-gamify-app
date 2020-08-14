@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import {withRouter, Link} from 'react-router-dom';
 
 const Nav = (props) => {

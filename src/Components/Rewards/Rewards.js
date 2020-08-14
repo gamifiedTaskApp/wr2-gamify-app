@@ -1,5 +1,5 @@
 import React from 'react';
-import 'rewards.css'
+import './rewards.css'
 function Rewards(props){
     return(<div>
 
