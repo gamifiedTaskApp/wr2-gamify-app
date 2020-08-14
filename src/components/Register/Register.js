@@ -16,7 +16,6 @@ function Register(props) {
   const reg = () => {
     console.log(parentAccount)
     props.registerUser(username, fName, lName, email, password, parentAccount);
-    // props.history.push('/dashboard')????
   }
 
   return (
