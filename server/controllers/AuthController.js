@@ -5,11 +5,15 @@ module.exports = {
     const db = req.app.get('db');
     const { username, fName, lName, email, password, parentAccount } = req.body;
 
+    const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
-    };
-
+    }
+    else if (checkChildUsername[0]) {
+      res.status(409).send('Username already exists');
+    }
+    
     const checkEmail = await db.auth.check_email_exists(email);
     if (checkEmail[0]) {
       res.status(409).send('Email is already assigned to an account');
@@ -57,6 +61,37 @@ module.exports = {
       points: user.experience_points
     };
     // console.log(req.session.user, 'hitter')
+    res.status(200).send(req.session.user);
+  },
+  registerChild: async(req, res) =>{
+    const db = req.app.get("db");
+    const {username, parentId, password} = req.body;
+
+    const checkChildUsername = await db.auth.check_child_username(username);
+    const checkUsername = await db.auth.check_username_exists(username);
+
+    console.log(checkChildUsername[0]);
+    if (checkChildUsername[0]) {
+      res.status(409).send('Username already exists');
+    }
+    else if (checkUsername[0]) {
+      res.status(409).send('Username already exists');
+    };
+
+    
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    console.log(hash, parentId, username)
+    const registeredChild = await db.auth.register_child(parentId, hash, username);
+    console.log("after")
+    const child = registeredChild[0];
+    
+    req.session.user = {
+      id: child.child_id,
+      username: child.child_username,
+      points: child.points
+    };
     res.status(200).send(req.session.user);
   }
 };
