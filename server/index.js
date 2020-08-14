@@ -27,7 +27,9 @@ massive({
 });
 
 app.post('/api/add/task', parentCtrl.addTask);
+app.post('/api/add/task/all', parentCtrl.addTasksForAll);
 app.delete('/api/remove/task/:id', parentCtrl.removeTask);
+app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
 
 app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
 app.post('/api/add/reward/all', parentCtrl.addRewardForAll);

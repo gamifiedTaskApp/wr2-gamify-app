@@ -7,6 +7,18 @@ module.exports = {
         const newTask = await db.parents.add_task(userId, childId, taskName, taskDescription, pointsGained, date)
         res.send(newTask).status(200);
     },
+    addTasksForAll: async (req,res) =>{
+        const db=req.app.get('db')
+        const {taskName, pointsGained, taskDescription, userId} = req.body
+        const children = await db.parents.get_children(userId)
+        console.log(children)
+        let date = new Date().toDateString();
+        for(let i=0; i<children.length; i++){
+            const newTask = await db.parents.add_task(userId, children[i].child_id,taskName, taskDescription, pointsGained, date )
+        }
+        res.sendStatus(200)
+        
+    },
     removeTask: async(req, res) =>{
         const db = req.app.get("db");
         const taskId = req.params.id;
@@ -14,6 +26,18 @@ module.exports = {
         const removedTask = await db.parents.remove_task(taskId);
         res.sendStatus(200);
     },
+    removeAllTasks: async(req,res)=>{
+        const db=req.app.get("db")
+        const taskId=req.params.id
+        const allTasks = await db.parents.get_task_info(taskId)
+        console.log(allTasks)
+        for(let i=0; i<allTasks.length; i++){
+            const {user_id, task_name}=allTasks[i]
+            const removedReward = await db.parents.remove_tasks(user_id, task_name)
+        }
+        res.sendStatus(200)
+    },
+    
     addRewardForOne: async(req, res) => {
         const db = req.app.get("db");
         const {rewardName, rewardPrice, parentId, childId, } = req.body;
