@@ -1,3 +1,4 @@
+const parentCtrl = require("./controllers/ParentController");
 require('dotenv').config()
 const express = require('express'),
   massive = require('massive'),
@@ -24,5 +25,11 @@ massive({
 }).catch(error => {
   console.log(error)
 });
+
+app.post('/api/add/task', parentCtrl.addTask);
+app.delete('/api/remove/task/:id', parentCtrl.removeTask);
+
+app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
+app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
 
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
