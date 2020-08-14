@@ -37,10 +37,10 @@ app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
 app.delete('/api/remove/reward/:id', parentCtrl.removeRewardFromOne);
 app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 
-app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
-//AUTH ENDPOINTS
-
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 
-app.listen(SERVER_PORT, () => console.log(`Tasking on port ${SERVER_PORT}!!`));
+
+app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
+//AUTH ENDPOINTS
+
