@@ -90,6 +90,30 @@ module.exports = {
     req.session.user = {
       id: child.child_id,
       username: child.child_username,
+      parent: child.u_id,
+      points: child.points
+    };
+    res.status(200).send(req.session.user);
+  },
+  loginChild: async (req, res) =>{
+    const db = req.app.get("db");
+    const {username, password} = req.body;
+
+    const checkChildUsername = await db.auth.check_child_username(username);
+    const child = checkChildUsername[0];
+    if(!child){
+      res.status(404).send('Sorry can not seem to find that username. Try again!');
+    }
+
+    const passCheck = bcrypt.compareSync(password, child.password);
+    if (!passCheck) {
+      res.status(403).send('Password is incorrect');
+    };
+
+    req.session.user = {
+      id: child.child_id,
+      username: child.child_username,
+      parent: child.u_id,
       points: child.points
     };
     res.status(200).send(req.session.user);
