@@ -35,5 +35,20 @@ module.exports = {
     },
     removeRewardFromOne: async(req, res) =>{
         const db = req.app.get("db");
+        const rewardId = req.params.id;
+        console.log(rewardId)
+        const removeRewardFromOne = await db.parents.remove_reward(rewardId)
+        res.send(removeRewardFromOne).status(200);
+    },
+    removeRewardFromAll: async(req,res)=>{
+        const db = req.app.get('db')
+        const rewardId = req.params.id;
+        const allRewards = await db.parents.get_reward_info(rewardId)
+        console.log(allRewards)
+        for(let i=0; i<allRewards.length; i++){
+            const {parent_id, name}=allRewards[i]
+            const removedReward = await db.parents.remove_rewards(parent_id, name)
+        }
+        res.sendStatus(200)
     }
 }

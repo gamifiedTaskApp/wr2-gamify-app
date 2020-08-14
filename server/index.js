@@ -31,5 +31,7 @@ app.delete('/api/remove/task/:id', parentCtrl.removeTask);
 
 app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
 app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
+app.delete('/api/remove/reward/:id', parentCtrl.removeRewardFromOne);
+app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
