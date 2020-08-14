@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import routes from './routes';
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,6 +20,9 @@ function App() {
           Learn React
         </a>
       </header>
+=======
+      {routes}
+>>>>>>> f8cc0b78cdec584dd2824a0c5bfbcf5a8df4bc66
     </div>
   );
 }
