@@ -1,5 +1,5 @@
 import React from 'react';
-import 'tasks.css';
+import './tasks.css';
 function Tasks(props){
     return(<div>
 
