@@ -1,0 +1,1 @@
+delete from tasks WHERE user_id = $1 AND task_name = $2;
