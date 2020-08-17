@@ -47,7 +47,7 @@ module.exports = {
     if (!user) {
       res.status(404).send('Sorry can not seem to find that username. Try again!');
     };
-
+    console.log(user)
     const passCheck = bcrypt.compareSync(password, user.password);
     if (!passCheck) {
       res.status(403).send('Password is incorrect');
