@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from './node_modules/react';
 import './Login.css';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from './node_modules/react-redux';
+import { Link, Redirect } from './node_modules/react-router-dom';
 import { loginUser } from '../../redux/actionCreators';
 
 function Login(props) {
@@ -80,6 +80,7 @@ function Login(props) {
           <h5>Need to track those tasks? <Link className='login_link' to='/register'>REGISTER HERE</Link></h5>
         </div>
       </div>
+      {props.userReducer.loggedIn ? <Redirect to={'/'} /> : null}
     </div>
   )
 };
@@ -87,5 +88,6 @@ function Login(props) {
 const mapDispatchToProps = {
   loginUser
 }
+const mapStateToProps = reduxState => reduxState; //change this later, shouldn't have all props
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

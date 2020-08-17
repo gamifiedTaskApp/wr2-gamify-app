@@ -40,10 +40,20 @@ app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 
 //child endpoints
 app.put('/api/add/points', childCtrl.addPoints)
-app.put('/api/remove/points', childCtrl.spendPoints)
+app.put('/api/buyItem', childCtrl.buyItem)
+app.put('/api/useItem', childCtrl.useItem)
 
+<<<<<<< HEAD
+=======
+app.post('/auth/register', authCtrl.register);
+app.post('/auth/login', authCtrl.login);
+app.put('/api/parent/changeName', parentCtrl.changeUserName);
+
+
+>>>>>>> master
 app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);
+app.put('/api/child/changeName', childCtrl.changeUserName);
 
 //AUTH ENDPOINTS
 

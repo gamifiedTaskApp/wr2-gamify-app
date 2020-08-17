@@ -1,8 +1,8 @@
-import React from 'react';
+import React from './node_modules/react';
 import './rewards.css'
-function Rewards(props){
-    return(<div>
+function Rewards(props) {
+  return (<div>
 
-    </div>)
+  </div>)
 }
 export default Rewards;

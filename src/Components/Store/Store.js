@@ -1,8 +1,8 @@
-import React from 'react';
+import React from './node_modules/react';
 import './store.css'
-function Store(props){
-    return(<div>
+function Store(props) {
+  return (<div>
 
-    </div>)
+  </div>)
 }
 export default Store;
