@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link , Redirect} from 'react-router-dom';
 import { registerUser } from '../../redux/actionCreators';
 
 function Register(props) {
@@ -129,6 +129,7 @@ function Register(props) {
 
         </div>
       </div>
+      {props.userReducer.loggedIn ? <Redirect to={'/'}/> : null}
     </div>
   )
 };
@@ -136,5 +137,6 @@ function Register(props) {
 const mapDispatchToProps = {
   registerUser
 }
+const mapStateToProps = reduxState => reduxState; //change this later, shouldn't have all props
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

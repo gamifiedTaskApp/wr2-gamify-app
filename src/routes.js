@@ -1,7 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Register from './Components/Register/Register';
+<<<<<<< HEAD
 import Login from './Components/Login/Login';
+=======
+import Login from "./Components/Login/Login"
+>>>>>>> master
 import Tasks from './Components/Tasks/Tasks';
 import Store from './Components/Store/Store';
 import Profile from './Components/Profile/Profile';
