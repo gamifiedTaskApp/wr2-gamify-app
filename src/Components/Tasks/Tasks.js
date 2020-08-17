@@ -21,10 +21,12 @@ function Tasks(props) {
     setIsOpen(false)
   }, [selectedDate]);
 
+  console.log(selectedDate)
+
   return (
     <div className='tasks'>
       {selectedDate.toDateString()}
-      <div className='dropdown_holder'>
+      <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
         <ChildDropdown />
         {isOpen
           ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />

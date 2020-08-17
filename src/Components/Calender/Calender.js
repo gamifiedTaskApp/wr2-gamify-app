@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
+import onClickOutside from 'react-onclickoutside';
 
 function Calender(props) {
 
   const [today] = useState(new Date());
   const [minWeek] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7))
+
+  Calender.handleClickOutside = () => props.setIsOpen(false);
 
   return (
     <div>
@@ -22,4 +25,8 @@ function Calender(props) {
   )
 };
 
-export default Calender;
+const clickOutsideConfig = {
+  handleClickOutside: () => Calender.handleClickOutside,
+};
+
+export default onClickOutside(Calender, clickOutsideConfig);
