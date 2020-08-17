@@ -24,11 +24,11 @@ const Store= props=>{
         })
     }
 
-    //check if user has enough points to buy. if so sends request. else alert
+    //check if user has enough points to buy. if so sends request. else alert. need console.log to see what I'm pulling
     const buyItem = (e)=>{
         console.log(e)
-        // if (userReducer.points >=){
-        //     axios.put
+        // if (userReducer.points >=e.points){
+        //     axios.put('/api/buyItem'),{}
 
         // }else{
         //     alert("not enough points")
