@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './components/Nav/Nav'
 import './App.css';
 import routes from './routes';
+import Parent from './Components/Parent/Parent'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       </header>
       <Nav/>
       {routes}
+      <Parent/>
     </div>
   );
 }

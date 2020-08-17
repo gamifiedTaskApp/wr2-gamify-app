@@ -1,4 +1,4 @@
-.cont, .child_container {
+.cont, header, .child_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,12 +11,69 @@
 }
 
 .cont {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
+  margin-top: 70px;
+}
+
+header {
+  height: 100px;
+  width: 100vw;
+  background-color: #7cbbee;
+  -webkit-box-shadow: 0px 5px 8px grey;
+          box-shadow: 0px 5px 8px grey;
 }
 
 .child_container {
-  height: 80vh;
+  background-color: #7cbbee;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 15px;
+  height: 70vh;
   width: 80vw;
+  -webkit-box-shadow: 5px 5px 8px grey;
+          box-shadow: 5px 5px 8px grey;
+}
+
+.child_container .input {
+  margin-bottom: 20px;
+}
+
+.child_container .input input {
+  width: 95%;
+  height: 30px;
+  font-size: 25px;
+  outline-color: lightblue;
+}
+
+.child_container span {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: black;
+  font-size: 30px;
+}
+
+.child_container button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 300px;
+  color: #ebebeb;
+  text-shadow: 5px 5px 8px grey;
+}
+
+.child_container .button {
+  height: 50px;
+  width: 90%;
+  margin-top: 50px;
+  font-size: 30px;
+  text-shadow: none;
+  background-color: #006ab1;
 }
 /*# sourceMappingURL=parent.css.map */
