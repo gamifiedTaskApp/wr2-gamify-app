@@ -1,0 +1,74 @@
+@import '../../Sass/mixins';
+@import '../../Sass/variables';
+
+.login_holder {
+  height: 100vh;
+  width: 100vw;
+  @include flexBaseOptions(none, column);
+};
+
+.login_header_holder {
+  height: 100px;
+  width: 100vw;
+  background-color:$mainColor;
+  @include flexBaseOptions(center, column);
+  margin-bottom:50px;
+}
+.login_link{
+  color:white;
+  text-decoration:none;
+}
+
+.login_header {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+};
+
+.login_form {
+  height: 70vh;
+  width: 80vw;
+  background-color:$mainColor;
+  @include borderStyle();
+  @include flexBaseOptions(center, column);
+  border:none;
+  padding: 10px;
+}
+b{
+  font-size:20px;
+}
+.login_inputs {
+  color:white;
+  margin: 20px;
+  @include flexBaseOptions(center, row);
+  .email_input {
+    width: 181px;
+    @include inputStyles();
+  };
+  .name_input {
+    width: 140px;
+    @include inputStyles();
+  };
+  input {
+    height:25px;
+    @include inputStyles();
+  };
+}
+
+.login_button_holder {
+  @include flexBaseOptions(center, column );
+  color:white;
+  margin-top:15px;
+  width:60%;
+  button{
+    outline:none;
+    border:1.5px solid white;
+    background-color:$mainColor;
+    color:white;
+    font-size:17px;
+    height:50px;
+    width:150px;
+    border-radius:10px;
+    margin-top:50px;
+  }
+}
