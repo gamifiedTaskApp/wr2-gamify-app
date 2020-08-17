@@ -32,6 +32,7 @@ app.post('/api/add/task', parentCtrl.addTask);
 app.post('/api/add/task/all', parentCtrl.addTasksForAll);
 app.delete('/api/remove/task/:id', parentCtrl.removeTask);
 app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
+app.get('/api/get/tasks', parentCtrl.getAllTasks); //THIS NEEDS CTRL FUNCTION
 
 app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
 app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
@@ -42,10 +43,13 @@ app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 app.put('/api/add/points', childCtrl.addPoints)
 app.put('/api/buyItem', childCtrl.buyItem)
 app.put('/api/useItem', childCtrl.useItem)
+<<<<<<< HEAD
+=======
 app.get('/api/storeRewards/:id', childCtrl.getStoreRewards)
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
+>>>>>>> master
 app.put('/api/parent/changeName', parentCtrl.changeUserName);
 
 
@@ -53,6 +57,11 @@ app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);
 app.put('/api/child/changeName', childCtrl.changeUserName);
 
-app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
 //AUTH ENDPOINTS
 
+app.post('/auth/register', authCtrl.register);
+app.post('/auth/login', authCtrl.login);
+app.post('/auth/logout', authCtrl.logout);
+app.get('/auth/session', authCtrl.getSession);
+
+app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
