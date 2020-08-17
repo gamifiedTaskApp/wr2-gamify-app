@@ -4,8 +4,7 @@ import './profile.css';
 import Axios from 'axios';
 function Profile(props){
     let [username, setUsername] = useState("");
-    let userId = 19; //placeholder
-    const actualUserId = props.user ? props.user.user_id : "";
+    const userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
     function changeUsername(){
         if(username.length < 6){
             alert("Username must be longer")
@@ -13,7 +12,7 @@ function Profile(props){
         else {
             Axios.put('/api/parent/changeName', {username, userId})
             .then(res => {
-                alert(res);
+                //change props to reflect new username
             })
             .catch(err => alert(err))
         }
@@ -23,7 +22,7 @@ function Profile(props){
         <div><span>Enter New Username</span></div>
         <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
         <button onClick={() => changeUsername()} >Submit</button>
-        {actualUserId}
+        {userId}
     </div>)
 }
 const mapStateToProps = reduxState => reduxState;
