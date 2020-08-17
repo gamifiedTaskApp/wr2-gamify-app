@@ -42,12 +42,14 @@ app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 app.put('/api/add/points', childCtrl.addPoints)
 app.put('/api/remove/points', childCtrl.spendPoints)
 
-app.post('/auth/register', authCtrl.register);
-app.post('/auth/login', authCtrl.login);
-
 app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);
 
-app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
 //AUTH ENDPOINTS
 
+app.post('/auth/register', authCtrl.register);
+app.post('/auth/login', authCtrl.login);
+app.post('/auth/logout', authCtrl.logout);
+app.get('/auth/session', authCtrl.getSession);
+
+app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));

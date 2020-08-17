@@ -5,6 +5,6 @@ child_id int references children(child_id),
 task_name varchar(100),
 task_description varchar(500),
 points_gained int,
-date date,
+day varchar(10),
 completed boolean
 );
