@@ -4,7 +4,10 @@ import './profile.css';
 import Axios from 'axios';
 function Profile(props) {
   let [username, setUsername] = useState("");
-  const userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
+  console.log(props);
+  const user = props.userReducer.user;
+  const userId = user ? props.userReducer.user.data.id : "";
+  //const isChild = props.userReducer.user.data.parent ? true : false;
   function changeUsername() {
     if (username.length < 6) {
       alert("Username must be longer")

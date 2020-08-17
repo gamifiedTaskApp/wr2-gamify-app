@@ -5,7 +5,8 @@ import axios from 'axios';
 
 export function registerUser(username, fName, lName, email, password, parentAccount) {
   const body = { username, fName, lName, email, password, parentAccount };
-  const registered = axios.post('/auth/register', body);
+  const registered = axios.post('/auth/register', body)
+  .then(res => console.log(res))
   return {
     type: SET_USER,
     payload: registered
@@ -14,7 +15,8 @@ export function registerUser(username, fName, lName, email, password, parentAcco
 
 export function loginUser(username, password) {
   const body = { username, password };
-  const loggedIn = axios.post('/auth/login', body);
+  const loggedIn = axios.post('/auth/login', body)
+  .then(res => console.log(res))
   return {
     type: LOGIN_USER,
     payload: loggedIn
