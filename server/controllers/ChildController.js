@@ -21,6 +21,7 @@ module.exports={
     getStoreRewards: async (req,res)=>{
         const db=req.app.get("db");
         const childId = req.params.id;
+        console.log(childId)
         const getStoreRewards= await db.children.store_rewards(childId)
         console.log(getStoreRewards)
         res.send(getStoreRewards).status(200)
