@@ -8,44 +8,67 @@
 };
 
 .login_header_holder {
-  height: 15vh;
-  width: 70vw;
-  margin-top: 30px;
+  height: 100px;
+  width: 100vw;
+  background-color:$mainColor;
   @include flexBaseOptions(center, column);
-};
+  margin-bottom:50px;
+}
+.login_link{
+  color:white;
+  text-decoration:none;
+}
 
 .login_header {
-  color: rgb(31, 34, 37);
-  font-size: 30px;
-  margin-bottom: 10px;
-}
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+};
 
 .login_form {
-  height: 60vh;
-  width: 70vw;
+  height: 70vh;
+  width: 80vw;
+  background-color:$mainColor;
   @include borderStyle();
   @include flexBaseOptions(center, column);
+  border:none;
   padding: 10px;
 }
-
+b{
+  font-size:20px;
+}
 .login_inputs {
+  color:white;
   margin: 20px;
   @include flexBaseOptions(center, row);
+  .email_input {
+    width: 181px;
+    @include inputStyles();
+  };
+  .name_input {
+    width: 140px;
+    @include inputStyles();
+  };
   input {
+    height:25px;
     @include inputStyles();
   };
-  .login_password {
-    @include inputStyles();
-    margin-left: 5px;
-  };
-};
+}
 
 .login_button_holder {
   @include flexBaseOptions(center, column );
-  width: 49vw;
-  margin-top: 20px;
-};
-
-.login_link {
-  margin-left: 40px;
+  color:white;
+  margin-top:15px;
+  width:60%;
+  button{
+    outline:none;
+    border:1.5px solid white;
+    background-color:$mainColor;
+    color:white;
+    font-size:17px;
+    height:50px;
+    width:150px;
+    border-radius:10px;
+    margin-top:50px;
+  }
 }

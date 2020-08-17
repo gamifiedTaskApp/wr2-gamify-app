@@ -17,9 +17,9 @@
 }
 
 .register_header_holder {
-  height: 15vh;
-  width: 70vw;
-  margin-top: 30px;
+  height: 100px;
+  width: 100vw;
+  background-color: #F66747;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -33,17 +33,24 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.register_link {
+  color: white;
+  text-decoration: none;
 }
 
 .register_header {
-  color: #1f2225;
-  font-size: 30px;
-  margin-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .register_form {
-  height: 60vh;
-  width: 70vw;
+  height: 70vh;
+  width: 80vw;
+  background-color: #F66747;
   border-style: solid;
   border-color: black;
   -webkit-box-shadow: 0 5px 2px -2px #5e5d5d;
@@ -62,10 +69,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  border: none;
   padding: 10px;
 }
 
+b {
+  font-size: 20px;
+}
+
 .register_inputs {
+  color: white;
   margin: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -85,21 +98,19 @@
 .register_inputs .email_input {
   width: 181px;
   outline: 0;
-  border-width: 0 0 2px;
-  border-color: black;
+  border: 1px solid #bdbdbd;
 }
 
 .register_inputs .name_input {
   width: 140px;
   outline: 0;
-  border-width: 0 0 2px;
-  border-color: black;
+  border: 1px solid #bdbdbd;
 }
 
 .register_inputs input {
+  height: 25px;
   outline: 0;
-  border-width: 0 0 2px;
-  border-color: black;
+  border: 1px solid #bdbdbd;
 }
 
 .register_button_holder {
@@ -116,7 +127,19 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 38vw;
-  margin-top: 20px;
+  color: white;
+  margin-top: 15px;
+  width: 50%;
+}
+
+.register_button_holder button {
+  outline: none;
+  border: 1.5px solid white;
+  background-color: #F66747;
+  color: white;
+  font-size: 17px;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=Register.css.map */
