@@ -1,22 +1,20 @@
-import React, { useState } from './node_modules/react';
-import onClickOutside from './node_modules/react-onclickoutside';
+import React, { useState } from 'react';
+import onClickOutside from 'react-onclickoutside';
 import './tasks.css';
 
-function DayDropdown() {
+function DayDropdown(props) {
 
   const [open, setOpen] = useState(false);
   const [days] = useState(['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']);
-  const [title, setTitle] = useState('');
   const toggle = () => setOpen(!open);
   const listDays = days.map((day) =>
     <li>
-      <button onClick={() => setTitle(day)}>
+      <button onClick={() => props.setTitle(day)}>
         {day}
       </button>
     </li>
   )
   DayDropdown.handleClickOutside = () => setOpen(false);
-
   return (
     <div>
       <div
@@ -24,7 +22,7 @@ function DayDropdown() {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}>
         <div>
-          <p>{title}</p>
+          <p>{props.title}</p>
         </div>
         <div>
           <p>{open ? 'Close' : 'Open'}</p>

@@ -1,7 +1,7 @@
-import React, { useState } from './node_modules/react';
+import React, { useState } from 'react';
 import './Login.css';
-import { connect } from './node_modules/react-redux';
-import { Link, Redirect } from './node_modules/react-router-dom';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { loginUser } from '../../redux/actionCreators';
 
 function Login(props) {
