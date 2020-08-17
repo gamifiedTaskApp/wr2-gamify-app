@@ -2,14 +2,14 @@ import React from 'react';
 import Nav from './components/Nav/Nav'
 import './App.css';
 import routes from './routes';
-import Parent from './Components/Parent/Parent'
+import Parent from './components/Parent/Parent'
 
 function App() {
   return (
     <div className="App">
 
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           aaron branch
         </p>
