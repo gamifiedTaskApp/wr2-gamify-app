@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import './store.css'
 import axios from 'axios';
 import userReducer from '../../redux/userReducer';
@@ -16,7 +16,7 @@ const Store= props=>{
     //will return array of reward objects and set it to local state. need to add userReducer to .get
     const retrieveStoreRewards =()=>{
         console.log('retrieve store rewards')
-        axios.get(`/api/storeRewards/${id}`)
+        axios.get(`/api/storeRewards/`)
         .then((res)=>{
             console.log('retrieve store rewards working')
             console.log(res)
