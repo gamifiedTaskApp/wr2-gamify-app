@@ -15,8 +15,15 @@ module.exports={
     useItem: async (req,res)=>{
         const db=req.app.get("db");
         const {rewardId}=req.body;
-        const updatedBeenRewarded= await db.children.used_reward(rewardId)
+        const updateBeenRewarded= await db.children.used_reward(rewardId)
         res.sendStatus(200)
+    },
+    getStoreRewards: async (req,res)=>{
+        const db=req.app.get("db");
+        const childId = req.params.id;
+        const getStoreRewards= await db.children.store_rewards(childId)
+        console.log(getStoreRewards)
+        res.send(getStoreRewards).status(200)
     },
     changeUserName: async(req, res) =>{
         const db = req.app.get('db');
