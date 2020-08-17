@@ -43,27 +43,43 @@ module.exports = {
     const { username, password } = req.body;
 
     const checkUsername = await db.auth.check_username_exists(username);
-    const user = checkUsername[0];
-    if (!user) {
-      res.status(404).send('Sorry can not seem to find that username. Try again!');
-    };
-    console.log(user)
-    const passCheck = bcrypt.compareSync(password, user.password);
-    if (!passCheck) {
-      res.status(403).send('Password is incorrect');
-    };
+    const checkChildUsername = await db.auth.check_child_username(username);
 
-    req.session.user = {
-      id: user.user_id,
-      username: user.username,
-      firstName: user.first_name,
-      lastName: user.last_name,
-      email: user.email,
-      parental: user.is_parental,
-      points: user.experience_points
-    };
-    // console.log(req.session.user, 'hitter')
-    res.status(200).send(req.session.user);
+    const user = checkUsername[0];
+    const childUser = checkChildUsername[0];
+    if (user) {
+      const passCheck = bcrypt.compareSync(password, user.password);
+      if (!passCheck) {
+        res.status(403).send('Password is incorrect');
+      };
+      req.session.user = {
+        id: user.user_id,
+        username: user.username,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email,
+        parental: user.is_parental,
+        points: user.experience_points
+      };
+      // console.log(req.session.user, 'hitter')
+      res.status(200).send(req.session.user);
+    }
+    else if (childUser){
+      const passCheck = bcrypt.compareSync(password, childUser.password);
+      if (!passCheck) {
+        res.status(403).send('Password is incorrect');
+      };
+      req.session.user = {
+        id: childUser.child_id,
+        username: childUser.child_username,
+        parent: childUser.u_id,
+        points: childUser.points
+      };
+      res.status(200).send(req.session.user);
+    }
+    else{
+      res.status(404).send('Sorry can not seem to find that username. Try again!');
+    }    
   },
   registerChild: async (req, res) => {
     const db = req.app.get("db");
