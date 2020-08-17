@@ -11,9 +11,9 @@ function App() {
         <p>
           Grant branch
         </p>
-       
+
       </header>
-      <Nav/>
+      <Nav />
       {routes}
       <Parent />
     </div>
