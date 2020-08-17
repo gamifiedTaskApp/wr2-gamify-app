@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Register from './Components/Register/Register';
-import Login from './Components/Login/Login';
-import Tasks from './Components/Tasks/Tasks';
-import Store from './Components/Store/Store';
-import Profile from './Components/Profile/Profile';
-import Rewards from './Components/Rewards/Rewards';
+import Register from './ponents/Register/Register';
+import Login from "./ponents/Login/Login"
+import Tasks from './ponents/Tasks/Tasks';
+import Store from './ponents/Store/Store';
+import Profile from './ponents/Profile/Profile';
+import Rewards from './ponents/Rewards/Rewards';
 
 export default (
   <Switch>
