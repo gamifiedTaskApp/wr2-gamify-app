@@ -42,6 +42,7 @@ app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 app.put('/api/add/points', childCtrl.addPoints)
 app.put('/api/buyItem', childCtrl.buyItem)
 app.put('/api/useItem', childCtrl.useItem)
+app.get('/api/storeRewards/:id', childCtrl.getStoreRewards)
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
