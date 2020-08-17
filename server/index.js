@@ -46,9 +46,12 @@ app.get('/api/storeRewards/:id', childCtrl.getStoreRewards)
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
+app.put('/api/parent/changeName', parentCtrl.changeUserName);
+
 
 app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);
+app.put('/api/child/changeName', childCtrl.changeUserName);
 
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
 //AUTH ENDPOINTS

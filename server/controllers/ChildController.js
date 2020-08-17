@@ -24,5 +24,20 @@ module.exports={
         const getStoreRewards= await db.children.store_rewards(childId)
         console.log(getStoreRewards)
         res.send(getStoreRewards).status(200)
+    },
+    changeUserName: async(req, res) =>{
+        const db = req.app.get('db');
+        const {username, userId} = req.body;
+
+        const checkChildUsername = await db.auth.check_child_username(username);
+        const checkUsername = await db.auth.check_username_exists(username);
+        if (checkUsername[0]) {
+            res.status(409).send('Username already exists');
+        }
+        else if (checkChildUsername[0]) {
+            res.status(409).send('Username already exists');
+        }
+        const newUsername = await db.children.change_username(username, userId);
+        res.sendStatus(200);
     }
 }
