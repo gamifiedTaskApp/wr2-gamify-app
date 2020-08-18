@@ -99,18 +99,27 @@ b {
   width: 181px;
   outline: 0;
   border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #F66747;
 }
 
 .login_inputs .name_input {
   width: 140px;
   outline: 0;
   border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #F66747;
 }
 
 .login_inputs input {
   height: 25px;
   outline: 0;
   border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #F66747;
 }
 
 .login_button_holder {
