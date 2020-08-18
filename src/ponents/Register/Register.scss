@@ -44,14 +44,17 @@ b{
   .email_input {
     width: 181px;
     @include inputStyles();
+    @include inputStyleTwo();
   };
   .name_input {
     width: 140px;
     @include inputStyles();
+    @include inputStyleTwo();
   };
   input {
     height:25px;
     @include inputStyles();
+    @include inputStyleTwo();
   };
 }
 

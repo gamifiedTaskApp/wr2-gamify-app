@@ -1,13 +1,30 @@
-import { } from './constraints';
+import { GET_TASKS, ADD_TASK, REMOVE_TASK } from './constraints';
 
 const initialState = {
-
+  tasks: []
 };
 
 export default function taskReducer(state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
+    case GET_TASKS + '_PENDING':
+      return state;
+    case GET_TASKS + '_FULFILLED':
+      return { ...state, tasks: payload };
+    case GET_TASKS + '_REJECTED':
+      return state;
+    case ADD_TASK + '_PENDING':
+      return state;
+    case ADD_TASK + '_FULFILLED':
+      return { ...state, tasks: payload };
+    case ADD_TASK + '_REJECTED':
+      return state;
+    case REMOVE_TASK + '_PENDING':
+      return state;
+    case REMOVE_TASK + '_FULFILLED':
+      return { ...state, tasks: payload };
+    case REMOVE_TASK + '_REJECTED':
+      return state;
     default:
       return state;
   };
