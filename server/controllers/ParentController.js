@@ -27,10 +27,8 @@ module.exports = {
   },
   removeTask: async (req, res) => {
     const db = req.app.get("db");
-    const { userId } = req.body;
-    const taskId = req.params.id;
-    console.log(taskId);
-    const removedTask = await db.parents.remove_task(taskId);
+    const { id, userId } = req.query
+    const removedTask = await db.parents.remove_task(id);
     const updatedTasks = await db.parents.get_all_tasks(userId);
     res.status(200).send(updatedTasks);
   },

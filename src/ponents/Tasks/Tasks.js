@@ -26,11 +26,18 @@ function Tasks(props) {
     setIsOpen(false)
   }, [selectedDate]);
 
+  // useEffect(() => {
+  //   if (props.tasks) {
+  //     props.getAllTasks(props.user_id)
+  //   }
+  // }, [props.tasks])
+
   function addTask() {
     props.addTask(taskName, points, description, props.user.parent, props.user.id, selectedDate);
   };
 
   function remove(taskId, userId) {
+    console.log(userId)
     props.removeTask(taskId, userId);
   };
 

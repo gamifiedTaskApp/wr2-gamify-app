@@ -41,8 +41,7 @@ export function addTask(taskName, pointsGained, taskDescription, userId, childId
 };
 
 export function removeTask(id, userId) {
-  const body = { userId };
-  const removed = axios.delete(`/api/remove/task/${id}`, body)
+  const removed = axios.delete(`/api/remove/task?id=${id}&userId=${userId}`)
   return {
     type: REMOVE_TASK,
     payload: removed
