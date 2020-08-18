@@ -19,7 +19,7 @@ module.exports = {
       res.status(409).send('Email is already assigned to an account');
     };
     Commented out for testing purposes */
-    
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
@@ -43,36 +43,52 @@ module.exports = {
     const { username, password } = req.body;
 
     const checkUsername = await db.auth.check_username_exists(username);
-    const user = checkUsername[0];
-    if (!user) {
-      res.status(404).send('Sorry can not seem to find that username. Try again!');
-    };
-    console.log(user)
-    const passCheck = bcrypt.compareSync(password, user.password);
-    if (!passCheck) {
-      res.status(403).send('Password is incorrect');
-    };
+    const checkChildUsername = await db.auth.check_child_username(username);
 
-    req.session.user = {
-      id: user.user_id,
-      username: user.username,
-      firstName: user.first_name,
-      lastName: user.last_name,
-      email: user.email,
-      parental: user.is_parental,
-      points: user.experience_points
-    };
-    // console.log(req.session.user, 'hitter')
-    res.status(200).send(req.session.user);
+    const user = checkUsername[0];
+    const childUser = checkChildUsername[0];
+    if (user) {
+      const passCheck = bcrypt.compareSync(password, user.password);
+      if (!passCheck) {
+        res.status(403).send('Password is incorrect');
+      };
+      req.session.user = {
+        id: user.user_id,
+        username: user.username,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email,
+        parental: user.is_parental,
+        points: user.experience_points
+      };
+      // console.log(req.session.user, 'hitter')
+      res.status(200).send(req.session.user);
+    }
+    else if (childUser){
+      const passCheck = bcrypt.compareSync(password, childUser.password);
+      if (!passCheck) {
+        res.status(403).send('Password is incorrect');
+      };
+      req.session.user = {
+        id: childUser.child_id,
+        username: childUser.child_username,
+        parent: childUser.u_id,
+        points: childUser.points
+      };
+      res.status(200).send(req.session.user);
+    }
+    else{
+      res.status(404).send('Sorry can not seem to find that username. Try again!');
+    }    
   },
-  registerChild: async(req, res) =>{
+  registerChild: async (req, res) => {
     const db = req.app.get("db");
-    const {username, parentId, password} = req.body;
+    const { username, parentId, password } = req.body;
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
 
-    console.log(checkChildUsername[0]);
+    // console.log(checkChildUsername[0]);
     if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
     }
@@ -80,15 +96,15 @@ module.exports = {
       res.status(409).send('Username already exists');
     };
 
-    
+
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    console.log(hash, parentId, username)
+    // console.log(hash, parentId, username)
     const registeredChild = await db.auth.register_child(parentId, hash, username);
-    console.log("after")
+    // console.log("after")
     const child = registeredChild[0];
-    
+
     req.session.user = {
       id: child.child_id,
       username: child.child_username,
@@ -97,13 +113,13 @@ module.exports = {
     };
     res.status(200).send(req.session.user);
   },
-  loginChild: async (req, res) =>{
+  loginChild: async (req, res) => {
     const db = req.app.get("db");
-    const {username, password} = req.body;
+    const { username, password } = req.body;
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const child = checkChildUsername[0];
-    if(!child){
+    if (!child) {
       res.status(404).send('Sorry can not seem to find that username. Try again!');
     }
 
@@ -119,5 +135,17 @@ module.exports = {
       points: child.points
     };
     res.status(200).send(req.session.user);
+  },
+
+  logout: (req, res) => {
+    req.session.destroy()
+    res.status(200).send('Successfully Logged Out!')
+  },
+
+  getSession: (req, res) => {
+    if (req.session.user) {
+      // console.log(req.session.user, 'hit')
+      res.status(200).send(req.session.user)
+    }
   }
 };
