@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './ponents/Nav/Nav'
 import './App.css';
 import routes from './routes';
-
+import Parent from "./ponents/Parent/Parent"
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
       </header>
       <Nav />
       {routes}
+      <Parent />
     </div>
   );
 }
