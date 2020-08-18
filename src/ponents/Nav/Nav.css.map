@@ -1,8 +1,10 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAEA,AAAA,IAAI,CAAA;ECDF,OAAO,EAAE,IAAI;EACb,eAAe,EDCY,YAAY;ECAvC,WAAW,EAAE,MAAM;EACnB,cAAc,EDD2B,GAAG;EAC1C,MAAM,EAAC,KAAK;EACZ,KAAK,EAAC,KAAK;EACX,gBAAgB,EENR,OAAO;CFOlB;;AACD,AAAA,KAAK,CAAA;ECPH,OAAO,EAAE,IAAI;EACb,eAAe,EDOY,MAAM;ECNjC,WAAW,EAAE,MAAM;EACnB,cAAc,EDKqB,IAAI;EACrC,eAAe,EAAC,IAAI;EACpB,KAAK,EAAC,KAAK;CACd",
     "sources": [
-        "Nav.scss"
+        "Nav.scss",
+        "../../Sass/_mixins.scss",
+        "../../Sass/_variables.scss"
     ],
     "names": [],
     "file": "Nav.css"
