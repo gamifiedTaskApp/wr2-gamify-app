@@ -73,7 +73,8 @@ module.exports = {
         id: childUser.child_id,
         username: childUser.child_username,
         parent: childUser.u_id,
-        points: childUser.points
+        points: childUser.points,
+        isChild: childUser.is_child
       };
       res.status(200).send(req.session.user);
     }

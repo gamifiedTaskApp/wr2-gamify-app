@@ -1,4 +1,4 @@
-.cont, header, .child_container {
+.cont, .child_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,15 +17,11 @@
 }
 
 header {
-  height: 100px;
-  width: 100vw;
-  background-color: #7cbbee;
-  -webkit-box-shadow: 0px 5px 8px grey;
-          box-shadow: 0px 5px 8px grey;
+  display: none;
 }
 
 .child_container {
-  background-color: #7cbbee;
+  background-color: #F66747;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -74,6 +70,6 @@ header {
   margin-top: 50px;
   font-size: 30px;
   text-shadow: none;
-  background-color: #006ab1;
+  background-color: #00A08F;
 }
 /*# sourceMappingURL=parent.css.map */

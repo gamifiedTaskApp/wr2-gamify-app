@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Calender from '../Calender/Calender';
 import ChildDropdown from './ChildDropdown';
 import './tasks.css';
+import {Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
 import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
 
@@ -92,6 +93,7 @@ function Tasks(props) {
           )
         })
       }
+      {props.loggedIn ? null : <Redirect to={'/login'}/> }
     </div>
   )
 };
@@ -105,7 +107,8 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     user: state.userReducer.user.data,
-    tasks: state.taskReducer.tasks.data
+    tasks: state.taskReducer.tasks.data,
+    loggedIn: state.userReducer.loggedIn
   };
 };
 

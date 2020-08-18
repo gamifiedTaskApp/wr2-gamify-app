@@ -3,6 +3,8 @@
     justify-content:center;
     align-items:center;
 }
+@import '../../Sass/mixins';
+@import '../../Sass/variables';
 .cont{
     height:100%;
     width:100vw;
@@ -10,15 +12,11 @@
     margin-top:70px;
 }
 header{
-    @extend%flex;
-    height:100px;
-    width:100vw;
-    background-color:rgb(124, 187, 238);
-    box-shadow:0px 5px 8px grey;
+    display:none;
 
 }
 .child_container{
-    background-color:rgb(124, 187, 238);
+    background-color:$mainColor;
     @extend%flex;
     justify-content:flex-start;
     flex-direction:column;
@@ -56,7 +54,7 @@ header{
         margin-top:50px;
         font-size:30px;
         text-shadow:none;
-        background-color:rgb(0, 106, 177);
+        background-color:$shadow1;
 
     }
 }

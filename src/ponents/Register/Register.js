@@ -129,7 +129,7 @@ function Register(props) {
 
         </div>
       </div>
-      {props.userReducer.loggedIn ? <Redirect to={'/'} /> : null}
+      {props.userReducer.loggedIn ? <Redirect to={'/tasks'} /> : null}
     </div>
   )
 };
