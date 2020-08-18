@@ -8,6 +8,7 @@ import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
 
 function Tasks(props) {
 
+  const [completed, setCompleted] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -26,18 +27,11 @@ function Tasks(props) {
     setIsOpen(false)
   }, [selectedDate]);
 
-  // useEffect(() => {
-  //   if (props.tasks) {
-  //     props.getAllTasks(props.user_id)
-  //   }
-  // }, [props.tasks])
-
   function addTask() {
     props.addTask(taskName, points, description, props.user.parent, props.user.id, selectedDate);
   };
 
   function remove(taskId, userId) {
-    console.log(userId)
     props.removeTask(taskId, userId);
   };
 
@@ -72,9 +66,12 @@ function Tasks(props) {
                 <input type='number' value={points} onChange={(e) => setPoints(e.target.value)} />
               </div>
 
+              {/* <Calender /> */}
+
               <div>
                 <button onClick={addTask}>Add Task</button>
               </div>
+
             </div>
             : null
           }
