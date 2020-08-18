@@ -7,17 +7,18 @@ module.exports = {
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
+    const checkEmail = await db.auth.check_email_exists(email);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
     }
     else if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
     }
-
-    const checkEmail = await db.auth.check_email_exists(email);
-    if (checkEmail[0]) {
+    else if(checkEmail[0]){
       res.status(409).send('Email is already assigned to an account');
     };
+
+    
     // Commented out for testing purposes 
 
     const salt = bcrypt.genSaltSync(10);
