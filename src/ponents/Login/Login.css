@@ -152,4 +152,10 @@ b {
   border-radius: 10px;
   margin-top: 50px;
 }
+
+@media only screen and (min-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
 /*# sourceMappingURL=Login.css.map */
