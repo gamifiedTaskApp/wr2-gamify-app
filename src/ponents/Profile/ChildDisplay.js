@@ -15,7 +15,7 @@ function ChildDisplay(props){
       }
 
       function editUsername(){
-        const username = props.child.child_username,
+        const username = usernameInput,
               userId = props.child.child_id;
 
           Axios.put('/api/child/changeName', {username, userId})
