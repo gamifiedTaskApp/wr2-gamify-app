@@ -1,0 +1,13 @@
+@import '../../Sass/mixins';
+@import '../../Sass/variables';
+.nav{
+    @include flexBaseOptions(space-around, row);
+    height:100px;
+    width:100vw;
+    background-color:$mainColor;
+}
+.link{
+    @include flexBaseOptions(center, none);
+    text-decoration:none;
+    color:black;
+}
