@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
 import './tasks.css';
 
-function ChildDropdown() {
+function ChildDropdown(props) {
 
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState('');
   const toggle = () => setOpen(!open);
-  const listChildren = children.map((child) =>
-    <li>
-      <button onClick={() => setTitle(child)}>
-        {child}
+  const [children, setChildren] = useState([]);
+
+  useEffect(() => {
+    if (!props.isChild) {
+      axios.get(`/api/parents/children/${props.userId}`)
+        .then(res => {
+          setChildren(res.data)
+        });
+    };
+  }, [props.isChild]);
+
+  const listChildren = children.map((child, i) =>
+    <li key={i}>
+      <button onClick={() => props.setTitle(child.child_username)}>
+        {child.child_username}
       </button>
     </li>
   )
@@ -24,7 +34,7 @@ function ChildDropdown() {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}>
         <div>
-          <p>{title}</p>
+          <p>{props.title}</p>
         </div>
         <div>
           <p>{open ? 'Close' : 'Open'}</p>
