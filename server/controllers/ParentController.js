@@ -95,5 +95,11 @@ module.exports = {
     }
     const newUsername = await db.parents.change_username(username, userId);
     res.sendStatus(200);
+  },
+  getAllChildren: async (req, res) => {
+    const db = req.app.get('db');
+    const parentId = req.params.id;
+    const children = await db.parents.get_children_data(parentId);
+    res.status(200).send(children);
   }
 }
