@@ -154,8 +154,56 @@ b {
 }
 
 @media only screen and (min-width: 600px) {
-  body {
-    background-color: lightblue;
+  .login_header {
+    text-align: left;
+    width: 200px;
+    margin-left: 30px;
+  }
+  .login_header_holder {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  button {
+    margin-right: 15px;
+    margin-bottom: 20px;
+  }
+  .login_form {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    background-color: transparent;
+    height: 500px;
+    width: 60vw;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .login_inputs {
+    font-size: 20px;
+    color: black;
+  }
+  .login_inputs input {
+    background-color: transparent;
+  }
+  .login_button_holder {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    width: 80%;
+  }
+  h5 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    color: black;
+  }
+  .login_link {
+    color: black;
   }
 }
 /*# sourceMappingURL=Login.css.map */
