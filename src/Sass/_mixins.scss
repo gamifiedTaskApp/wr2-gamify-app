@@ -16,3 +16,9 @@
   outline: 0;
     border:1px solid rgb(189, 189, 189);
 };
+
+@mixin inputStyleTwo {
+    border-width: 0 0 2px;
+    border-color: black;
+    background-color: $mainColor;
+}

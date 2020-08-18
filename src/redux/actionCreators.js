@@ -1,4 +1,4 @@
-import { SET_USER, LOGIN_USER, GET_TASKS } from './constraints';
+import { SET_USER, LOGIN_USER, GET_TASKS, ADD_TASK, REMOVE_TASK } from './constraints';
 import axios from 'axios';
 
 //USER FUNCTIONS
@@ -23,10 +23,28 @@ export function loginUser(username, password) {
 
 //TASKS FUNCTIONS
 
-export function getAllTasks(userId) {
-  const tasks = axios.get('/api/get/tasks');
+export function getAllTasks(id) {
+  const tasks = axios.get(`/api/get/tasks/${id}`);
   return {
     type: GET_TASKS,
     payload: tasks
+  };
+};
+
+export function addTask(taskName, pointsGained, taskDescription, userId, childId, date) {
+  const body = { taskName, pointsGained, taskDescription, userId, childId, date };
+  const addTask = axios.post('/api/add/task', body);
+  return {
+    type: ADD_TASK,
+    payload: addTask
+  };
+};
+
+export function removeTask(id, userId) {
+  const body = { userId };
+  const removed = axios.delete(`/api/remove/task/${id}`, body)
+  return {
+    type: REMOVE_TASK,
+    payload: removed
   };
 };

@@ -13,12 +13,12 @@ module.exports = {
     else if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
     }
-    /*
+
     const checkEmail = await db.auth.check_email_exists(email);
     if (checkEmail[0]) {
       res.status(409).send('Email is already assigned to an account');
     };
-    Commented out for testing purposes */
+    // Commented out for testing purposes 
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
@@ -47,7 +47,7 @@ module.exports = {
     if (!user) {
       res.status(404).send('Sorry can not seem to find that username. Try again!');
     };
-    console.log(user)
+
     const passCheck = bcrypt.compareSync(password, user.password);
     if (!passCheck) {
       res.status(403).send('Password is incorrect');

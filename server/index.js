@@ -32,7 +32,7 @@ app.post('/api/add/task', parentCtrl.addTask);
 app.post('/api/add/task/all', parentCtrl.addTasksForAll);
 app.delete('/api/remove/task/:id', parentCtrl.removeTask);
 app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
-// app.get('/api/get/tasks', parentCtrl.getAllTasks); //THIS NEEDS CTRL FUNCTION
+app.get('/api/get/tasks/:id', parentCtrl.getAllTasks); //THIS NEEDS CTRL FUNCTION
 
 app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
 app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
