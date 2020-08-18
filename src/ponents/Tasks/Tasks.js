@@ -38,7 +38,6 @@ function Tasks(props) {
     props.removeTask(taskId, userId);
   };
 
-  console.log(props.user)
   return (
     <div className='tasks'>
       {selectedDate.toDateString()}

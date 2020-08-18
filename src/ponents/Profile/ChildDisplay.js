@@ -29,6 +29,7 @@ function ChildDisplay(props){
 
     return(
     <div>
+        {props.child.child_name}
         {props.child.child_username}
         {props.child.points}
         <button onClick={deleteChild}>Delete Child</button>

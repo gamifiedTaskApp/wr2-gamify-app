@@ -3,8 +3,8 @@ import './rewards.css';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 function Rewards(props) {
+  
   return (<div>
-    
     
     {props.loggedIn ? null : <Redirect to={'/login'}/> }
   </div>)

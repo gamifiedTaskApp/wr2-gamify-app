@@ -20,7 +20,7 @@ function Switch(){
 }
 function createChild(){
     console.log("creating")
-    Axios.post('/auth/register/child', {username, password, parentId})
+    Axios.post('/auth/register/child', {username, password, parentId, name})
     .then(res => {
         alert("child made")
         Switch();
