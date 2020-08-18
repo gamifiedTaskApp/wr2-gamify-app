@@ -15,7 +15,7 @@ function App() {
       </header>
       <Nav />
       {routes}
-      <Parent />
+      
     </div>
   );
 }
