@@ -32,17 +32,19 @@ module.exports = {
     const updatedTasks = await db.parents.get_all_tasks(userId);
     res.status(200).send(updatedTasks);
   },
-  removeAllTasks: async (req, res) => {
-    const db = req.app.get("db")
-    const taskId = req.params.id
-    const allTasks = await db.parents.get_task_info(taskId)
-    console.log(allTasks)
-    for (let i = 0; i < allTasks.length; i++) {
-      const { user_id, task_name } = allTasks[i]
-      const removedReward = await db.parents.remove_tasks(user_id, task_name)
-    }
-    res.sendStatus(200)
-  },
+  // removeAllTasks: async (req, res) => {
+  //   const db = req.app.get("db")
+  //   const taskId = req.params.id
+  //   const allTasks = await db.parents.get_task_info(taskId)
+  //   console.log(allTasks)
+  //   for (let i = 0; i < allTasks.length; i++) {
+  //     const { user_id, task_name } = allTasks[i]
+  //     const removedReward = await db.parents.remove_tasks(user_id, task_name)
+  //   }
+  //   res.sendStatus(200)
+  // },
+
+
 
   addRewardForOne: async (req, res) => {
     const db = req.app.get("db");
@@ -95,5 +97,13 @@ module.exports = {
     }
     const newUsername = await db.parents.change_username(username, userId);
     res.sendStatus(200);
+  },
+
+  getChildren: async (req, res) => {
+    const db = req.app.get('db');
+    const { userId } = req.params;
+
+    const children = await db.parents.get_all_children(userId);
+    res.status(200).send(children)
   }
-}
+};
