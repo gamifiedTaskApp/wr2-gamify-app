@@ -17,5 +17,6 @@ export default (
     <Route path='/store' component={Store} />
     <Route path='/profile' component={Profile} />
     <Route path='/rewards' component={Rewards} />
+    <Route component={Login} />
   </Switch>
 );

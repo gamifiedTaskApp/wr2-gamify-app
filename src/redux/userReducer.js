@@ -2,7 +2,7 @@ import { SET_USER, LOGIN_USER } from "./constraints";
 
 const initialState = {
   user: {},
-  loggedIn: false
+  loggedIn: false,
 };
 
 export default function userReducer(state = initialState, action) {

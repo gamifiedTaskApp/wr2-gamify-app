@@ -80,7 +80,7 @@ function Login(props) {
           <h5>Need to track those tasks? <Link className='login_link' to='/register'>REGISTER HERE</Link></h5>
         </div>
       </div>
-      {props.userReducer.loggedIn ? <Redirect to={'/'} /> : null}
+      {props.userReducer.loggedIn ? <Redirect to={'/tasks'} /> : null}
     </div>
   )
 };
