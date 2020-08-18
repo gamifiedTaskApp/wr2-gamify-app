@@ -31,7 +31,7 @@ massive({
 app.post('/api/add/task', parentCtrl.addTask);
 app.post('/api/add/task/all', parentCtrl.addTasksForAll);
 app.delete('/api/remove/task', parentCtrl.removeTask);
-app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
+//app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
 app.get('/api/get/tasks/:id', parentCtrl.getAllTasks); //THIS NEEDS CTRL FUNCTION
 app.get('/api/children/:id', parentCtrl.getAllChildren);
 // app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
