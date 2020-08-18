@@ -7,10 +7,12 @@ module.exports={
     },
     buyItem: async (req,res)=>{
         const db=req.app.get("db");
+        console.log(req.body)
         const {rewardsPrice, childId, rewardId}=req.body;
         const updatedPoints= await db.children.remove_points(rewardsPrice, childId)
         const updatedBeenRewarded= await db.children.been_rewarded(rewardId)
-        res.sendStatus(200)
+        const getStoreRewards= await db.children.store_rewards(childId)
+        res.send(getStoreRewards).status(200)
     },
     useItem: async (req,res)=>{
         const db=req.app.get("db");
