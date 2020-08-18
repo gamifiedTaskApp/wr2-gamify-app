@@ -7,17 +7,18 @@ module.exports = {
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
+    const checkEmail = await db.auth.check_email_exists(email);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
     }
     else if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
     }
-
-    const checkEmail = await db.auth.check_email_exists(email);
-    if (checkEmail[0]) {
+    else if(checkEmail[0]){
       res.status(409).send('Email is already assigned to an account');
     };
+
+    
     // Commented out for testing purposes 
 
     const salt = bcrypt.genSaltSync(10);
@@ -155,7 +156,7 @@ module.exports = {
     res.status(200).send(req.session.user);
   },
 
-  logout: (req, res) => {
+  logout: async(req, res) => {
     req.session.destroy()
     res.status(200).send('Successfully Logged Out!')
   },
@@ -165,5 +166,19 @@ module.exports = {
       // console.log(req.session.user, 'hit')
       res.status(200).send(req.session.user)
     }
+  },
+  deleteUser: async (req, res) => {
+    const db = req.app.get("db");
+    const userId = req.params.id;
+
+    const deletedUser = await db.auth.delete_user(userId);
+    res.sendStatus(200);
+  },
+  deleteChild: async(req, res) => {
+    const db = req.app.get("db");
+    const childId = req.params.id;
+
+    const deletedChild = await db.auth.delete_child(childId);
+    res.sendStatus(200);
   }
 };

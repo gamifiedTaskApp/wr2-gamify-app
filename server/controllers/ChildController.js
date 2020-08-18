@@ -32,7 +32,11 @@ module.exports={
         const db = req.app.get('db');
         const {username, userId} = req.body;
 
+        console.log(username, userId)
+
         const checkChildUsername = await db.auth.check_child_username(username);
+
+        
         const checkUsername = await db.auth.check_username_exists(username);
         if (checkUsername[0]) {
             res.status(409).send('Username already exists');
