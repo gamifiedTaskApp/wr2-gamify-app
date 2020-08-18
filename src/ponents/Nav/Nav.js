@@ -9,7 +9,6 @@ const Nav = (props) => {
       {props.location.pathname !== '/login' && props.location.pathname !== '/register'
         ? (<nav>
           <div className="nav">
-            <Link className="link" to='/add-child'>Add Child</Link>
             <Link className="link" to='/tasks'>Tasks</Link>
             <Link className="link" to='/store'>Store</Link>
             <Link className="link" to='/rewards'>Rewards</Link>

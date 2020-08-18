@@ -27,6 +27,7 @@ function createChild(){
         setUsername("");
         setPassword("");
         setName("");
+        props.getChildren()
     })
     .catch(err => alert(err));
 }

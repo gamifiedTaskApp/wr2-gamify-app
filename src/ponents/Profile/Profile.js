@@ -57,7 +57,7 @@ function Profile(props) {
   if(children){
     mappedChildren = children.map((child) => {
       return(
-        <ChildDisplay child={child} />
+        <ChildDisplay getChildren={getChildren} child={child} />
       )
     })
   }
@@ -69,7 +69,7 @@ function Profile(props) {
     <button onClick={logOut}>Log Out</button>
     {mappedChildren}
     { isChild ? "" : <button onClick={deleteUser}>Delete Account</button>}
-    {isParent ? <Parent /> : ""}
+    {isParent ? <Parent getChildren={getChildren} /> : ""}
     
 
     {props.userReducer.loggedIn ? null : <Redirect to={'/login'}/> }
