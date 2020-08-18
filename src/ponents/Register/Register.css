@@ -151,4 +151,64 @@ b {
   width: 150px;
   border-radius: 10px;
 }
+
+@media only screen and (min-width: 600px) {
+  .register_header {
+    text-align: left;
+    width: 200px;
+    margin-left: 30px;
+  }
+  .register_header_holder {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  button {
+    margin-bottom: 20px;
+    margin-right: 15px;
+  }
+  .register_form {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    background-color: transparent;
+    height: 500px;
+    width: 60vw;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .register_inputs {
+    font-size: 20px;
+    color: black;
+  }
+  .register_inputs input {
+    background-color: transparent;
+  }
+  .register_inputs .email_input {
+    background-color: transparent;
+  }
+  .register_inputs .name_input {
+    background-color: transparent;
+  }
+  .register_button_holder {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    width: 80%;
+  }
+  h5 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    color: black;
+  }
+  .register_link {
+    color: black;
+  }
+}
 /*# sourceMappingURL=Register.css.map */
