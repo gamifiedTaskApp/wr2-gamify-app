@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
+import axios from 'axios';
 import './tasks.css';
 
 function ChildDropdown() {
 
   const [open, setOpen] = useState(false);
-  const [children] = useState([]);
   const [title, setTitle] = useState('');
   const toggle = () => setOpen(!open);
-  const listChildren = children.map((day) =>
+  const listChildren = children.map((child) =>
     <li>
-      <button onClick={() => setTitle(day)}>
-        {day}
+      <button onClick={() => setTitle(child)}>
+        {child}
       </button>
     </li>
   )
