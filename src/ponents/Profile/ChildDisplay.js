@@ -15,12 +15,14 @@ function ChildDisplay(props){
       }
 
       function editUsername(){
-        const username = props.child.child_username,
-              userId = props.child.child_id;
+        const userId = props.child.child_id,
+              username = usernameInput;
 
           Axios.put('/api/child/changeName', {username, userId})
           .then(res => {
               props.getChildren();
+              setIsEditing(false);
+              setUsernameInput('');
           })
           .catch(err => console.log(err))
       }
