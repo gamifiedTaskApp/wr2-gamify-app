@@ -33,7 +33,8 @@ module.exports = {
       lastName: user.last_name,
       email: user.email,
       parental: user.is_parental,
-      points: user.experience_points
+      points: user.experience_points,
+      picture: user.profile_picture
     };
     // console.log(req.session.user)
     res.status(200).send(req.session.user);
@@ -60,7 +61,8 @@ module.exports = {
         lastName: user.last_name,
         email: user.email,
         parental: user.is_parental,
-        points: user.experience_points
+        points: user.experience_points,
+        picture: user.profile_picture
       };
       // console.log(req.session.user, 'hitter')
       res.status(200).send(req.session.user);
@@ -75,7 +77,8 @@ module.exports = {
         username: childUser.child_username,
         parent: childUser.u_id,
         points: childUser.points,
-        isChild: childUser.is_child
+        isChild: childUser.is_child,
+        picture: childUser.profile_picture
       };
       res.status(200).send(req.session.user);
     }
@@ -95,7 +98,8 @@ module.exports = {
       lastName: user.last_name,
       email: user.email,
       parental: user.is_parental,
-      points: user.experience_points
+      points: user.experience_points,
+      picture: user.profile_picture
     };
     // console.log(req.session.user, 'hitter')
     res.status(200).send(req.session.user);
@@ -124,7 +128,8 @@ module.exports = {
       id: child.child_id,
       username: child.child_username,
       parent: child.u_id,
-      points: child.points
+      points: child.points,
+      picture: child.profile_picture
     };
     res.status(200).send(req.session.user);
   },
@@ -147,7 +152,8 @@ module.exports = {
       id: child.child_id,
       username: child.child_username,
       parent: child.u_id,
-      points: child.points
+      points: child.points,
+      picture: child.profile_picture
     };
     res.status(200).send(req.session.user);
   },
