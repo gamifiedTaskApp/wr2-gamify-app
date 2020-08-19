@@ -64,12 +64,15 @@ const Store= props=>{
         </div>
     ))
     return(
-    <div>
-        <p className='points'>Total Points: {points}</p>
+    <div className='storepage'>
+        <div className='points'>
+            <div className = 'textPoints'>
+            Total Points: {points}</div>
+         </div>
         <div className='storeRewards'>
         {storeRewards}
         </div>
-        {props.loggedIn ? null : <Redirect to={'/login'} />}
+        {props.userReducer.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
     )
 }
