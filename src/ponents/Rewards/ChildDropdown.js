@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
 import './rewards.css'
+import Axios from 'axios';
 
 function ChildDropdown(props) {
 
@@ -11,32 +12,64 @@ function ChildDropdown(props) {
     // const childName = children[0] ? children[0].child_username : "";
     const [title, setTitle] = useState('');
     
+    function getRewards(child){
+      axios.get(`/api/earnedRewards/${child.child_id}`)
+      .then(res => {
+            setTitle(child.child_username)
+            props.setChild(child)
+            setOpen(false)
+            props.setRewards(res.data)
+          }
+      )
+      .catch(err => alert(err))
+    };
+
+
     useEffect(() => {
         if (!props.isChild) {
             axios.get(`/api/parents/children/${props.userId}`)
             .then(res => {
                 setChildren(res.data)
                 setTitle(res.data[0].child_username)
+                props.setChild(res.data[0])
+                axios.get(`/api/earnedRewards/${res.data[0].child_id}`)
+                .then(newRes => {
+                  console.log(newRes.data) //I hate this line
+                  props.setRewards(newRes.data)
+                })
             });
-        };
+        }
+        else {
+          axios.get(`/api/earnedRewards/${props.userId}`)
+          .then(res => {
+            props.setRewards(res.data)
+          })
+        }
     }, [props.isChild]);
     
-    const listChildren = children.map((child, i) =>
-    <li className='dd-list-item' key={i}>
-      <button className='child-button' onClick={() => {
-        setTitle(child.child_username)
-        setOpen(false)}}>
-        {child.child_username}
-      </button>
-    </li>
+    const listChildren = children.map((child, i) =>{
+      if(child.child_username !== title){
+        return(
+          <li className='dd-list-item' key={i}>
+          <button className='child-button' onClick={() => {getRewards(child)}} >
+            {child.child_username}
+          </button>
+        </li>
+        )
+      }
+      
+    }
   )
   ChildDropdown.handleClickOutside = () => setOpen(false);
 
-  console.log(children)
 
   return (
+    
     <div className='dd-wrapper'>
-      <div 
+      {props.isChild ? ""
+      :
+      <div>
+    <div 
         className='dd-header'
         tabIndex={0}
         onKeyPress={() => toggle(!open)}
@@ -54,6 +87,8 @@ function ChildDropdown(props) {
         </ul>
       )}
     </div>
+    }
+  </div>
   )
 }
 
