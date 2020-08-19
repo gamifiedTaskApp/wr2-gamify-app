@@ -1,4 +1,4 @@
-import { SET_USER, LOGIN_USER, GET_TASKS, ADD_TASK, REMOVE_TASK } from './constraints';
+import { SET_USER, LOGIN_USER, GET_TASKS, ADD_TASK, REMOVE_TASK, LOGOUT_USER } from './constraints';
 import axios from 'axios';
 
 //USER FUNCTIONS
@@ -20,6 +20,13 @@ export function loginUser(username, password) {
     payload: loggedIn
   };
 };
+
+export function logoutUser(){
+  axios.post('/auth/logout');
+  return{
+    type: LOGOUT_USER
+  }
+}
 
 //TASKS FUNCTIONS
 

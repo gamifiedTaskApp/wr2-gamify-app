@@ -7,10 +7,12 @@ module.exports={
     },
     buyItem: async (req,res)=>{
         const db=req.app.get("db");
+        console.log(req.body)
         const {rewardsPrice, childId, rewardId}=req.body;
         const updatedPoints= await db.children.remove_points(rewardsPrice, childId)
         const updatedBeenRewarded= await db.children.been_rewarded(rewardId)
-        res.sendStatus(200)
+        const getStoreRewards= await db.children.store_rewards(childId)
+        res.send(getStoreRewards).status(200)
     },
     useItem: async (req,res)=>{
         const db=req.app.get("db");
@@ -21,6 +23,7 @@ module.exports={
     getStoreRewards: async (req,res)=>{
         const db=req.app.get("db");
         const childId = req.params.id;
+        console.log(childId)
         const getStoreRewards= await db.children.store_rewards(childId)
         console.log(getStoreRewards)
         res.send(getStoreRewards).status(200)
@@ -29,7 +32,11 @@ module.exports={
         const db = req.app.get('db');
         const {username, userId} = req.body;
 
+        console.log(username, userId)
+
         const checkChildUsername = await db.auth.check_child_username(username);
+
+        
         const checkUsername = await db.auth.check_username_exists(username);
         if (checkUsername[0]) {
             res.status(409).send('Username already exists');

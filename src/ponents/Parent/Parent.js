@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Axios from "axios"
 import './parent.css';
+import onClickOutside from 'react-onclickoutside';
 import {connect} from "react-redux";
 function Parent(props){
     const parentId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
@@ -26,6 +27,7 @@ function createChild(){
         setUsername("");
         setPassword("");
         setName("");
+        props.getChildren()
     })
     .catch(err => alert(err));
 }
@@ -33,11 +35,11 @@ function createChild(){
 
 
 
-
+    Parent.handleClickOutside = () => setView(false)
   return (
     view === false ?
       <div>
-        <header>nav</header>
+      
         <div className="cont">
           <div className="child_container">
             <span>Add Child Account</span>
@@ -46,13 +48,14 @@ function createChild(){
         </div>
     </div> :
     <div>
-    <header>nav</header>
+
     <div className="cont">
         <div className="child_container">
         <span className="input">Name<br></br><input value={name} onChange={e => setName(e.target.value) }></input></span>
         <span className="input">Username<br></br><input value={username} onChange={e => setUsername(e.target.value) }></input></span>
         <span className="input">Password<br></br><input type="password" value={password} onChange={e => setPassword(e.target.value) }></input></span>
           <button className='button' onClick={createChild}>Submit</button>
+          <button className='button' onClick={Switch}>Cancel</button>
         </div>
       </div>
       </div>
@@ -60,4 +63,8 @@ function createChild(){
 }
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(Parent);
+const clickOutsideConfig = {
+    handleClickOutside: () => Parent.handleClickOutside,
+  };
+
+export default connect(mapStateToProps)(onClickOutside(Parent, clickOutsideConfig));
