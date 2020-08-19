@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
-import './tasks.css';
 
 function ChildDropdown(props) {
 
-  const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
-  const [children, setChildren] = useState([]);
-
-  useEffect(() => {
-    if (!props.isChild) {
-      axios.get(`/api/parents/children/${props.userId}`)
-        .then(res => {
-          setChildren(res.data)
-        });
-    };
-  }, [props.isChild]);
-
-  const listChildren = children.map((child, i) =>
+    const [open, setOpen] = useState(false);
+    const toggle = () => setOpen(!open);
+    const [children, setChildren] = useState([]);
+    const childName = children[0] ? children[0].child_username : "";
+    const [title, setTitle] = useState('');
+    
+    useEffect(() => {
+        if (!props.isChild) {
+            axios.get(`/api/parents/children/${props.userId}`)
+            .then(res => {
+                setChildren(res.data)
+                setTitle(res.data[0].child_username)
+            });
+        };
+    }, [props.isChild]);
+    
+    const listChildren = children.map((child, i) =>
     <li key={i}>
-      <button onClick={() => props.setTitle(child.child_username)}>
+      <button onClick={() => setTitle(child.child_username)}>
         {child.child_username}
       </button>
     </li>
   )
   ChildDropdown.handleClickOutside = () => setOpen(false);
+
+  console.log(children)
 
   return (
     <div>
@@ -34,7 +38,7 @@ function ChildDropdown(props) {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}>
         <div>
-          <p>{props.title}</p>
+          <p>{title}</p>
         </div>
         <div>
           <p>{open ? 'Close' : 'Open'}</p>

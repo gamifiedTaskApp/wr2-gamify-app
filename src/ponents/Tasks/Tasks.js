@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import Calender from '../Calender/Calender';
 import ChildDropdown from './ChildDropdown';
 import './tasks.css';
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
 
 function Tasks(props) {
 
+  const isChild = props.user ? props.user.isChild ? true : false : "";
+  const [title, setTitle] = useState('');
   const [completed, setCompleted] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
@@ -36,12 +38,11 @@ function Tasks(props) {
     props.removeTask(taskId, userId);
   };
 
-  console.log(props.tasks)
   return (
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown />
+        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} />
         {isOpen
           ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
@@ -93,7 +94,7 @@ function Tasks(props) {
           )
         })
       }
-      {props.loggedIn ? null : <Redirect to={'/login'}/> }
+      {props.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
   )
 };
