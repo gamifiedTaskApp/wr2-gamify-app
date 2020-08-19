@@ -38,7 +38,13 @@ function ChildDropdown(props) {
                   props.setRewards(newRes.data)
                 })
             });
-        };
+        }
+        else {
+          axios.get(`/api/earnedRewards/${props.userId}`)
+          .then(res => {
+            props.setRewards(res.data)
+          })
+        }
     }, [props.isChild]);
     
     const listChildren = children.map((child, i) =>{
@@ -58,8 +64,12 @@ function ChildDropdown(props) {
 
 
   return (
+    
     <div className='dd-wrapper'>
-      <div 
+      {props.isChild ? ""
+      :
+      <div>
+    <div 
         className='dd-header'
         tabIndex={0}
         onKeyPress={() => toggle(!open)}
@@ -77,6 +87,8 @@ function ChildDropdown(props) {
         </ul>
       )}
     </div>
+    }
+  </div>
   )
 }
 
