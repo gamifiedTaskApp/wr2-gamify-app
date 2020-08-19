@@ -3,11 +3,13 @@ import './store.css'
 import axios from 'axios';
 import {connect} from "react-redux"
 import {Redirect} from "react-router-dom";
+import ChildDropdown from './ChildDropdown';
 
 const Store= props=>{
     console.log(props)
     const [store, setStore]=useState([])
-
+    const isChild = props.user ? props.user.isChild ? true : false : "";
+    const [child, setChild] = useState({});
 
     const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
 
@@ -65,6 +67,7 @@ const Store= props=>{
     ))
     return(
     <div className='storepage'>
+        <ChildDropdown isChild={isChild} userId={props.userReducer.user.data ? props.userReducer.user.data.id : ""} setChild={setChild} setStore={setStore} />
         <div className='points'>
             <div className = 'textPoints'>
             Total Points: {points}</div>
