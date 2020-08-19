@@ -1,1 +1,85 @@
-/* No CSS *//*# sourceMappingURL=store.css.map */
+.points {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #FF9F52;
+  font-size: xx-large;
+  color: #1C4755;
+  font-family: Apple Chancery, cursive;
+}
+
+.storeRewards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 85vh;
+  background-color: #FF9F52;
+  font-size: xx-large;
+  overflow: scroll;
+}
+
+.storeRewards ::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.storeReward {
+  height: 16vh;
+  border-style: solid;
+  border-color: black;
+  -webkit-box-shadow: 0 5px 2px -2px #5e5d5d;
+          box-shadow: 0 5px 2px -2px #5e5d5d;
+  border-radius: 50px;
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #F66747;
+  margin: 3vh;
+}
+
+.rewardInfo {
+  margin-left: 5%;
+  color: #EFC458;
+}
+
+.buyButton {
+  background-color: #52b1ff;
+  height: 70%;
+  width: 25%;
+  margin-right: 5%;
+  border-radius: 10px;
+  font-size: xx-large;
+  color: white;
+}
+/*# sourceMappingURL=store.css.map */
