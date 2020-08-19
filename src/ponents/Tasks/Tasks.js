@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import DayDropdown from './DayDropdown';
 import Calender from '../Calender/Calender';
+// import Calendar from '../Calender/CalenderTwo';
 import ChildDropdown from './ChildDropdown';
 import './tasks.css';
 import { Redirect } from "react-router-dom";
@@ -10,8 +11,11 @@ import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
 function Tasks(props) {
 
   const isChild = props.user ? props.user.isChild ? true : false : "";
+  let tasks = props.tasks ? props.tasks : [];
   const [title, setTitle] = useState('');
-  const [completed, setCompleted] = useState([]);
+  const [childId, setChildId] = useState(null);
+  const [toggle, setToggle] = useState(false);
+  const [addTaskDate, setAddTaskDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -38,12 +42,28 @@ function Tasks(props) {
     props.removeTask(taskId, userId);
   };
 
-  console.log(props.user)
+  let filterByChild = tasks.filter(child => {
+    return child.child_id === childId
+  }).map((task, i) => {
+    return (
+      <div key={i}>
+        <div className='task_display'>
+          <input type='checkbox' />
+          <h5><b>{`${task.task_name}`}</b></h5>
+          <h5><b>{`${task.points_gained}`}</b></h5>
+          <button onClick={() => remove(task.task_id, task.user_id)} >Remove Task</button>
+        </div>
+      </div>
+    )
+  })
+
+  // let filterByDate = 
+
   return (
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user.id} title={title} setTitle={setTitle} />
+        <ChildDropdown isChild={isChild} userId={props.user.id} title={title} setTitle={setTitle} setChildId={setChildId} />
         {isOpen
           ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
@@ -68,8 +88,10 @@ function Tasks(props) {
                 <label>Points Gained:</label>
                 <input type='number' value={points} onChange={(e) => setPoints(e.target.value)} />
               </div>
-
-              {/* <Calender /> */}
+              {toggle
+                ? <Calender setSelectedDate={setAddTaskDate} setIsOpen={setToggle} />
+                : <p onClick={() => setToggle(true)}>Select Date</p>
+              }
 
               <div>
                 <button onClick={addTask}>Add Task</button>
@@ -80,9 +102,10 @@ function Tasks(props) {
           }
         </div>
       </div>
-      {!props.tasks
+      {filterByChild}
+      {/* {!tasks
         ? null
-        : props.tasks.map((task, i) => {
+        : tasks.map((task, i) => {
           return (
             <div key={i}>
               <div className='task_display'>
@@ -94,7 +117,7 @@ function Tasks(props) {
             </div>
           )
         })
-      }
+      } */}
       {props.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
   )

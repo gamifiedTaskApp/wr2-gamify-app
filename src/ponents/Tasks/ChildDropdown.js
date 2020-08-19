@@ -20,11 +20,15 @@ function ChildDropdown(props) {
 
   const listChildren = children.map((child, i) =>
     <li key={i}>
-      <button onClick={() => props.setTitle(child.child_username)}>
+      <button onClick={() => {
+        props.setTitle(child.child_username)
+        props.setChildId(child.child_id)
+      }}>
         {child.child_username}
       </button>
     </li>
   )
+
   ChildDropdown.handleClickOutside = () => setOpen(false);
 
   return (
