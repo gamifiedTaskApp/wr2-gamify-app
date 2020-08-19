@@ -9,7 +9,7 @@ function Rewards(props) {
 
   return (
   <div>
-    <ChildDropdown isChild={isChild} userId={props.user.id}/>
+    <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""}/>
     
     {props.loggedIn ? null : <Redirect to={'/login'}/> }
   </div>)

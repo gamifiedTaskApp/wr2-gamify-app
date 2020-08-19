@@ -2,11 +2,14 @@ import React,{useEffect, useState} from 'react';
 import './store.css'
 import axios from 'axios';
 import {connect} from "react-redux"
+import {Redirect} from "react-router-dom";
 
 const Store= props=>{
     console.log(props)
     const [store, setStore]=useState([])
-    const [points, setPoints]=useState(props.userReducer.user.data.points)
+
+
+    const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
 
     useEffect(()=>{
         console.log('use effect working')
@@ -15,7 +18,8 @@ const Store= props=>{
 
     const retrieveStoreRewards =()=>{
         console.log('retrieve store rewards')
-        axios.get(`/api/storeRewards/${props.userReducer.user.data.id}`)
+        let userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
+        axios.get(`/api/storeRewards/${userId}`)
         .then((res)=>{
             console.log('retrieve store rewards working')
             console.log(res)
@@ -45,18 +49,27 @@ const Store= props=>{
         <div className="storeReward" key={i}>
             {console.log(storeReward)}
             {console.log(store)}
-            {storeReward.name}
-            {storeReward.rewards_price}
-            <button value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
+            <div className="rewardInfo">
+            <div className='rewardName'>
+                {storeReward.name}
+            </div>
+            <div className='rewardPrice'>
+                {storeReward.rewards_price}
+            </div>
+            </div>
+            <button className="buyButton" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
                 onClick={e=>buyItem(e.target.value)}>
-                Buy
+                Buy!
             </button>
         </div>
     ))
     return(
     <div>
-        <p>Total Points{points}</p>
+        <p className='points'>Total Points: {points}</p>
+        <div className='storeRewards'>
         {storeRewards}
+        </div>
+        {props.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
     )
 }

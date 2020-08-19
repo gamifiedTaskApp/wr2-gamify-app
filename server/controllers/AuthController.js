@@ -102,7 +102,7 @@ module.exports = {
   },
   registerChild: async (req, res) => {
     const db = req.app.get("db");
-    const { username, parentId, password } = req.body;
+    const { username, parentId, password, name } = req.body;
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
@@ -115,13 +115,9 @@ module.exports = {
       res.status(409).send('Username already exists');
     };
 
-
-
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    // console.log(hash, parentId, username)
-    const registeredChild = await db.auth.register_child(parentId, hash, username);
-    // console.log("after")
+    const registeredChild = await db.auth.register_child(parentId, hash, username, name);
     const child = registeredChild[0];
 
     req.session.user = {
