@@ -63,11 +63,16 @@ function Profile(props) {
   }
   
   return (<div>
-    <div><span>Enter New Username</span></div>
-    <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
-    <button onClick={() => changeUsername()} >Submit</button>
-    <button onClick={logOut}>Log Out</button>
-    {mappedChildren}
+    {isChild ? <span>{user.data.username}</span> : 
+    <div>
+      <div><span>Enter New Username</span></div>
+      <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
+      <button onClick={() => changeUsername()} >Submit</button>
+      <button onClick={logOut}>Log Out</button>
+      {mappedChildren}
+    </div>
+    }
+    
     { isChild ? "" : <button onClick={deleteUser}>Delete Account</button>}
     {isParent ? <Parent getChildren={getChildren} /> : ""}
     

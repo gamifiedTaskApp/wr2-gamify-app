@@ -38,12 +38,11 @@ function Tasks(props) {
     props.removeTask(taskId, userId);
   };
 
-  console.log(props.user)
   return (
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user.id} title={title} setTitle={setTitle} />
+        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} />
         {isOpen
           ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
