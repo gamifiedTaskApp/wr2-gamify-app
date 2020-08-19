@@ -45,6 +45,7 @@ app.get('/api/parents/children/:userId', parentCtrl.getChildren);
 
 //child endpoints
 app.put('/api/add/points', childCtrl.addPoints)
+app.put('/api/add/experience', childCtrl.addExperience)
 app.put('/api/buyItem', childCtrl.buyItem)
 app.put('/api/useItem', childCtrl.useItem)
 app.get('/api/storeRewards/:id', childCtrl.getStoreRewards);

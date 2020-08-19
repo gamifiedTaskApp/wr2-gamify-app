@@ -78,7 +78,8 @@ module.exports = {
         parent: childUser.u_id,
         points: childUser.points,
         isChild: childUser.is_child,
-        picture: childUser.profile_picture
+        picture: childUser.profile_picture,
+        experience: childUser.experience
       };
       res.status(200).send(req.session.user);
     }
@@ -129,7 +130,8 @@ module.exports = {
       username: child.child_username,
       parent: child.u_id,
       points: child.points,
-      picture: child.profile_picture
+      picture: child.profile_picture,
+      experience: child.experience
     };
     res.status(200).send(req.session.user);
   },
@@ -153,7 +155,8 @@ module.exports = {
       username: child.child_username,
       parent: child.u_id,
       points: child.points,
-      picture: child.profile_picture
+      picture: child.profile_picture,
+      experience: child.experience
     };
     res.status(200).send(req.session.user);
   },

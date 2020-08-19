@@ -67,6 +67,7 @@ function Profile(props) {
     {isChild ? 
     <div>
       <span>{user.data.username}</span> 
+      <span>{user.data.experience}</span> 
       <img src={userPicture}/>
     </div>
     : 
