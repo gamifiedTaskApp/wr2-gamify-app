@@ -47,7 +47,8 @@ app.get('/api/parents/children/:userId', parentCtrl.getChildren);
 app.put('/api/add/points', childCtrl.addPoints)
 app.put('/api/buyItem', childCtrl.buyItem)
 app.put('/api/useItem', childCtrl.useItem)
-app.get('/api/storeRewards/:id', childCtrl.getStoreRewards)
+app.get('/api/storeRewards/:id', childCtrl.getStoreRewards);
+app.get('/api/earnedRewards/:id', childCtrl.getChildEarnedRewards);
 app.put('/api/parent/changeName', parentCtrl.changeUserName);
 
 app.post('/auth/register/child', authCtrl.registerChild);

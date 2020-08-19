@@ -46,5 +46,11 @@ module.exports={
         }
         const newUsername = await db.children.change_username(username, userId);
         res.sendStatus(200);
+    },
+    getChildEarnedRewards: async (req, res) => {
+        const db = req.app.get("db");
+        const childId = req.params.id;
+        const earnedRewards = await db.children.reward_rewards(childId)
+        res.status(200).send(earnedRewards)
     }
 }
