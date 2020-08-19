@@ -49,18 +49,26 @@ const Store= props=>{
         <div className="storeReward" key={i}>
             {console.log(storeReward)}
             {console.log(store)}
-            {storeReward.name}
-            {storeReward.rewards_price}
-            <button value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
+            <div className="rewardInfo">
+            <div className='rewardName'>
+                {storeReward.name}
+            </div>
+            <div className='rewardPrice'>
+                {storeReward.rewards_price}
+            </div>
+            </div>
+            <button className="buyButton" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
                 onClick={e=>buyItem(e.target.value)}>
-                Buy
+                Buy!
             </button>
         </div>
     ))
     return(
     <div>
-        <p>Total Points{points}</p>
+        <p className='points'>Total Points: {points}</p>
+        <div className='storeRewards'>
         {storeRewards}
+        </div>
         {props.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
     )

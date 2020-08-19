@@ -1,0 +1,45 @@
+@import '../../Sass/mixins';
+@import '../../Sass/variables';
+
+.points{
+    @include flexBaseOptions(flex-end,row);
+    background-color: $highlight1;
+    font-size: xx-large;
+    color: $shadow2;
+    font-family: Apple Chancery, cursive;
+}
+
+.storeRewards{
+    @include flexBaseOptions(flex-start,column);
+    height: 85vh;
+    background-color: $highlight1;
+    font-size: xx-large;
+    overflow:scroll;
+    ::-webkit-scrollbar {
+  width:0px;
+  background:transparent;
+}
+}
+.storeReward{
+    height:16vh;
+    @include borderStyle();
+    width:95%;
+    @include flexBaseOptions(space-between,row);
+    background-color: $mainColor;
+    margin:3vh;
+}
+
+.rewardInfo{
+    margin-left: 5%;
+    color: $highlight2;
+}
+
+.buyButton{
+    background-color: #52b1ff;
+    height:70%;
+    width:25%;
+    margin-right: 5%;
+    border-radius: 10px;
+    font-size: xx-large;
+    color: white;
+}

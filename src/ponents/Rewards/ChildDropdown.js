@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
+import './rewards.css'
 
 function ChildDropdown(props) {
 
     const [open, setOpen] = useState(false);
     const toggle = () => setOpen(!open);
     const [children, setChildren] = useState([]);
-    const childName = children[0] ? children[0].child_username : "";
+    // const childName = children[0] ? children[0].child_username : "";
     const [title, setTitle] = useState('');
     
     useEffect(() => {
@@ -21,8 +22,10 @@ function ChildDropdown(props) {
     }, [props.isChild]);
     
     const listChildren = children.map((child, i) =>
-    <li key={i}>
-      <button onClick={() => setTitle(child.child_username)}>
+    <li className='dd-list-item' key={i}>
+      <button className='child-button' onClick={() => {
+        setTitle(child.child_username)
+        setOpen(false)}}>
         {child.child_username}
       </button>
     </li>
@@ -32,20 +35,21 @@ function ChildDropdown(props) {
   console.log(children)
 
   return (
-    <div>
-      <div
+    <div className='dd-wrapper'>
+      <div 
+        className='dd-header'
         tabIndex={0}
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}>
-        <div>
-          <p>{title}</p>
+        <div className='dd-header__title'>
+          <p className='dd-header__title--bold'>{title}</p>
         </div>
-        <div>
-          <p>{open ? 'Close' : 'Open'}</p>
+        <div className='dd-header__action'>
+          <p>{open ? <i className='arrow up'></i> : <i className='arrow down'></i>}</p>
         </div>
       </div>
       {open && (
-        <ul>
+        <ul className='dd-list'>
           {listChildren}
         </ul>
       )}
