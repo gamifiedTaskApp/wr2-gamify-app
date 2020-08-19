@@ -9,6 +9,9 @@ function Parent(props){
     const [password, setPassword] = useState('');
     const [name, setName]=useState('');
     const [view, setView] = useState(false);
+    const [goodName, setGoodName] = useState(true)
+    const [goodPassword, setGoodPassword] = useState(true);
+    const [nameTaken, setNameTaken] = useState(false);
 function Switch(){
     if(view===false){
         setView(true)
@@ -20,16 +23,32 @@ function Switch(){
 }
 function createChild(){
     console.log("creating")
-    Axios.post('/auth/register/child', {username, password, parentId, name})
-    .then(res => {
-        alert("child made")
-        Switch();
-        setUsername("");
-        setPassword("");
-        setName("");
-        props.getChildren()
-    })
-    .catch(err => alert(err));
+    if(username.length > 5 && password.length > 7){
+        Axios.post('/auth/register/child', {username, password, parentId, name})
+        .then(res => {
+            Switch();
+            setUsername("");
+            setPassword("");
+            setName("");
+            setGoodPassword(true);
+            setGoodName(true)
+            props.getChildren()
+        })
+        .catch(err => {
+            setNameTaken(true)
+        });
+    }
+    else if (username.length < 6 && password.length < 8){
+        setGoodName(false);
+        setGoodPassword(false);
+    }
+    else if (username.length < 6){
+        setGoodName(false);
+    }
+    else {
+        setGoodPassword(false)
+    }
+    
 }
 
 
@@ -53,7 +72,10 @@ function createChild(){
         <div className="child_container">
         <span className="input">Name<br></br><input value={name} onChange={e => setName(e.target.value) }></input></span>
         <span className="input">Username<br></br><input value={username} onChange={e => setUsername(e.target.value) }></input></span>
+        {nameTaken ? <span>Username is taken</span> : ""}
+        {goodName ? "" : <span>Username must contain at least 6 characters</span> }
         <span className="input">Password<br></br><input type="password" value={password} onChange={e => setPassword(e.target.value) }></input></span>
+        {goodPassword ? null : <span>Password must contain at least 8 characters</span>}
           <button className='button' onClick={createChild}>Submit</button>
           <button className='button' onClick={Switch}>Cancel</button>
         </div>
