@@ -2,11 +2,14 @@ import React,{useEffect, useState} from 'react';
 import './store.css'
 import axios from 'axios';
 import {connect} from "react-redux"
+import {Redirect} from "react-router-dom";
 
 const Store= props=>{
     console.log(props)
     const [store, setStore]=useState([])
-    const [points, setPoints]=useState(props.userReducer.user.data.points)
+
+
+    const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
 
     useEffect(()=>{
         console.log('use effect working')
@@ -15,7 +18,8 @@ const Store= props=>{
 
     const retrieveStoreRewards =()=>{
         console.log('retrieve store rewards')
-        axios.get(`/api/storeRewards/${props.userReducer.user.data.id}`)
+        let userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
+        axios.get(`/api/storeRewards/${userId}`)
         .then((res)=>{
             console.log('retrieve store rewards working')
             console.log(res)
@@ -57,6 +61,7 @@ const Store= props=>{
     <div>
         <p>Total Points{points}</p>
         {storeRewards}
+        {props.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
     )
 }
