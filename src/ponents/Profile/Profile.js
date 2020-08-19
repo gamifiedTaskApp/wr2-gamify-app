@@ -13,6 +13,7 @@ function Profile(props) {
   const userId = user.data ? props.userReducer.user.data.id : "";
   const isParent = user.data ? user.data.parental : "";
   const isChild = user.data ? user.data.isChild ? true : false : "";
+  const userPicture = user.data ? user.data.picture : "";
 
   
   function changeUsername() {
@@ -63,8 +64,14 @@ function Profile(props) {
   }
   
   return (<div>
-    {isChild ? <span>{user.data.username}</span> : 
+    {isChild ? 
     <div>
+      <span>{user.data.username}</span> 
+      <img src={userPicture}/>
+    </div>
+    : 
+    <div>
+      <img src={userPicture}/>
       <div><span>Enter New Username</span></div>
       <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
       <button onClick={() => changeUsername()} >Submit</button>
