@@ -67,7 +67,12 @@ const Store= props=>{
     ))
     return(
     <div className='storepage'>
+        {props.userReducer.loggedIn? 
+        props.userReducer.user.data.parental?
         <ChildDropdown isChild={isChild} userId={props.userReducer.user.data ? props.userReducer.user.data.id : ""} setChild={setChild} setStore={setStore} />
+        :null
+        :<Redirect to={'/login'} />
+        }
         <div className='points'>
             <div className = 'textPoints'>
             Total Points: {points}</div>
