@@ -10,12 +10,15 @@ module.exports = {
     const checkEmail = await db.auth.check_email_exists(email);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     }
     else if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     }
     else if(checkEmail[0]){
       res.status(409).send('Email is already assigned to an account');
+      return;
     };
 
     
@@ -115,9 +118,12 @@ module.exports = {
     // console.log(checkChildUsername[0]);
     if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
+      console.log("should stop here")
     }
     else if (checkUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     };
 
     const salt = bcrypt.genSaltSync(10);
