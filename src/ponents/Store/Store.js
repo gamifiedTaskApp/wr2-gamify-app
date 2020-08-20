@@ -10,8 +10,9 @@ const Store= props=>{
     const [store, setStore]=useState([])
     const isChild = props.user ? props.user.isChild ? true : false : "";
     const [child, setChild] = useState({});
-
     const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
+
+    console.log(store, child,points)
 
     useEffect(()=>{
         console.log('use effect working')
@@ -21,6 +22,7 @@ const Store= props=>{
     const retrieveStoreRewards =()=>{
         console.log('retrieve store rewards')
         let userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
+        console.log(userId)
         axios.get(`/api/storeRewards/${userId}`)
         .then((res)=>{
             console.log('retrieve store rewards working')
@@ -35,7 +37,7 @@ const Store= props=>{
         let childId = rewardButton[0]
         let rewardsPrice = rewardButton[1]
         let rewardId = rewardButton[2]
-        if (props.userReducer.user.data.points >=rewardsPrice){
+        if (points >=rewardsPrice){
             axios.put('/api/buyItem',{childId, rewardsPrice, rewardId})
             .then((res)=>{
                 console.log('working')
@@ -49,8 +51,8 @@ const Store= props=>{
 
     const storeRewards= store.map((storeReward, i)=>(
         <div className="storeReward" key={i}>
-            {console.log(storeReward)}
-            {console.log(store)}
+            {/* {console.log(storeReward)} */}
+            {/* {console.log(store)} */}
             <div className="rewardInfo">
             <div className='rewardName'>
                 {storeReward.name}
@@ -64,10 +66,18 @@ const Store= props=>{
                 Buy!
             </button>
         </div>
+
+        
+
     ))
     return(
     <div className='storepage'>
-        <ChildDropdown isChild={isChild} userId={props.userReducer.user.data ? props.userReducer.user.data.id : ""} setChild={setChild} setStore={setStore} />
+        {props.userReducer.loggedIn? 
+        props.userReducer.user.data.parental?
+        <ChildDropdown isChild={isChild} userId={props.userReducer.user.data ? props.userReducer.user.data.id : ""} setChild={setChild} setStore={setStore} setPoints={setPoints} />
+        :null
+        :<Redirect to={'/login'} />
+        }
         <div className='points'>
             <div className = 'textPoints'>
             Total Points: {points}</div>
@@ -75,7 +85,6 @@ const Store= props=>{
         <div className='storeRewards'>
         {storeRewards}
         </div>
-        {props.userReducer.loggedIn ? null : <Redirect to={'/login'} />}
     </div>
     )
 }
