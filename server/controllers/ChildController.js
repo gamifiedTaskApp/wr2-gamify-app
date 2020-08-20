@@ -59,5 +59,11 @@ module.exports={
         const addExperience = await db.children.add_experience(points, childId)
         res.status(200).send(addExperience)
 
+    },
+    getPoints:async (req,res)=>{
+        const db=req.app.get("db");
+        const childId = req.params.id;
+        const getPoints= await db.children.get_points(childId)
+        res.send(getPoints).status(200)
     }
 }

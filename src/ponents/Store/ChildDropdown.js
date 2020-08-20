@@ -19,6 +19,11 @@ function ChildDropdown(props) {
             props.setChild(child)
             setOpen(false)
             props.setStore(res.data)
+      axios.get(`/api/getPoints/${child.child_id}`)
+        .then(res=>{
+          console.log(res)
+          props.setPoints(res.data[0].points)
+        })
           }
       )
       .catch(err => alert(err))
@@ -33,6 +38,7 @@ function ChildDropdown(props) {
                 setChildren(res.data)
                 setTitle(res.data[0].child_username)
                 props.setChild(res.data[0])
+                props.setPoints(res.data[0].points)
                 console.log(res.data)
                 axios.get(`/api/storeRewards/${res.data[0].child_id}`)
                 .then(newRes => {
