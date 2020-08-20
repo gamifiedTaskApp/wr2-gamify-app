@@ -6,4 +6,18 @@
   width: 20%;
   height: 20%;
 }
+
+.experience-bar {
+  color: green;
+  background-color: green;
+  border-color: grey;
+  border-width: 1px;
+  height: 100%;
+}
+
+.unfilled-bar {
+  background-color: grey;
+  width: 20%;
+  height: 10px;
+}
 /*# sourceMappingURL=profile.css.map */
