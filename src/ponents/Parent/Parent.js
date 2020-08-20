@@ -60,7 +60,7 @@ function createChild(){
       <div>
       
         <div className="cont">
-          <div className="child_container">
+          <div className="child_container-closed">
             <span>Add Child Account</span>
             <button onClick={Switch}>+</button>
           </div>
@@ -69,7 +69,7 @@ function createChild(){
     <div>
 
     <div className="cont">
-        <div className="child_container">
+        <div className="child_container-open">
         <span className="input">Name<br></br><input value={name} onChange={e => setName(e.target.value) }></input></span>
         <span className="input">Username<br></br><input value={username} onChange={e => setUsername(e.target.value) }></input></span>
         {nameTaken ? <span>Username is taken</span> : ""}
