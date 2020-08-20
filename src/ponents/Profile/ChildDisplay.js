@@ -32,6 +32,8 @@ function ChildDisplay(props){
         {props.child.child_name}
         {props.child.child_username}
         {props.child.points}
+        {props.child.experience}
+        level<p>{Math.ceil(props.child.experience/100)}</p>
         <button onClick={deleteChild}>Delete Child</button>
         {isEditing
         ? <div>
