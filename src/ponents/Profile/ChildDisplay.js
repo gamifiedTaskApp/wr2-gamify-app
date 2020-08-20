@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import Axios from 'axios';
+import './profile.css';
 
 function ChildDisplay(props){
 
     let [isEditing, setIsEditing] = useState(false)
     let [usernameInput, setUsernameInput] = useState('')
-
+    let xpbar = (props.child.experience % 100) + '%';
     function deleteChild(){
         Axios.delete(`/auth/delete/child/${props.child.child_id}`)
         .then(res => {
@@ -31,9 +32,11 @@ function ChildDisplay(props){
     <div>
         {props.child.child_name}
         {props.child.child_username}
-        {props.child.points}
-        {props.child.experience}
-        level<p>{Math.ceil(props.child.experience/100)}</p>
+        <span>Points: {props.child.points}</span>
+        <p>level {Math.ceil(props.child.experience/100)}</p>
+        <div className="unfilled-bar" >
+            <div class="experience-bar" style={{width: xpbar}}></div>
+        </div>
         <button onClick={deleteChild}>Delete Child</button>
         {isEditing
         ? <div>
