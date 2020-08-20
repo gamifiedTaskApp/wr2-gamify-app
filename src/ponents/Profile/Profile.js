@@ -14,7 +14,7 @@ function Profile(props) {
   const isParent = user.data ? user.data.parental : "";
   const isChild = user.data ? user.data.isChild ? true : false : "";
   const userPicture = user.data ? user.data.picture : "";
-
+  let xpbar = user.data ? user.data.isChild ? (user.data.experience % 100) + '%' : "" : "";
   
   function changeUsername() {
     if (username.length < 6) {
@@ -67,8 +67,11 @@ function Profile(props) {
     {isChild ? 
     <div>
       <span>{user.data.username}</span> 
-      <span>{user.data.experience}</span> 
       <img src={userPicture}/>
+      <p>level {Math.ceil(user.data.experience/100)}</p> 
+      <div className="unfilled-bar" >
+            <div class="experience-bar" style={{width: xpbar}}></div>
+        </div>
     </div>
     : 
     <div>
