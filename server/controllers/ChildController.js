@@ -46,5 +46,18 @@ module.exports={
         }
         const newUsername = await db.children.change_username(username, userId);
         res.sendStatus(200);
+    },
+    getChildEarnedRewards: async (req, res) => {
+        const db = req.app.get("db");
+        const childId = req.params.id;
+        const earnedRewards = await db.children.reward_rewards(childId)
+        res.status(200).send(earnedRewards)
+    },
+    addExperience: async (req,res)=>{
+        const db=req.app.get("db");
+        const {points, childId} = req.body;
+        const addExperience = await db.children.add_experience(points, childId)
+        res.status(200).send(addExperience)
+
     }
 }

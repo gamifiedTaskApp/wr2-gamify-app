@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
-import './rewards.css'
+// import './rewards.css'
 import Axios from 'axios';
 
 function ChildDropdown(props) {
@@ -13,12 +13,12 @@ function ChildDropdown(props) {
     const [title, setTitle] = useState('');
     
     function getRewards(child){
-      axios.get(`/api/earnedRewards/${child.child_id}`)
+      axios.get(`/api/storeRewards/${child.child_id}`)
       .then(res => {
             setTitle(child.child_username)
             props.setChild(child)
             setOpen(false)
-            props.setRewards(res.data)
+            props.setStore(res.data)
           }
       )
       .catch(err => alert(err))
@@ -27,22 +27,24 @@ function ChildDropdown(props) {
 
     useEffect(() => {
         if (!props.isChild) {
+            console.log(props)
             axios.get(`/api/parents/children/${props.userId}`)
             .then(res => {
                 setChildren(res.data)
                 setTitle(res.data[0].child_username)
                 props.setChild(res.data[0])
-                axios.get(`/api/earnedRewards/${res.data[0].child_id}`)
+                console.log(res.data)
+                axios.get(`/api/storeRewards/${res.data[0].child_id}`)
                 .then(newRes => {
                   console.log(newRes.data) //I hate this line
-                  props.setRewards(newRes.data)
+                  props.setStore(newRes.data)
                 })
             });
         }
         else {
-          axios.get(`/api/earnedRewards/${props.userId}`)
+          axios.get(`/api/storeRewards/${props.userId}`)
           .then(res => {
-            props.setRewards(res.data)
+            props.setStore(res.data)
           })
         }
     }, [props.isChild]);
