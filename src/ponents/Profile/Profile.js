@@ -78,7 +78,7 @@ function Profile(props) {
     : 
     <div>
       <img className='profile-picture' src={userPicture}/>
-      <p>{user.data.username}</p>
+      <p>{user.data ? user.data.username : ""}</p>
       {isEditing
       ? <div> 
         <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />

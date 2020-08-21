@@ -1,6 +1,10 @@
 require('dotenv').config();
+let cron = require('node-cron')
+
 const parentCtrl = require("./controllers/ParentController");
 const childCtrl = require("./controllers/ChildController");
+const emailCtrl = require("./controllers/emailController");
+const Axios = require('axios')
 const express = require('express'),
   massive = require('massive'),
   app = express(),
@@ -27,6 +31,7 @@ massive({
 }).catch(error => {
   console.log(error)
 });
+
 
 app.post('/api/add/task', parentCtrl.addTask);
 app.post('/api/add/task/all', parentCtrl.addTasksForAll);
@@ -66,4 +71,10 @@ app.get('/auth/session', authCtrl.getSession);
 app.delete('/auth/delete/user/:id', authCtrl.deleteUser);
 app.delete('/auth/delete/child/:id', authCtrl.deleteChild);
 
+//EMAIL ENDPOINTS
+app.post(`/api/email`, emailCtrl.email);
+
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
+
+
+//emailCtrl.dailyEmail();
