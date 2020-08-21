@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
-// import './rewards.css'
-import Axios from 'axios';
+import './store.css'
 
 function ChildDropdown(props) {
 
