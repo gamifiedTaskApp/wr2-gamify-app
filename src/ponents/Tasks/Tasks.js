@@ -5,7 +5,7 @@ import ChildDropdown from './ChildDropdown';
 import './tasks.css';
 import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
-import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
+import { getAllTasks, addTask, removeTask , getChildTasks} from '../../redux/actionCreators';
 
 function Tasks(props) {
 
@@ -18,20 +18,17 @@ function Tasks(props) {
   const [taskName, setTaskName] = useState('');
   const [points, setPoints] = useState(0);
   const [description, setDescription] = useState('');
+  const [childId, setChildId] = useState('');
+  const [tasks, setTasks] = useState('');
 
-  useEffect(() => {
-    if (props.user) {
-      // console.log(props.user.id)
-      props.getAllTasks(props.user.id)
-    }
-  }, [props.user]);
 
   useEffect(() => {
     setIsOpen(false)
   }, [selectedDate]);
 
   function addTask() {
-    props.addTask(taskName, points, description, props.user.parent, props.user.id, selectedDate);
+    props.addTask(taskName, points, description, props.user.id, childId, selectedDate);
+    props.getChildTasks(childId)
   };
 
   function remove(taskId, userId) {
@@ -42,7 +39,7 @@ function Tasks(props) {
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} />
+        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} setChildId={setChildId} setTasks={setTasks} />
         {isOpen
           ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
@@ -79,9 +76,9 @@ function Tasks(props) {
           }
         </div>
       </div>
-      {!props.tasks
+      {!tasks
         ? null
-        : props.tasks.map((task, i) => {
+        : tasks.map((task, i) => {
           return (
             <div key={i}>
               <div className='task_display'>
@@ -102,7 +99,8 @@ function Tasks(props) {
 const mapDispatchToProps = {
   getAllTasks,
   addTask,
-  removeTask
+  removeTask,
+  getChildTasks
 };
 
 function mapStateToProps(state) {
