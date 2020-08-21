@@ -14,7 +14,7 @@ function TaskPopup(props){
     //   };
 
     // TasksPopup.handleClickOutside = () => setOpen(false);
-
+    console.log(props)
     return (
     <Popup trigger={<button> New Task</button>} modal closeOnDocumentClick>
         {close => (
@@ -35,7 +35,7 @@ function TaskPopup(props){
                     props.addTask()
                     close()
                     }}>Add Task</button>
-                <button onclick={() => {close()}}>Cancel</button>
+                <button onClick={() => {close()}}>Cancel</button>
             </div>
         )}    
     </Popup>
