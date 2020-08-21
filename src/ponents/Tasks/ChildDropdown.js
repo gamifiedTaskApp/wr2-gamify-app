@@ -44,7 +44,7 @@ function ChildDropdown(props) {
 
   const listChildren = children.map((child, i) =>
     <li key={i}>
-      <button onClick={() => selectChild(child)}>
+      <button onClick={() => props.setTitle(child.child_username)}>
         {child.child_username}
       </button>
     </li>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import DayDropdown from './DayDropdown';
 import Calender from '../Calender/Calender';
+import TaskPopup from './TaskPopup';
 import ChildDropdown from './ChildDropdown';
 import './tasks.css';
 import { Redirect } from "react-router-dom";
@@ -47,7 +48,8 @@ function Tasks(props) {
         }
       </div>
 
-      <div className='tasks_holder'>
+      <TaskPopup taskName={taskName} setTaskName={setTaskName} description={description} setDescription={setDescription} points={points} setPoints={setPoints} addTask={addTask}/>
+      {/* <div className='tasks_holder'>
         <div className='add_task_holder'>
           <b className='add_task_button' onClick={() => setAddOpen(!addOpen)}>Create New Task</b>
           {addOpen
@@ -66,7 +68,7 @@ function Tasks(props) {
                 <input type='number' value={points} onChange={(e) => setPoints(e.target.value)} />
               </div>
 
-              {/* <Calender /> */}
+              <Calender />
 
               <div>
                 <button onClick={addTask}>Add Task</button>
@@ -76,7 +78,7 @@ function Tasks(props) {
             : null
           }
         </div>
-      </div>
+      </div> */}
       {!tasks
         ? null
         : tasks.map((task, i) => {
