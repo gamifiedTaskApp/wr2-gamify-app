@@ -22,6 +22,7 @@ export default function taskReducer(state = initialState, action) {
     case REMOVE_TASK + '_PENDING':
       return state;
     case REMOVE_TASK + '_FULFILLED':
+      console.log(payload)
       return { ...state, tasks: payload };
     case REMOVE_TASK + '_REJECTED':
       return state;
