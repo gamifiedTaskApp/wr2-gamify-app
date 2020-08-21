@@ -9,10 +9,18 @@ module.exports = {
   },
   getChildTasks: async(req, res) =>{
     const db = req.app.get("db");
-    const childId = req.params.id;
+    const {childId, date} = req.body
     console.log(childId)
+    console.log(date)
     const childTasks = await db.children.get_child_tasks(childId);
-    res.status(200).send(childTasks)
+    console.log(childTasks)
+    let todaysTasks = [];
+    for(let i = 0; i < childTasks.length; i++){
+      if(childTasks[i].date === date){
+        todaysTasks.push(childTasks[i])
+      }
+    }
+    res.status(200).send(todaysTasks)
   },
   addTask: async (req, res) => {
     const db = req.app.get("db");
