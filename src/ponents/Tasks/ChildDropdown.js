@@ -15,7 +15,10 @@ function ChildDropdown(props) {
         setChildren(res.data)
         props.setTitle(res.data[0].child_username)
         props.setChildId(res.data[0].child_id)
-        axios.get(`/api/child/tasks/${res.data[0].child_id}`)
+        let childId = res.data[0].child_id
+        let date = props.selectedDate
+        
+        axios.post(`/api/child/tasks`, {childId, date})
         .then(newRes => {
           console.log(newRes.data) //I hate this line
           props.setTasks(newRes.data)
@@ -27,8 +30,11 @@ function ChildDropdown(props) {
 
   function selectChild(child){
     props.setTitle(child.child_username);
-    props.s 
-    axios.get(`/api/child/tasks/${child.child_id}`)
+    props.setChildId(child.child_id)
+    let childId = child.child_id
+      let date = props.selectedDate
+      console.log(props.selectedDate)
+    axios.post(`/api/child/tasks`, {childId, date})
     .then(newRes => {
       console.log(newRes.data) //I hate this line
       props.setTasks(newRes.data)
