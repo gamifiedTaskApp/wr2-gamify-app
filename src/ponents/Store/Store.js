@@ -11,6 +11,8 @@ const Store= props=>{
     const isChild = props.user ? props.user.isChild ? true : false : "";
     const [child, setChild] = useState({});
     const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
+    const [reward, setReward] = useState('');
+    const [rewardPoints, setRewardPoints] = useState(0);
 
     console.log(store, child,points)
 
@@ -18,6 +20,23 @@ const Store= props=>{
         console.log('use effect working')
         retrieveStoreRewards()
     },[])
+
+    const submitReward=()=>{
+        console.log('submit reward')
+        let childId=child.child_id;
+        let parentId=child.u_id;
+        console.log(typeof parseInt(rewardPoints))
+        console.log(reward.length)
+        if (reward.length>0){
+            axios.post(`/api/add/reward/one`,{childId, reward, rewardPoints, parentId})
+            .then((res)=>{
+                setStore(res.data)
+                console.log('submit return working')
+            })
+        }else{
+            alert('Invalid submission')
+        }
+    }
 
     const retrieveStoreRewards =()=>{
         console.log('retrieve store rewards')
@@ -52,7 +71,7 @@ const Store= props=>{
     const storeRewards= store.map((storeReward, i)=>(
         <div className="storeReward" key={i}>
             {/* {console.log(storeReward)} */}
-            {/* {console.log(store)} */}
+            {console.log(store)}
             <div className="rewardInfo">
             <div className='rewardName'>
                 {storeReward.name}
@@ -71,10 +90,34 @@ const Store= props=>{
 
     ))
     return(
-    <div className='storepage'>
+    <div className='store-page'>
         {props.userReducer.loggedIn? 
         props.userReducer.user.data.parental?
-        <ChildDropdown isChild={isChild} userId={props.userReducer.user.data ? props.userReducer.user.data.id : ""} setChild={setChild} setStore={setStore} setPoints={setPoints} />
+        <div className='parent-selection'>
+        <ChildDropdown 
+            isChild={isChild} 
+            userId={props.userReducer.user.data ?
+            props.userReducer.user.data.id : ""} 
+            setChild={setChild} setStore={setStore} setPoints={setPoints} />
+        <div className='submit-inputs'>
+            <label><b>Reward</b></label>
+            <input
+              className='submit-reward'
+              value={reward}
+              onChange={(e) => setReward(e.target.value)}
+            />
+        </div>
+        <div className='submit-inputs'>
+            <label><b>Points</b></label>
+            <input
+              className='submit-task-points'
+              value={rewardPoints}
+              type="number"
+              onChange={(e) => setRewardPoints(e.target.value)}
+            />
+        </div>
+        <button onClick={submitReward}>Add reward</button>
+         </div>
         :null
         :<Redirect to={'/login'} />
         }
