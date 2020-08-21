@@ -10,35 +10,17 @@ function ChildDropdown(props) {
   const [children, setChildren] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/parents/children/${props.userId}`)
-    .then(res => {
-        setChildren(res.data)
-        props.setTitle(res.data[0].child_username)
-        props.setChildId(res.data[0].child_id)
-        axios.get(`/api/child/tasks/${res.data[0].child_id}`)
-        .then(newRes => {
-          console.log(newRes.data) //I hate this line
-          props.setTasks(newRes.data)
-        })
-        .catch(err => console.log(err))
-    });
+    if (!props.isChild) {
+      axios.get(`/api/parents/children/${props.userId}`)
+        .then(res => {
+          setChildren(res.data)
+        });
+    };
   }, [props.isChild]);
-
-
-  function selectChild(child){
-    props.setTitle(child.child_username);
-    props.s 
-    axios.get(`/api/child/tasks/${child.child_id}`)
-    .then(newRes => {
-      console.log(newRes.data) //I hate this line
-      props.setTasks(newRes.data)
-    })
-    .catch(err => console.log(err))
-  }
 
   const listChildren = children.map((child, i) =>
     <li key={i}>
-      <button onClick={() => selectChild(child)}>
+      <button onClick={() => props.setTitle(child.child_username)}>
         {child.child_username}
       </button>
     </li>
