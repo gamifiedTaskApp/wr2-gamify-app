@@ -27,7 +27,7 @@ function ChildDropdown(props) {
 
   function selectChild(child){
     props.setTitle(child.child_username);
-    props.s 
+    props.setChildId(child.child_id) 
     axios.get(`/api/child/tasks/${child.child_id}`)
     .then(newRes => {
       console.log(newRes.data) //I hate this line

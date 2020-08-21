@@ -68,19 +68,40 @@ const Store= props=>{
         }
     }
 
+    const deleteItem = (deleteButton)=>{
+        deleteButton = deleteButton.split(',')
+        console.log(deleteButton)
+        let childId = deleteButton[0]
+        let rewardId = deleteButton[1]
+        axios.delete(`/api/remove/reward/${rewardId}`)
+        .then((res)=>{
+            axios.get(`/api/storeRewards/${childId}`)
+            .then((res)=>{
+                setStore(res.data)
+            })
+        })
+    }
+
     const storeRewards= store.map((storeReward, i)=>(
-        <div className="storeReward" key={i}>
-            {/* {console.log(storeReward)} */}
+        <div className="store-reward" key={i}>
+            {/* delete reward */}
+            {props.userReducer.user.data.parental?
+                <button className="delete-button" value={[storeReward.kid_id, storeReward.reward_id]}
+                onClick={e=>deleteItem(e.target.value)}>
+            </button> :null}
+            {console.log(storeReward)}
             {console.log(store)}
-            <div className="rewardInfo">
-            <div className='rewardName'>
+            <div className="reward-info">
+            <div className='reward-name'>
                 {storeReward.name}
             </div>
-            <div className='rewardPrice'>
+            <div className='reward-price'>
                 {storeReward.rewards_price}
             </div>
+
             </div>
-            <button className="buyButton" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
+
+            <button className="buy-button" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
                 onClick={e=>buyItem(e.target.value)}>
                 Buy!
             </button>
@@ -122,10 +143,10 @@ const Store= props=>{
         :<Redirect to={'/login'} />
         }
         <div className='points'>
-            <div className = 'textPoints'>
+            <div className = 'text-points'>
             Total Points: {points}</div>
          </div>
-        <div className='storeRewards'>
+        <div className='store-rewards'>
         {storeRewards}
         </div>
     </div>
