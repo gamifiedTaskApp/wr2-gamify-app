@@ -5,7 +5,8 @@ module.exports = {
     email: async (req, res, next) =>{
         var nodemailer = require('nodemailer');
         const db = req.app.get("db");
-        const {userEmail} = req.body;
+        //const {userEmail} = req.body;
+        let userEmail = 'grantmtabor@gmail.com'
         const {EMAIL, PASSWORD} = process.env
         var transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -37,7 +38,9 @@ module.exports = {
         
     },
     dailyEmail: async (req, res, next) =>{
+        
         console.log("email")
+        //const db = app.get("db")
         var nodemailer = require('nodemailer');
         let userEmail = 'grantmtabor@gmail.com';
         const {EMAIL, PASSWORD} = process.env
@@ -51,6 +54,7 @@ module.exports = {
                 pass: PASSWORD
             }
         });
+        
         /*
         var mailOptions = {
             from: EMAIL,
@@ -68,7 +72,8 @@ module.exports = {
                 }
             });
         }) */
-        
+        //const incompleteTasks = await db.parents.get_incomplete_tasks();
+        //console.log(incompleteTasks)
         
     }
 }

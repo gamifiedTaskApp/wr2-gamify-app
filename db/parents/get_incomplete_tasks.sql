@@ -1,0 +1,1 @@
+select parents.email, tasks.task_name from parents join tasks on (parents.user_id = tasks.user_id) where completed = false;
