@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import DayDropdown from './DayDropdown';
 import Calender from '../Calender/Calender';
+import TaskPopup from './TaskPopup';
 import ChildDropdown from './ChildDropdown';
 import './tasks.css';
 import { Redirect } from "react-router-dom";
@@ -20,10 +21,11 @@ function Tasks(props) {
   const [description, setDescription] = useState('');
   const [childId, setChildId] = useState('');
   const [tasks, setTasks] = useState('');
-
+  selectedDate.setHours(0, 0, 0 ,0);
 
   useEffect(() => {
     setIsOpen(false)
+    console.log(selectedDate)
   }, [selectedDate]);
 
   function addTask() {
@@ -39,14 +41,15 @@ function Tasks(props) {
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} setChildId={setChildId} setTasks={setTasks} />
+        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} setChildId={setChildId} setTasks={setTasks} selectedDate={selectedDate}/>
         {isOpen
-          ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
+          ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} childId={childId} setTasks={setTasks} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
         }
       </div>
 
-      <div className='tasks_holder'>
+      <TaskPopup taskName={taskName} setTaskName={setTaskName} description={description} setDescription={setDescription} points={points} setPoints={setPoints} addTask={addTask}/>
+      {/* <div className='tasks_holder'>
         <div className='add_task_holder'>
           <b className='add_task_button' onClick={() => setAddOpen(!addOpen)}>Create New Task</b>
           {addOpen
@@ -65,7 +68,7 @@ function Tasks(props) {
                 <input type='number' value={points} onChange={(e) => setPoints(e.target.value)} />
               </div>
 
-              {/* <Calender /> */}
+              <Calender />
 
               <div>
                 <button onClick={addTask}>Add Task</button>
@@ -75,7 +78,7 @@ function Tasks(props) {
             : null
           }
         </div>
-      </div>
+      </div> */}
       {!tasks
         ? null
         : tasks.map((task, i) => {
