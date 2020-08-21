@@ -63,10 +63,11 @@ module.exports = {
 
   addRewardForOne: async (req, res) => {
     const db = req.app.get("db");
-    const { rewardName, rewardPrice, parentId, childId, } = req.body;
+    const { reward, rewardPoints, parentId, childId, } = req.body;
 
-    const newReward = await db.parents.add_reward(parentId, childId, rewardName, rewardPrice);
-    res.send(newReward).status(200);
+    const newReward = await db.parents.add_reward(parentId, childId, reward, rewardPoints);
+    const getStoreRewards= await db.children.store_rewards(childId)
+    res.send(getStoreRewards).status(200);
   },
   addRewardForAll: async (req, res) => {
     const db = req.app.get("db");
