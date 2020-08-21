@@ -57,7 +57,7 @@ app.get('/api/storeRewards/:id', childCtrl.getStoreRewards);
 app.get('/api/earnedRewards/:id', childCtrl.getChildEarnedRewards);
 app.put('/api/parent/changeName', parentCtrl.changeUserName);
 app.get('/api/getPoints/:id', childCtrl.getPoints);
-app.get('/api/child/tasks/:id', parentCtrl.getChildTasks);
+app.post('/api/child/tasks/', parentCtrl.getChildTasks);
 
 app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);

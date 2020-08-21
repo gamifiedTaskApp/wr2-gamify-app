@@ -10,13 +10,37 @@ function ChildDropdown(props) {
   const [children, setChildren] = useState([]);
 
   useEffect(() => {
-    if (!props.isChild) {
-      axios.get(`/api/parents/children/${props.userId}`)
-        .then(res => {
-          setChildren(res.data)
-        });
-    };
+    axios.get(`/api/parents/children/${props.userId}`)
+    .then(res => {
+        setChildren(res.data)
+        props.setTitle(res.data[0].child_username)
+        props.setChildId(res.data[0].child_id)
+        let childId = res.data[0].child_id
+        let date = props.selectedDate
+        
+        axios.post(`/api/child/tasks`, {childId, date})
+        .then(newRes => {
+          console.log(newRes.data) //I hate this line
+          props.setTasks(newRes.data)
+        })
+        .catch(err => console.log(err))
+    });
   }, [props.isChild]);
+
+
+  function selectChild(child){
+    props.setTitle(child.child_username);
+    props.setChildId(child.child_id)
+    let childId = child.child_id
+      let date = props.selectedDate
+      console.log(props.selectedDate)
+    axios.post(`/api/child/tasks`, {childId, date})
+    .then(newRes => {
+      console.log(newRes.data) //I hate this line
+      props.setTasks(newRes.data)
+    })
+    .catch(err => console.log(err))
+  }
 
   const listChildren = children.map((child, i) =>
     <li key={i}>
