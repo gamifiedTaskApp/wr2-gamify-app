@@ -7,6 +7,13 @@ module.exports = {
     const tasks = await db.parents.get_all_tasks(id);
     res.status(200).send(tasks);
   },
+  getChildTasks: async(req, res) =>{
+    const db = req.app.get("db");
+    const childId = req.params.id;
+    console.log(childId)
+    const childTasks = await db.children.get_child_tasks(childId);
+    res.status(200).send(childTasks)
+  },
   addTask: async (req, res) => {
     const db = req.app.get("db");
     const { taskName, pointsGained, taskDescription, userId, childId, date } = req.body;

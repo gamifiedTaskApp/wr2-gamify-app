@@ -7,6 +7,7 @@ import Axios from 'axios';
 import ChildDisplay from "./ChildDisplay"
 import { logoutUser } from '../../redux/actionCreators';
 function Profile(props) {
+  let [isEditing, setIsEditing] = useState(false);
   let [username, setUsername] = useState("");
   let [children, setChildren] = useState("");
   const user = props.userReducer.user;
@@ -17,6 +18,7 @@ function Profile(props) {
   let xpbar = user.data ? user.data.isChild ? (user.data.experience % 100) + '%' : "" : "";
   
   function changeUsername() {
+
     if (username.length < 6) {
       alert("Username must be longer")
     }
@@ -67,7 +69,7 @@ function Profile(props) {
     {isChild ? 
     <div>
       <span>{user.data.username}</span> 
-      <img src={userPicture}/>
+      <img className='profile-picture' src={userPicture}/>
       <p>level {Math.ceil(user.data.experience/100)}</p> 
       <div className="unfilled-bar" >
             <div class="experience-bar" style={{width: xpbar}}></div>
@@ -75,17 +77,24 @@ function Profile(props) {
     </div>
     : 
     <div>
-      <img src={userPicture}/>
-      <div><span>Enter New Username</span></div>
-      <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
-      <button onClick={() => changeUsername()} >Submit</button>
+      <img className='profile-picture' src={userPicture}/>
+      <p>{user.data ? user.data.username : ""}</p>
+      {isEditing
+      ? <div> 
+        <input placeholder="New Username" onChange={(e) => setUsername(e.target.value)} />
+        <button onClick={() => changeUsername()} >Submit</button>
+        <button onClick={() => setIsEditing(false)}>Cancel</button>
+      </div>
+      :<button onClick={() => setIsEditing(true)}>Edit Username</button>}
       <button onClick={logOut}>Log Out</button>
       {mappedChildren}
     </div>
     }
     
+    <div className='add-child'>  
+      {isParent ? <Parent getChildren={getChildren} /> : ""}
+    </div>
     { isChild ? "" : <button onClick={deleteUser}>Delete Account</button>}
-    {isParent ? <Parent getChildren={getChildren} /> : ""}
     
 
     {props.userReducer.loggedIn ? null : <Redirect to={'/login'}/> }

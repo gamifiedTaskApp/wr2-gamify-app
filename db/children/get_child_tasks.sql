@@ -1,0 +1,1 @@
+select * from tasks where child_id = $1;
