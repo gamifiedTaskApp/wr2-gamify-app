@@ -20,10 +20,11 @@ function Tasks(props) {
   const [description, setDescription] = useState('');
   const [childId, setChildId] = useState('');
   const [tasks, setTasks] = useState('');
-
+  selectedDate.setHours(0, 0, 0 ,0);
 
   useEffect(() => {
     setIsOpen(false)
+    console.log(selectedDate)
   }, [selectedDate]);
 
   function addTask() {
@@ -39,9 +40,9 @@ function Tasks(props) {
     <div className='tasks'>
       {selectedDate.toDateString()}
       <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} setChildId={setChildId} setTasks={setTasks} />
+        <ChildDropdown isChild={isChild} userId={props.user ? props.user.id : ""} title={title} setTitle={setTitle} setChildId={setChildId} setTasks={setTasks} selectedDate={selectedDate}/>
         {isOpen
-          ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
+          ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} childId={childId} setTasks={setTasks} />
           : <p onClick={() => setIsOpen(true)}>Select Date</p>
         }
       </div>
