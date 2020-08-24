@@ -113,6 +113,12 @@
   .burger {
     display: none;
   }
+  .show {
+    display: none;
+  }
+  .navbar {
+    display: none;
+  }
   .links {
     display: -webkit-box;
     display: -ms-flexbox;

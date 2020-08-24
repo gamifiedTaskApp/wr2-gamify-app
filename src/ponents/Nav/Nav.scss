@@ -70,6 +70,12 @@
     .burger{
         display:none;
     }
+    .show{
+        display:none;
+    }
+    .navbar{
+        display:none;
+    }
     .links{
         @include flexBaseOptions(center, none);
         text-decoration:none;
