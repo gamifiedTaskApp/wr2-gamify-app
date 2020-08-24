@@ -1,13 +1,84 @@
 @import '../../Sass/mixins';
 @import '../../Sass/variables';
 .nav{
-    @include flexBaseOptions(space-around, row);
-    height:100px;
+    @include flexBaseOptions(space-between, row);
+    height:80px;
     width:100vw;
-    background-color:$mainColor;
+    background-color:$complimentary;
+    h1{
+        font-size:25px;
+        margin-left:20px;
+    }
+}
+.show {
+    position:absolute;
+    left:0;
+    top:80px;
+    height:110px;
+    width:100vw;
+    background-color: $complimentary;
+    transition: 0.3s;
+    overflow:hidden;
+    transition-timing-function: ease-in-out;
+  }
+  .links{
+      display:none;
+  }
+.navbar{
+    position:absolute;
+    left:0;
+    top:80px;
+    height:0px;
+    width:100vw;
+    background-color: #212529;
+    overflow:hidden;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
 }
 .link{
     @include flexBaseOptions(center, none);
-    text-decoration:none;
-    color:black;
+        text-decoration:none;
+        color:black;
+        font-size:20px;
+        margin-bottom:5px;
+}
+.burger{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-around;
+        height:50px;
+        width:70px;
+        background-color:$mainColor;
+        border-radius:5px;
+            outline:none;
+            border:none;
+        margin-right:20px;
+        padding-top:10px;
+        padding-bottom:10px;
+        div{
+            border-radius:3px;
+            height:5px;
+            width:50px;
+            background-color:black;
+        }
+}
+@media only screen and (min-width: 600px) {
+    .nav{
+        justify-content:space-around;
+    }
+    .burger{
+        display:none;
+    }
+    .show{
+        display:none;
+    }
+    .navbar{
+        display:none;
+    }
+    .links{
+        @include flexBaseOptions(center, none);
+        text-decoration:none;
+        color:black;
+    }
 }
