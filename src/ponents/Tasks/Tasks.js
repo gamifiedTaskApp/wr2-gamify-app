@@ -14,6 +14,7 @@ import {
   removeTask,
   getChildTasks,
 } from "../../redux/actionCreators";
+import TaskMap from "./TaskMap";
 
 function Tasks(props) {
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
@@ -53,7 +54,17 @@ function Tasks(props) {
       .catch(err => console.log(err))
     })
   }
-
+  function switchTask(isTaskComplete, taskId){
+    let date = selectedDate
+    Axios.put('/api/task/complete', {isTaskComplete, taskId})
+    .then(res => {
+        isTaskComplete = !isTaskComplete
+      })
+    .catch(err =>{
+      console.log(err)
+    })
+  }
+  
   function remove(taskId, userId) {
      //props.removeTask(taskId, userId);
     //props.getChildTasks(childId)
@@ -157,24 +168,10 @@ function Tasks(props) {
       {!tasks
         ? null
         : tasks.map((task, i) => {
+          let isTaskComplete = task.completed;
+          
             return (
-              <div key={i}>
-                <div className="task_display">
-                  <input type="checkbox" />
-                  <h5>
-                    <b>{`${task.task_name}`}</b>
-                  </h5>
-                      <p>{task.task_description}</p>
-                  <h5>
-                    <b>{`${task.points_gained}`}</b>
-                  </h5>
-                  {isChild ? "" :
-                    <button onClick={() => remove(task.task_id, task.user_id)}>
-                      Remove Task
-                    </button>
-                  }
-                </div>
-              </div>
+              <TaskMap key={i} task={task} remove={remove} isTaskComplete={isTaskComplete} switchTask={switchTask} isChild={isChild} />
             );
           })}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
