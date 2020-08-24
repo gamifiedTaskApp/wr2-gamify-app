@@ -35,7 +35,7 @@ function TaskPopup(props){
                     props.addTask()
                     close()
                     }}>Add Task</button>
-                <button onClick={() => {close()}}>Cancel</button>
+                <button onClick={() => close()}>Cancel</button>
             </div>
         )}    
     </Popup>
