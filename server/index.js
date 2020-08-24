@@ -41,12 +41,14 @@ app.get('/api/get/tasks/:id', parentCtrl.getAllTasks); //THIS NEEDS CTRL FUNCTIO
 app.get('/api/children/:id', parentCtrl.getAllChildren);
 // app.delete('/api/remove/task/all/:id', parentCtrl.removeAllTasks);
 app.get('/api/get/tasks/:id', parentCtrl.getAllTasks);
+app.put('/api/task/complete', childCtrl.switchTaskComplete)
 
 app.post('/api/add/reward/one', parentCtrl.addRewardForOne);
 app.post('/api/add/reward/all', parentCtrl.addRewardForAll);
 app.delete('/api/remove/reward/:id', parentCtrl.removeRewardFromOne);
 app.delete('/api/remove/reward/all/:id', parentCtrl.removeRewardFromAll);
 app.get('/api/parents/children/:userId', parentCtrl.getChildren);
+
 
 //child endpoints
 app.put('/api/add/points', childCtrl.addPoints)
