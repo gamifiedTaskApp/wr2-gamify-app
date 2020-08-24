@@ -52,6 +52,7 @@ table{
 
 .dd-wrapper {
     display: flex;
+    flex-direction: column;
     min-height: 38px;
     flex-wrap: wrap;
 }
@@ -62,7 +63,7 @@ table{
         justify-content: space-between;
         cursor: pointer;
         width: 30%;
-        // padding: 0 20px;
+        padding: 0 20px;
 
         &__title--bold {
             font-weight: bold;
@@ -70,10 +71,10 @@ table{
     }
 
     .dd-list {
-        // box-shadow: 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: 0 1px 1px rgba(0,0,0,.075);
         padding: 0;
         margin: 0;
-        // width: 100%;
+        width: 30%;
         // margin-top: 20px;
 
         li{
@@ -82,8 +83,8 @@ table{
             &:first-of-type {
                 >button {
                     border-top: 1px solid #ccc;
-                    border-top-left-radius: 4px;
-                    border-top-right-radius: 4px;
+                    // border-top-left-radius: 4px;
+                    // border-top-right-radius: 4px;
                 }
             }
 
@@ -94,13 +95,13 @@ table{
         }
     }
 
-.day-button {
+.child-button {
     background-color: transparent;
     font-size: 16px;
     // padding: 15px 20px 15px 20px;
     border: 0;
     border-bottom: 1px solid #ccc;
-    width: 30%;
+    width: 135%;
     text-align: left;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
@@ -111,5 +112,22 @@ table{
         background-color: #ccc;
     }
 }
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 
 
