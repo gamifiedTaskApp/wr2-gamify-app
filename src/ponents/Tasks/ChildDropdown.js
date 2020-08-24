@@ -42,8 +42,9 @@ function ChildDropdown(props) {
   }
 
   const listChildren = children.map((child, i) => ( //set child, not settitle
-    <li key={i}>
-      <button onClick={() => selectChild(child)}> 
+    <li className="dd-list-item" key={i}>
+      <button className="child-button"
+        onClick={() => selectChild(child)}> 
         {child.child_username}
       </button>
     </li>
@@ -51,20 +52,32 @@ function ChildDropdown(props) {
   ChildDropdown.handleClickOutside = () => setOpen(false);
 
   return (
-    <div>
-      <div
-        tabIndex={0}
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
-      >
-        <div>
-          <p>{props.title}</p>
+    <div className="dd-wrapper">
+    {props.isChild ? (
+      ""
+    ) : (
+      <div>
+        <div
+          className="dd-header"
+          tabIndex={0}
+          onKeyPress={() => toggle(!open)}
+          onClick={() => toggle(!open)}
+        >
+          <div className="dd-header__title">
+            <p className="dd-header__title--bold">{props.title}</p>
+          </div>
+          <div className="dd-header__action">
+            <p>{open ? (
+              <i className="arrow up"></i>
+              ) : (
+                <i className="arrow down"></i>
+              )}
+            </p>
+          </div>
         </div>
-        <div>
-          <p>{open ? "Close" : "Open"}</p>
+        {open && <ul className="dd-list">{listChildren}</ul>}
         </div>
-      </div>
-      {open && <ul>{listChildren}</ul>}
+      )}
     </div>
   );
 }
