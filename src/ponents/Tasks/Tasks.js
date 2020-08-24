@@ -6,7 +6,7 @@ import ChildDropdown from "./ChildDropdown";
 import "./tasks.css";
 import { Redirect } from "react-router-dom";
 import Axios from "axios";
-
+import SetChildTasks from "./SetChildTasks"
 import { connect } from "react-redux";
 import {
   getAllTasks,
@@ -14,6 +14,7 @@ import {
   removeTask,
   getChildTasks,
 } from "../../redux/actionCreators";
+import TaskMap from "./TaskMap";
 
 function Tasks(props) {
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
@@ -53,7 +54,17 @@ function Tasks(props) {
       .catch(err => console.log(err))
     })
   }
-
+  function switchTask(isTaskComplete, taskId){
+    let date = selectedDate
+    Axios.put('/api/task/complete', {isTaskComplete, taskId})
+    .then(res => {
+        isTaskComplete = !isTaskComplete
+      })
+    .catch(err =>{
+      console.log(err)
+    })
+  }
+  
   function remove(taskId, userId) {
      //props.removeTask(taskId, userId);
     //props.getChildTasks(childId)
@@ -74,16 +85,9 @@ function Tasks(props) {
   return (
     <div className="tasks">
       {selectedDate.toDateString()}
-      <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown
-          isChild={isChild}
-          userId={props.user ? props.user.id : ""}
-          title={title}
-          setTitle={setTitle}
-          setChildId={setChildId}
-          setTasks={setTasks}
-          selectedDate={selectedDate}
-        />
+      {isChild ? 
+      <div>
+        <SetChildTasks setTasks={setTasks} childId={props.user.id} date={selectedDate} />
         {isOpen ? (
           <Calender
             setSelectedDate={setSelectedDate}
@@ -95,8 +99,30 @@ function Tasks(props) {
           <p onClick={() => setIsOpen(true)}>Select Date</p>
         )}
       </div>
-
-      <TaskPopup
+      :
+      <div>
+        <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
+        {isOpen ? (
+          <Calender
+            setSelectedDate={setSelectedDate}
+            setIsOpen={setIsOpen}
+            childId={childId}
+            setTasks={setTasks}
+          />
+        ) : (
+          <p onClick={() => setIsOpen(true)}>Select Date</p>
+        )}
+        <ChildDropdown
+          isChild={isChild}
+          userId={props.user ? props.user.id : ""}
+          title={title}
+          setTitle={setTitle}
+          setChildId={setChildId}
+          setTasks={setTasks}
+          selectedDate={selectedDate}
+        />
+        </div>
+        <TaskPopup
         taskName={taskName}
         setTaskName={setTaskName}
         taskDescription={taskDescription}
@@ -105,6 +131,10 @@ function Tasks(props) {
         setPoints={setPoints}
         addTask={addTask}
       />
+      </div>
+      }
+      
+      
       {/* <div className='tasks_holder'>
         <div className='add_task_holder'>
           <b className='add_task_button' onClick={() => setAddOpen(!addOpen)}>Create New Task</b>
@@ -138,21 +168,10 @@ function Tasks(props) {
       {!tasks
         ? null
         : tasks.map((task, i) => {
+          let isTaskComplete = task.completed;
+          
             return (
-              <div key={i}>
-                <div className="task_display">
-                  <input type="checkbox" />
-                  <h5>
-                    <b>{`${task.task_name}`}</b>
-                  </h5>
-                  <h5>
-                    <b>{`${task.points_gained}`}</b>
-                  </h5>
-                  <button onClick={() => remove(task.task_id, task.user_id)}>
-                    Remove Task
-                  </button>
-                </div>
-              </div>
+              <TaskMap key={i} task={task} remove={remove} isTaskComplete={isTaskComplete} switchTask={switchTask} isChild={isChild} />
             );
           })}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
