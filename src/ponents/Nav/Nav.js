@@ -15,6 +15,18 @@ const Nav = (props) => {
           <div className="nav">
             <h1>App Name</h1>
             <button onClick={toggle} className="burger"><div></div><div></div><div></div></button>
+            <Link onClick={toggle} className="links" to="/tasks">
+              Tasks
+            </Link>
+            <Link onClick={toggle} className="links" to="/store">
+              Store
+            </Link>
+            <Link onClick={toggle} className="links" to="/rewards">
+              Rewards
+            </Link>
+            <Link onClick={toggle} className="links" to="/profile">
+              Profile
+            </Link>
             <div className={show?"navbar":"show"}>
             <Link onClick={toggle} className="link" to="/tasks">
               Tasks

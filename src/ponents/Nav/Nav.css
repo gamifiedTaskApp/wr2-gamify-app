@@ -36,6 +36,10 @@
           transition-timing-function: ease-in-out;
 }
 
+.links {
+  display: none;
+}
+
 .navbar {
   position: absolute;
   left: 0;
@@ -109,7 +113,7 @@
   .burger {
     display: none;
   }
-  .link {
+  .links {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

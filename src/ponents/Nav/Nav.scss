@@ -21,6 +21,9 @@
     overflow:hidden;
     transition-timing-function: ease-in-out;
   }
+  .links{
+      display:none;
+  }
 .navbar{
     position:absolute;
     left:0;
@@ -67,7 +70,7 @@
     .burger{
         display:none;
     }
-    .link{
+    .links{
         @include flexBaseOptions(center, none);
         text-decoration:none;
         color:black;
