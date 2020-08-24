@@ -1,86 +1,117 @@
-import React,{useEffect, useState} from 'react';
-import './store.css'
-import axios from 'axios';
-import {connect} from "react-redux"
-import {Redirect} from "react-router-dom";
-import ChildDropdown from './ChildDropdown';
+import React, { useEffect, useState } from "react";
+import "./store.css";
+import axios from "axios";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import ChildDropdown from "./ChildDropdown";
 
-const Store= props=>{
-    console.log(props)
-    const [store, setStore]=useState([])
-    const isChild = props.user ? props.user.isChild ? true : false : "";
-    const [child, setChild] = useState({});
-    const [points, setPoints]=useState(props.userReducer.user.data ? props.userReducer.user.data.points : "")
-    const [reward, setReward] = useState('');
-    const [rewardPoints, setRewardPoints] = useState(0);
+const Store = (props) => {
+  console.log(props);
+  const [store, setStore] = useState([]);
+  const isChild = props.user ? (props.user.isChild ? true : false) : "";
+  const [child, setChild] = useState({});
+  const [points, setPoints] = useState(
+    props.userReducer.user.data ? props.userReducer.user.data.points : ""
+  );
+  const [reward, setReward] = useState("");
+  const [rewardPoints, setRewardPoints] = useState(0);
 
-    console.log(store, child,points)
+  console.log(store, child, points);
 
-    useEffect(()=>{
-        console.log('use effect working')
-        retrieveStoreRewards()
-    },[])
+  useEffect(() => {
+    console.log("use effect working");
+    retrieveStoreRewards();
+  }, []);
 
-    const submitReward=()=>{
-        console.log('submit reward')
-        let childId=child.child_id;
-        let parentId=child.u_id;
-        console.log(typeof parseInt(rewardPoints))
-        console.log(reward.length)
-        if (reward.length>0){
-            axios.post(`/api/add/reward/one`,{childId, reward, rewardPoints, parentId})
+  const submitReward = () => {
+    console.log("submit reward");
+    let childId = child.child_id;
+    let parentId = child.u_id;
+    console.log(typeof parseInt(rewardPoints));
+    console.log(reward.length);
+    if (reward.length > 0) {
+      axios
+        .post(`/api/add/reward/one`, {
+          childId,
+          reward,
+          rewardPoints,
+          parentId,
+        })
+        .then((res) => {
+          setStore(res.data);
+          console.log("submit return working");
+        });
+    } else {
+      alert("Invalid submission");
+    }
+  };
+
+  const retrieveStoreRewards = () => {
+    console.log("retrieve store rewards");
+    let userId = props.userReducer.user.data
+      ? props.userReducer.user.data.id
+      : "";
+    console.log(userId);
+    axios.get(`/api/storeRewards/${userId}`).then((res) => {
+      console.log("retrieve store rewards working");
+      console.log(res);
+      setStore(res.data);
+      console.log(store);
+    });
+  };
+
+  const buyItem = (rewardButton) => {
+    rewardButton = rewardButton.split(",");
+    let childId = rewardButton[0];
+    let rewardsPrice = rewardButton[1];
+    let rewardId = rewardButton[2];
+    if (points >= rewardsPrice) {
+      axios
+        .put("/api/buyItem", { childId, rewardsPrice, rewardId })
+        .then((res) => {
+          console.log("working");
+          setPoints(points - rewardsPrice);
+          setStore(res.data);
+        });
+    } else {
+      alert("not enough points");
+    }
+  };
+
+    const deleteItem = (deleteButton)=>{
+        deleteButton = deleteButton.split(',')
+        console.log(deleteButton)
+        let childId = deleteButton[0]
+        let rewardId = deleteButton[1]
+        axios.delete(`/api/remove/reward/${rewardId}`)
+        .then((res)=>{
+            axios.get(`/api/storeRewards/${childId}`)
             .then((res)=>{
                 setStore(res.data)
-                console.log('submit return working')
             })
-        }else{
-            alert('Invalid submission')
-        }
-    }
-
-    const retrieveStoreRewards =()=>{
-        console.log('retrieve store rewards')
-        let userId = props.userReducer.user.data ? props.userReducer.user.data.id : "";
-        console.log(userId)
-        axios.get(`/api/storeRewards/${userId}`)
-        .then((res)=>{
-            console.log('retrieve store rewards working')
-            console.log(res)
-            setStore(res.data)
-            console.log(store)
         })
     }
 
-    const buyItem = (rewardButton)=>{
-        rewardButton = rewardButton.split(',')
-        let childId = rewardButton[0]
-        let rewardsPrice = rewardButton[1]
-        let rewardId = rewardButton[2]
-        if (points >=rewardsPrice){
-            axios.put('/api/buyItem',{childId, rewardsPrice, rewardId})
-            .then((res)=>{
-                console.log('working')
-                setPoints(points-rewardsPrice)
-                setStore(res.data)
-            })
-        }else{
-            alert("not enough points")
-        }
-    }
-
     const storeRewards= store.map((storeReward, i)=>(
-        <div className="storeReward" key={i}>
-            {/* {console.log(storeReward)} */}
+        <div className="store-reward" key={i}>
+            {/* delete reward */}
+            {props.userReducer.user.data.parental?
+                <button className="delete-button" value={[storeReward.kid_id, storeReward.reward_id]}
+                onClick={e=>deleteItem(e.target.value)}>
+            </button> :null}
+            {console.log(storeReward)}
             {console.log(store)}
-            <div className="rewardInfo">
-            <div className='rewardName'>
+            <div className="reward-info">
+            <div className='reward-name'>
                 {storeReward.name}
             </div>
-            <div className='rewardPrice'>
+            <div className='reward-price'>
                 {storeReward.rewards_price}
             </div>
+
             </div>
-            <button className="buyButton" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
+
+            <button className="buy-button" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
                 onClick={e=>buyItem(e.target.value)}>
                 Buy!
             </button>
@@ -122,16 +153,16 @@ const Store= props=>{
         :<Redirect to={'/login'} />
         }
         <div className='points'>
-            <div className = 'textPoints'>
+            <div className = 'text-points'>
             Total Points: {points}</div>
          </div>
-        <div className='storeRewards'>
+        <div className='store-rewards'>
         {storeRewards}
         </div>
     </div>
-    )
-}
+  );
+};
 
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = (reduxState) => reduxState;
 
 export default connect(mapStateToProps)(Store);
