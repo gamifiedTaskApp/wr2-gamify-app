@@ -5,6 +5,8 @@ import TaskPopup from "./TaskPopup";
 import ChildDropdown from "./ChildDropdown";
 import "./tasks.css";
 import { Redirect } from "react-router-dom";
+import Axios from "axios";
+
 import { connect } from "react-redux";
 import {
   getAllTasks,
@@ -21,8 +23,8 @@ function Tasks(props) {
   const [addOpen, setAddOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [taskName, setTaskName] = useState("");
-  const [points, setPoints] = useState(0);
-  const [description, setDescription] = useState("");
+  const [pointsGained, setPoints] = useState(0);
+  const [taskDescription, setDescription] = useState("");
   const [childId, setChildId] = useState("");
   const [tasks, setTasks] = useState("");
   selectedDate.setHours(0, 0, 0, 0);
@@ -33,19 +35,40 @@ function Tasks(props) {
   }, [selectedDate]);
 
   function addTask() {
-    props.addTask(
-      taskName,
-      points,
-      description,
-      props.user.id,
-      childId,
-      selectedDate
-    );
-    props.getChildTasks(childId);
+    let date = selectedDate
+    const userId = props.user.id
+    console.log(childId)
+    console.log(userId)
+    //const body = { taskName, pointsGained, taskDescription, userId, childId, selectedDate }
+    //props.getChildTasks(childId)
+    
+    Axios.post('/api/add/task', { taskName, pointsGained, taskDescription, userId, childId, date })
+    .then(res => {
+      console.log(res)
+      Axios.post(`/api/child/tasks`, {childId, date})
+      .then(newRes => {
+        console.log(newRes)
+        setTasks(newRes.data)
+      })
+      .catch(err => console.log(err))
+    })
   }
 
   function remove(taskId, userId) {
-    props.removeTask(taskId, userId);
+     //props.removeTask(taskId, userId);
+    //props.getChildTasks(childId)
+    let date = selectedDate
+    Axios.delete(`/api/remove/task?id=${taskId}&userId=${userId}`)
+    .then(res =>{
+      Axios.post(`/api/child/tasks`, {childId, date})
+      .then(newRes => {
+        console.log(res)
+        setTasks(newRes.data)
+    })
+      .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))
+    
   }
 
   return (
@@ -76,9 +99,9 @@ function Tasks(props) {
       <TaskPopup
         taskName={taskName}
         setTaskName={setTaskName}
-        description={description}
+        taskDescription={taskDescription}
         setDescription={setDescription}
-        points={points}
+        pointsGained={pointsGained}
         setPoints={setPoints}
         addTask={addTask}
       />
