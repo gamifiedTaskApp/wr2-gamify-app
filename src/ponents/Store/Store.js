@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import ChildDropdown from "./ChildDropdown";
+import RewardPopup from './RewardPopup';
 
 const Store = (props) => {
   console.log(props);
@@ -130,7 +131,13 @@ const Store = (props) => {
             userId={props.userReducer.user.data ?
             props.userReducer.user.data.id : ""} 
             setChild={setChild} setStore={setStore} setPoints={setPoints} />
-        <div className='submit-inputs'>
+        <RewardPopup
+            reward={reward}
+            setReward={setReward}
+            rewardPoints={rewardPoints}
+            setRewardPoints={setRewardPoints}
+            submitReward={submitReward}/>
+        {/* <div className='submit-inputs'>
             <label><b>Reward</b></label>
             <input
               className='submit-reward'
@@ -147,7 +154,7 @@ const Store = (props) => {
               onChange={(e) => setRewardPoints(e.target.value)}
             />
         </div>
-        <button onClick={submitReward}>Add reward</button>
+        <button onClick={submitReward}>Add reward</button> */}
          </div>
         :null
         :<Redirect to={'/login'} />
