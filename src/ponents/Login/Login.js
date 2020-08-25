@@ -42,50 +42,57 @@ function Login(props) {
 
   return (
     <div className="login_holder">
+      
       <div className="login_header_holder">
-        <b className="login_header">Welcome Back</b>
-        <b className="login_header"> To TheTaskApp</b>
+      <div className="header-text">
+              <b className="login_header">Welcome Back</b>
+              <b className="login_header"> To TheTaskApp</b>
+            </div>
+            <Link className="login_link" to="/register">
+              REGISTER HERE
+            </Link>
+            
       </div>
-
+        <div>
+          
+        </div>
       <div className="login_form">
+          <h1>Log in to your account</h1>
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              <div><b>Username</b></div>
+              
             </label>
             <input
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <p>{usernameErr}</p>
+          <p className="err" >{usernameErr}</p>
         </div>
 
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              <div><b>Password</b></div>
+              
             </label>
             <input
+              placeholder="Password"
               className="login_password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <p>{passwordErr}</p>
+          <p className="err" >{passwordErr}</p>
         </div>
 
         <div className="login_button_holder">
           <button className="login_button" onClick={() => checkInfo()}>
             Login
           </button>
-          <h5>
-            Need to track those tasks?{" "}
-            <Link className="login_link" to="/register">
-              REGISTER HERE
-            </Link>
-          </h5>
+          
         </div>
       </div>
       {props.userReducer.loggedIn ? <Redirect to={"/tasks"} /> : null}

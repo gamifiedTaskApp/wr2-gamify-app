@@ -14,31 +14,55 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+::-webkit-input-placeholder {
+  color: #DFDFDF;
+}
+
+:-ms-input-placeholder {
+  color: #DFDFDF;
+}
+
+::-ms-input-placeholder {
+  color: #DFDFDF;
+}
+
+::placeholder {
+  color: #DFDFDF;
 }
 
 .register_header_holder {
-  height: 100px;
+  height: 10vh;
   width: 100vw;
-  background-color: #F66747;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  background-color: #52b1ff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-bottom: 50px;
+}
+
+.header-text {
+  margin-left: 10px;
+}
+
+.header {
+  color: white;
+  font-size: 30px;
 }
 
 .register_link {
   color: white;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 .register_header {
@@ -47,15 +71,14 @@
   margin-bottom: 5px;
 }
 
+.register_inputs_holder {
+  margin-top: 30px;
+}
+
 .register_form {
-  height: 70vh;
-  width: 80vw;
-  background-color: #F66747;
-  border-style: solid;
-  border-color: black;
-  -webkit-box-shadow: 0 5px 2px -2px #5e5d5d;
-          box-shadow: 0 5px 2px -2px #5e5d5d;
-  border-radius: 50px;
+  height: 90vh;
+  width: 100vw;
+  background-color: #52b1ff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -96,30 +119,45 @@ b {
 }
 
 .register_inputs .email_input {
-  width: 181px;
+  height: 45px;
+  width: 100%;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
+  border-color: white;
+  font-size: large;
+  color: white;
+  background-color: transparent;
 }
 
 .register_inputs .name_input {
-  width: 140px;
+  height: 45px;
+  width: 100%;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
+  border-color: white;
+  font-size: large;
+  color: white;
+  background-color: transparent;
 }
 
 .register_inputs input {
-  height: 25px;
+  height: 45px;
+  width: 100%;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
+  border-color: white;
+  font-size: large;
+  color: white;
+  background-color: transparent;
 }
 
 .register_button_holder {
@@ -144,7 +182,7 @@ b {
 .register_button_holder button {
   outline: none;
   border: 1.5px solid white;
-  background-color: #F66747;
+  background-color: #00e39e;
   color: white;
   font-size: 17px;
   height: 50px;
@@ -152,16 +190,46 @@ b {
   border-radius: 10px;
 }
 
+.register_button_holder button:hover {
+  background-color: #00b670;
+}
+
+.register_button_holder button:active {
+  background-color: #00834b;
+}
+
+.err {
+  color: white;
+}
+
 @media only screen and (min-width: 600px) {
+  ::-webkit-input-placeholder {
+    color: grey;
+  }
+  :-ms-input-placeholder {
+    color: grey;
+  }
+  ::-ms-input-placeholder {
+    color: grey;
+  }
+  ::placeholder {
+    color: grey;
+  }
+  .err {
+    color: black;
+  }
   .register_header {
     text-align: left;
     width: 200px;
     margin-left: 30px;
   }
   .register_header_holder {
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   button {
     margin-bottom: 20px;
@@ -172,7 +240,7 @@ b {
         -ms-flex-align: start;
             align-items: flex-start;
     background-color: transparent;
-    height: 500px;
+    height: 90vh;
     width: 60vw;
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -182,12 +250,15 @@ b {
     color: black;
   }
   .register_inputs input {
+    border-color: black;
     background-color: transparent;
   }
   .register_inputs .email_input {
+    border-color: black;
     background-color: transparent;
   }
   .register_inputs .name_input {
+    border-color: black;
     background-color: transparent;
   }
   .register_button_holder {
@@ -208,6 +279,13 @@ b {
     color: black;
   }
   .register_link {
+    color: black;
+    margin: 30px;
+  }
+  input {
+    border-color: black;
+  }
+  .header {
     color: black;
   }
 }

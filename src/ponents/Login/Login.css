@@ -1,6 +1,9 @@
 .login_holder {
   height: 100vh;
   width: 100vw;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,7 +24,7 @@
 }
 
 .login_header_holder {
-  height: 100px;
+  height: 10vh;
   width: 100vw;
   background-color: #52b1ff;
   display: -webkit-box;
@@ -37,12 +40,37 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-bottom: 50px;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
 }
 
 .login_link {
   color: white;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 .login_header {
@@ -51,15 +79,14 @@
   margin-bottom: 5px;
 }
 
+.login_header .login-link {
+  color: white;
+}
+
 .login_form {
-  height: 70vh;
-  width: 80vw;
+  height: 90vh;
+  width: 100vw;
   background-color: #52b1ff;
-  border-style: solid;
-  border-color: black;
-  -webkit-box-shadow: 0 5px 2px -2px #5e5d5d;
-          box-shadow: 0 5px 2px -2px #5e5d5d;
-  border-radius: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,6 +107,11 @@
 
 .login_form b {
   font-size: 25px;
+}
+
+.login_form h1 {
+  color: white;
+  font-size: 30px;
 }
 
 .login_inputs {
@@ -110,15 +142,17 @@
 }
 
 .login_inputs input {
-  height: 25px;
-  width: 100%;
+  height: 45px;
+  width: 70vw;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
-  border-style: none;
-  background-color: white;
+  border-color: white;
+  font-size: large;
+  color: white;
+  background-color: transparent;
 }
 
 .login_button_holder {
@@ -143,13 +177,25 @@
 .login_button_holder button {
   outline: none;
   border: 1.5px solid white;
-  background-color: #F66747;
+  background-color: #00e39e;
   color: white;
   font-size: 17px;
   height: 50px;
   width: 150px;
   border-radius: 10px;
   margin-top: 50px;
+}
+
+button:hover {
+  background-color: #00b670;
+}
+
+button:active {
+  background-color: #00834b;
+}
+
+.login_link:hover {
+  color: red;
 }
 
 @media only screen and (min-width: 600px) {
@@ -162,6 +208,13 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .login_header_holder .login_link {
+    color: white;
+    margin-right: 30px;
   }
   button {
     margin-right: 15px;
@@ -171,11 +224,26 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    color: black;
     background-color: transparent;
     height: 500px;
     width: 60vw;
     -webkit-box-shadow: none;
             box-shadow: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .login_form h1 {
+    color: black;
+  }
+  .login_form input {
+    color: black;
+    border-color: black;
+    width: 100%;
   }
   .login_inputs {
     font-size: 20px;
@@ -204,6 +272,12 @@
   .login_link {
     color: black;
     text-align: center;
+  }
+  h1 {
+    color: black;
+  }
+  .register_link {
+    color: white;
   }
 }
 /*# sourceMappingURL=Login.css.map */
