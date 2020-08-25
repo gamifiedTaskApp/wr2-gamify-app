@@ -66,7 +66,8 @@ function Profile(props) {
   }
 
   return (
-    <div>
+    <div className="profile"> 
+      <div className="profile-container">
       {isChild ? (
         <div className="childaccount">
           <span>{user.data.username}</span>
@@ -83,6 +84,7 @@ function Profile(props) {
           <img className="profile-picture" src={userPicture} />
           <p>{user.data ? user.data.username : ""}</p>
           </div>
+          
           <div>
           <div className="box2">
           {isEditing ? (
@@ -112,7 +114,7 @@ function Profile(props) {
       {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
 
       {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
-    </div>
+    </div></div>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;
