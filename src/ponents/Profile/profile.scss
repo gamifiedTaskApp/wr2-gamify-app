@@ -26,6 +26,17 @@
     margin-left:10px;
     width:100px;
 }
+.childaccount{
+    display:flex;
+    flex-direction:column;
+    margin:10px;
+    width:100vw;
+    padding-bottom:10px;
+    border-bottom:.1px solid rgb(243, 243, 243);
+    span{
+        font-size:20px;
+    }
+}
 .box2{
     @include flexBaseOptions(none, row);
     align-items:center;
@@ -66,6 +77,7 @@
     height: width;
 }
 .parent{
+    margin-top:80px;
     @include flexBaseOptions(center, row);
     align-items:center;
     justify-content:space-between;
