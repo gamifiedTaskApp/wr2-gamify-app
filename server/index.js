@@ -1,6 +1,6 @@
 require('dotenv').config();
-let cron = require('node-cron')
-
+let cron = require('node-cron');
+const aws = require('aws-sdk');
 const parentCtrl = require("./controllers/ParentController");
 const childCtrl = require("./controllers/ChildController");
 const emailCtrl = require("./controllers/emailController");
@@ -10,7 +10,7 @@ const express = require('express'),
   app = express(),
   session = require('express-session'),
   authCtrl = require('./controllers/AuthController'),
-  { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
+  { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = process.env;
 
 app.use(express.json());
 app.use(session({
@@ -30,6 +30,38 @@ massive({
   console.log("DB connected!")
 }).catch(error => {
   console.log(error)
+});
+
+app.get('/sign-s3', (req, res) => {
+  aws.config = {
+    region: AWS_REGION,
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY
+  }
+  const s3 = new aws.S3({ signatureVersion: 'v4' });
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+
+    return res.send(returnData)
+  });
 });
 
 
