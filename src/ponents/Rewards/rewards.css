@@ -28,8 +28,14 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   cursor: pointer;
-  width: 30%;
+  width: 160px;
   padding: 0 20px;
+}
+
+@media (min-width: 600px) {
+  .dd-header {
+    width: 210px;
+  }
 }
 
 .dd-header__title--bold {
@@ -41,7 +47,13 @@
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   padding: 0;
   margin: 0;
-  width: 30%;
+  width: 200px;
+}
+
+@media (min-width: 600px) {
+  .dd-list {
+    width: 250px;
+  }
 }
 
 .dd-list li {
@@ -62,10 +74,16 @@
   font-size: 16px;
   border: 0;
   border-bottom: 1px solid #ccc;
-  width: 135%;
+  width: 200px;
   text-align: left;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
+}
+
+@media (min-width: 600px) {
+  .child-button {
+    width: 250px;
+  }
 }
 
 .child-button:hover, .child-button:focus {

@@ -46,7 +46,7 @@ function ChildDropdown(props) {
   const listChildren = children.map((child, i) => {
     if (child.child_username !== title) {
       return (
-        <li className="dd-list-item" key={i}>
+        <li className="dd-list" key={i}>
           <button
             className="child-button"
             onClick={() => {
