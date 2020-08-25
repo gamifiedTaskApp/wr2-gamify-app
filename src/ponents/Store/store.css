@@ -167,6 +167,7 @@ table {
 .reward-info {
   margin-left: 5%;
   color: #EFC458;
+  margin-top: 3%;
 }
 
 .buy-button {
@@ -187,13 +188,17 @@ table {
 
 .delete-button {
   background: url(trashIcon.svg);
-  width: 8%;
+  background-repeat: no-repeat;
+  width: 25px;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  height: 10%;
-  background-size: cover;
+  height: 25px;
+  background-size: contain;
+  position: absolute;
   padding: 0;
-  /* reset */
+  margin-left: 4.5%;
+  margin-top: 3%;
+  border: none;
 }
 
 .delete-button:hover {
@@ -246,6 +251,12 @@ table {
   }
   .reward-info {
     font-size: 2vw;
+  }
+  .delete-button {
+    width: 2.5%;
+    height: 5.5%;
+    margin-left: 1%;
+    margin-top: 1.5%;
   }
 }
 /*# sourceMappingURL=store.css.map */
