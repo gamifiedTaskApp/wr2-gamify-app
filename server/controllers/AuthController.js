@@ -10,12 +10,15 @@ module.exports = {
     const checkEmail = await db.auth.check_email_exists(email);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     }
     else if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     }
     else if(checkEmail[0]){
       res.status(409).send('Email is already assigned to an account');
+      return;
     };
 
     
@@ -33,7 +36,8 @@ module.exports = {
       lastName: user.last_name,
       email: user.email,
       parental: user.is_parental,
-      points: user.experience_points
+      points: user.experience_points,
+      picture: user.profile_picture
     };
     // console.log(req.session.user)
     res.status(200).send(req.session.user);
@@ -60,7 +64,8 @@ module.exports = {
         lastName: user.last_name,
         email: user.email,
         parental: user.is_parental,
-        points: user.experience_points
+        points: user.experience_points,
+        picture: user.profile_picture
       };
       // console.log(req.session.user, 'hitter')
       res.status(200).send(req.session.user);
@@ -75,7 +80,9 @@ module.exports = {
         username: childUser.child_username,
         parent: childUser.u_id,
         points: childUser.points,
-        isChild: childUser.is_child
+        isChild: childUser.is_child,
+        picture: childUser.profile_picture,
+        experience: childUser.experience
       };
       res.status(200).send(req.session.user);
     }
@@ -95,14 +102,15 @@ module.exports = {
       lastName: user.last_name,
       email: user.email,
       parental: user.is_parental,
-      points: user.experience_points
+      points: user.experience_points,
+      picture: user.profile_picture
     };
     // console.log(req.session.user, 'hitter')
     res.status(200).send(req.session.user);
   },
   registerChild: async (req, res) => {
     const db = req.app.get("db");
-    const { username, parentId, password } = req.body;
+    const { username, parentId, password, name } = req.body;
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
@@ -110,25 +118,26 @@ module.exports = {
     // console.log(checkChildUsername[0]);
     if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
+      console.log("should stop here")
     }
     else if (checkUsername[0]) {
       res.status(409).send('Username already exists');
+      return;
     };
-
-
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    // console.log(hash, parentId, username)
-    const registeredChild = await db.auth.register_child(parentId, hash, username);
-    // console.log("after")
+    const registeredChild = await db.auth.register_child(parentId, hash, username, name);
     const child = registeredChild[0];
 
     req.session.user = {
       id: child.child_id,
       username: child.child_username,
       parent: child.u_id,
-      points: child.points
+      points: child.points,
+      picture: child.profile_picture,
+      experience: child.experience
     };
     res.status(200).send(req.session.user);
   },
@@ -151,7 +160,9 @@ module.exports = {
       id: child.child_id,
       username: child.child_username,
       parent: child.u_id,
-      points: child.points
+      points: child.points,
+      picture: child.profile_picture,
+      experience: child.experience
     };
     res.status(200).send(req.session.user);
   },

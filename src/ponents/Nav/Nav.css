@@ -2,8 +2,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -11,9 +12,46 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  height: 100px;
+  height: 80px;
   width: 100vw;
-  background-color: #F66747;
+  background-color: #52b1ff;
+}
+
+.nav h1 {
+  font-size: 25px;
+  margin-left: 20px;
+}
+
+.show {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  height: 110px;
+  width: 100vw;
+  background-color: #52b1ff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  overflow: hidden;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.links {
+  display: none;
+}
+
+.navbar {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  height: 0px;
+  width: 100vw;
+  background-color: #212529;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 .link {
@@ -32,5 +70,71 @@
           flex-direction: none;
   text-decoration: none;
   color: black;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.burger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 50px;
+  width: 70px;
+  background-color: #F66747;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.burger div {
+  border-radius: 3px;
+  height: 5px;
+  width: 50px;
+  background-color: black;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .burger {
+    display: none;
+  }
+  .show {
+    display: none;
+  }
+  .navbar {
+    display: none;
+  }
+  .links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: none;
+            flex-direction: none;
+    text-decoration: none;
+    color: black;
+  }
 }
 /*# sourceMappingURL=Nav.css.map */

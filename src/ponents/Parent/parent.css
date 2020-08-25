@@ -1,4 +1,4 @@
-.cont, .child_container {
+.cont, .child_container-closed, .child_container-open {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,14 +13,49 @@
 .cont {
   height: 100%;
   width: 100vw;
-  margin-top: 70px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 header {
   display: none;
 }
 
-.child_container {
+.child_container-closed {
+  background-color: #F66747;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 15px;
+  height: 20vh;
+  width: 150px;
+  -webkit-box-shadow: 5px 5px 8px grey;
+          box-shadow: 5px 5px 8px grey;
+}
+
+.child_container-closed span {
+  margin-top: 15px;
+  margin-bottom: -10px;
+  color: black;
+  font-size: 18px;
+}
+
+.child_container-closed button {
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: -20px;
+  border: none;
+  outline: none;
+  font-size: 150px;
+  color: #ebebeb;
+  text-shadow: 5px 5px 8px grey;
+}
+
+.child_container-open {
   background-color: #F66747;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -36,25 +71,25 @@ header {
           box-shadow: 5px 5px 8px grey;
 }
 
-.child_container .input {
+.child_container-open .input {
   margin-bottom: 20px;
 }
 
-.child_container .input input {
+.child_container-open .input input {
   width: 95%;
   height: 30px;
   font-size: 25px;
   outline-color: lightblue;
 }
 
-.child_container span {
+.child_container-open span {
   margin-top: 20px;
   margin-bottom: 50px;
   color: black;
   font-size: 30px;
 }
 
-.child_container button {
+.child_container-open button {
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -64,12 +99,12 @@ header {
   text-shadow: 5px 5px 8px grey;
 }
 
-.child_container .button {
+.child_container-open .button {
   height: 50px;
   width: 90%;
   margin-top: 50px;
   font-size: 30px;
   text-shadow: none;
-  background-color: #00A08F;
+  background-color: #52b1ff;
 }
 /*# sourceMappingURL=parent.css.map */

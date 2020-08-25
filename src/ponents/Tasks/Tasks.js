@@ -1,78 +1,141 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import DayDropdown from './DayDropdown';
-import Calender from '../Calender/Calender';
-// import Calendar from '../Calender/CalenderTwo';
-import ChildDropdown from './ChildDropdown';
-import './tasks.css';
+import Calender from "../Calender/Calender";
+import TaskPopup from "./TaskPopup";
+import ChildDropdown from "./ChildDropdown";
+import "./tasks.css";
 import { Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
-import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
+import Axios from "axios";
+import SetChildTasks from "./SetChildTasks"
+import { connect } from "react-redux";
+import {
+  getAllTasks,
+  addTask,
+  removeTask,
+  getChildTasks,
+} from "../../redux/actionCreators";
+import TaskMap from "./TaskMap";
 
 function Tasks(props) {
-
-  console.log(props.user)
-
-  const isChild = props.user ? props.user.isChild ? true : false : "";
-  let tasks = props.tasks ? props.tasks : [];
-  const [title, setTitle] = useState('');
-  const [childId, setChildId] = useState(null);
-  const [toggle, setToggle] = useState(false);
-  const [addTaskDate, setAddTaskDate] = useState(new Date());
+  const isChild = props.user ? (props.user.isChild ? true : false) : "";
+  const [title, setTitle] = useState("");
+  const [completed, setCompleted] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [taskName, setTaskName] = useState('');
-  const [points, setPoints] = useState(0);
-  const [description, setDescription] = useState('');
+  const [taskName, setTaskName] = useState("");
+  const [pointsGained, setPoints] = useState(0);
+  const [taskDescription, setDescription] = useState("");
+  const [childId, setChildId] = useState("");
+  const [tasks, setTasks] = useState("");
+  selectedDate.setHours(0, 0, 0, 0);
 
   useEffect(() => {
-    if (props.user) {
-      // console.log(props.user.id)
-      props.getAllTasks(props.user.id)
-    }
-  }, [props.user]);
-
-  useEffect(() => {
-    setIsOpen(false)
+    setIsOpen(false);
+    console.log(selectedDate);
   }, [selectedDate]);
 
   function addTask() {
-    props.addTask(taskName, points, description, props.user.id, selectedDate);
-  };
+    let date = selectedDate
+    const userId = props.user.id
+    console.log(childId)
+    console.log(userId)
+    //const body = { taskName, pointsGained, taskDescription, userId, childId, selectedDate }
+    //props.getChildTasks(childId)
+
+    Axios.post('/api/add/task', { taskName, pointsGained, taskDescription, userId, childId, date })
+      .then(res => {
+        console.log(res)
+        Axios.post(`/api/child/tasks`, { childId, date })
+          .then(newRes => {
+            console.log(newRes)
+            setTasks(newRes.data)
+          })
+          .catch(err => console.log(err))
+      })
+  }
+  function switchTask(isTaskComplete, taskId) {
+    let date = selectedDate
+    Axios.put('/api/task/complete', { isTaskComplete, taskId })
+      .then(res => {
+        isTaskComplete = !isTaskComplete
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   function remove(taskId, userId) {
-    props.removeTask(taskId, userId);
-  };
+    //props.removeTask(taskId, userId);
+    //props.getChildTasks(childId)
+    let date = selectedDate
+    Axios.delete(`/api/remove/task?id=${taskId}&userId=${userId}`)
+      .then(res => {
+        Axios.post(`/api/child/tasks`, { childId, date })
+          .then(newRes => {
+            console.log(res)
+            setTasks(newRes.data)
+          })
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
-  let filterByChild = tasks.filter(child => {
-    return child.child_id === childId
-  }).map((task, i) => {
-    return (
-      <div key={i}>
-        <div className='task_display'>
-          <input type='checkbox' />
-          <h5><b>{`${task.task_name}`}</b></h5>
-          <h5><b>{`${task.points_gained}`}</b></h5>
-          <button onClick={() => remove(task.task_id, task.user_id)} >Remove Task</button>
-        </div>
-      </div>
-    )
-  })
-
-  // let filterByDate = 
+  }
 
   return (
-    <div className='tasks'>
+    <div className="tasks">
       {selectedDate.toDateString()}
-      <div className='dropdown_holder' onKeyPress={() => setIsOpen(false)}>
-        <ChildDropdown isChild={isChild} userId={props.user.id} title={title} setTitle={setTitle} setChildId={setChildId} />
-        {isOpen
-          ? <Calender setSelectedDate={setSelectedDate} setIsOpen={setIsOpen} />
-          : <p onClick={() => setIsOpen(true)}>Select Date</p>
-        }
-      </div>
+      {isChild ?
+        <div>
+          <SetChildTasks setTasks={setTasks} childId={props.user.id} date={selectedDate} />
+          {isOpen ? (
+            <Calender
+              setSelectedDate={setSelectedDate}
+              setIsOpen={setIsOpen}
+              childId={childId}
+              setTasks={setTasks}
+            />
+          ) : (
+              <p onClick={() => setIsOpen(true)}>Select Date</p>
+            )}
+        </div>
+        :
+        <div>
+          <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
+            {isOpen ? (
+              <Calender
+                setSelectedDate={setSelectedDate}
+                setIsOpen={setIsOpen}
+                childId={childId}
+                setTasks={setTasks}
+              />
+            ) : (
+                <p onClick={() => setIsOpen(true)}>Select Date</p>
+              )}
+            <ChildDropdown
+              isChild={isChild}
+              userId={props.user ? props.user.id : ""}
+              title={title}
+              setTitle={setTitle}
+              setChildId={setChildId}
+              setTasks={setTasks}
+              selectedDate={selectedDate}
+            />
+          </div>
+          <TaskPopup
+            taskName={taskName}
+            setTaskName={setTaskName}
+            taskDescription={taskDescription}
+            setDescription={setDescription}
+            pointsGained={pointsGained}
+            setPoints={setPoints}
+            addTask={addTask}
+          />
+        </div>
+      }
 
-      <div className='tasks_holder'>
+
+      {/* <div className='tasks_holder'>
         <div className='add_task_holder'>
           <b className='add_task_button' onClick={() => setAddOpen(!addOpen)}>Create New Task</b>
           {addOpen
@@ -90,10 +153,8 @@ function Tasks(props) {
                 <label>Points Gained:</label>
                 <input type='number' value={points} onChange={(e) => setPoints(e.target.value)} />
               </div>
-              {toggle
-                ? <Calender setSelectedDate={setAddTaskDate} setIsOpen={setToggle} />
-                : <p onClick={() => setToggle(true)}>Select Date</p>
-              }
+
+              <Calender />
 
               <div>
                 <button onClick={addTask}>Add Task</button>
@@ -103,48 +164,40 @@ function Tasks(props) {
             : null
           }
         </div>
-      </div>
-      {filterByChild}
-      {/* {!tasks
+      </div> */}
+      {!tasks
         ? null
         : tasks.map((task, i) => {
+          let isTaskComplete = task.completed;
+
           return (
-            <div key={i}>
-              <div className='task_display'>
-                <input type='checkbox' />
-                <h5><b>{`${task.task_name}`}</b></h5>
-                <h5><b>{`${task.points_gained}`}</b></h5>
-                <button onClick={() => remove(task.task_id, task.user_id)} >Remove Task</button>
-              </div>
-            </div>
-          )
-        })
-      } */}
-      {props.loggedIn ? null : <Redirect to={'/login'} />}
+            <TaskMap key={i} task={task} remove={remove} isTaskComplete={isTaskComplete} switchTask={switchTask} isChild={isChild} />
+          );
+        })}
+      {props.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
-  )
-};
+  );
+}
 
 const mapDispatchToProps = {
   getAllTasks,
   addTask,
-  removeTask
+  removeTask,
+  getChildTasks,
 };
 
 function mapStateToProps(state) {
   return {
     user: state.userReducer.user.data,
     tasks: state.taskReducer.tasks.data,
-    loggedIn: state.userReducer.loggedIn
+    loggedIn: state.userReducer.loggedIn,
   };
-};
-
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
 
-
-
-
 // FOR DAYDROPDOWN COMPONENT
-{/* <DayDropdown setTitle={setTitle} title={title} /> */ }
-  // const [title, setTitle] = useState('');
+{
+  /* <DayDropdown setTitle={setTitle} title={title} /> */
+}
+// const [title, setTitle] = useState('');

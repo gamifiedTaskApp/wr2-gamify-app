@@ -46,5 +46,32 @@ module.exports={
         }
         const newUsername = await db.children.change_username(username, userId);
         res.sendStatus(200);
+    },
+    getChildEarnedRewards: async (req, res) => {
+        const db = req.app.get("db");
+        const childId = req.params.id;
+        const earnedRewards = await db.children.reward_rewards(childId)
+        res.status(200).send(earnedRewards)
+    },
+    addExperience: async (req,res)=>{
+        const db=req.app.get("db");
+        const {points, childId} = req.body;
+        const addExperience = await db.children.add_experience(points, childId)
+        res.status(200).send(addExperience)
+
+    },
+    getPoints:async (req,res)=>{
+        const db=req.app.get("db");
+        const childId = req.params.id;
+        const getPoints= await db.children.get_points(childId)
+        res.send(getPoints).status(200)
+    },
+    switchTaskComplete: async(req, res)=>{
+        const db = req.app.get("db");
+        const {taskId, isTaskComplete} = req.body;
+        let switchedComplete = !isTaskComplete;
+        const task = await db.children.switch_task_complete(switchedComplete, taskId);
+        console.log(task)
+        res.sendStatus(200);
     }
 }

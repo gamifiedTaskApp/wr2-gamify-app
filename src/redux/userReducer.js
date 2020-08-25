@@ -8,21 +8,21 @@ const initialState = {
 export default function userReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case SET_USER + '_PENDING':
+    case SET_USER + "_PENDING":
       return state;
-    case SET_USER + '_FULFILLED':
+    case SET_USER + "_FULFILLED":
       return { ...state, user: payload, loggedIn: true };
-    case SET_USER + '_REJECTED':
+    case SET_USER + "_REJECTED":
       return state;
-    case LOGIN_USER + '_PENDING':
+    case LOGIN_USER + "_PENDING":
       return state;
-    case LOGIN_USER + '_FULFILLED':
+    case LOGIN_USER + "_FULFILLED":
       return { ...state, user: payload, loggedIn: true };
-    case LOGIN_USER + '_REJECTED':
+    case LOGIN_USER + "_REJECTED":
       return state;
-    case LOGOUT_USER: 
-      return {...state, user: {}, loggedIn: false}
+    case LOGOUT_USER:
+      return { ...state, user: {}, loggedIn: false };
     default:
       return state;
-  };
-};
+  }
+}

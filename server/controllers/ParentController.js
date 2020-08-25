@@ -7,10 +7,28 @@ module.exports = {
     const tasks = await db.parents.get_all_tasks(id);
     res.status(200).send(tasks);
   },
+  getChildTasks: async (req, res) => {
+    const db = req.app.get("db");
+    const { childId, date } = req.body
+
+    const childTasks = await db.children.get_child_tasks(childId);
+    let todaysTasks = [];
+    for (let i = 0; i < childTasks.length; i++) {
+      if (childTasks[i].date === date) {
+        todaysTasks.push(childTasks[i])
+      }
+    }
+    res.status(200).send(todaysTasks)
+  },
   addTask: async (req, res) => {
     const db = req.app.get("db");
     const { taskName, pointsGained, taskDescription, userId, childId, date } = req.body;
-    console.log(req.body)
+    console.log(taskName)
+    console.log(pointsGained)
+    console.log(taskDescription)
+    console.log(userId)
+    console.log(childId)
+    console.log(date)
     const newTask = await db.parents.add_task(userId, childId, taskName, taskDescription, pointsGained, date)
     console.log(newTask)
     res.send(newTask).status(200);
@@ -50,10 +68,11 @@ module.exports = {
 
   addRewardForOne: async (req, res) => {
     const db = req.app.get("db");
-    const { rewardName, rewardPrice, parentId, childId, } = req.body;
+    const { reward, rewardPoints, parentId, childId, } = req.body;
 
-    const newReward = await db.parents.add_reward(parentId, childId, rewardName, rewardPrice);
-    res.send(newReward).status(200);
+    const newReward = await db.parents.add_reward(parentId, childId, reward, rewardPoints);
+    const getStoreRewards = await db.children.store_rewards(childId)
+    res.send(getStoreRewards).status(200);
   },
   addRewardForAll: async (req, res) => {
     const db = req.app.get("db");
