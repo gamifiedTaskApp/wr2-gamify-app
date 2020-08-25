@@ -51,7 +51,7 @@ function Login(props) {
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              <b>Username:</b>
+              <div><b>Username</b></div>
             </label>
             <input
               value={username}
@@ -64,7 +64,7 @@ function Login(props) {
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              <b>Password:</b>
+              <div><b>Password</b></div>
             </label>
             <input
               className="login_password"

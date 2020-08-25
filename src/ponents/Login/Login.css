@@ -16,10 +16,14 @@
           flex-direction: column;
 }
 
+.login_password {
+  background-color: white;
+}
+
 .login_header_holder {
   height: 100px;
   width: 100vw;
-  background-color: #F66747;
+  background-color: #52b1ff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -50,7 +54,7 @@
 .login_form {
   height: 70vh;
   width: 80vw;
-  background-color: #F66747;
+  background-color: #52b1ff;
   border-style: solid;
   border-color: black;
   -webkit-box-shadow: 0 5px 2px -2px #5e5d5d;
@@ -70,29 +74,20 @@
       -ms-flex-direction: column;
           flex-direction: column;
   border: none;
+  justify-content: center;
   padding: 10px;
 }
 
-b {
-  font-size: 20px;
+.login_form b {
+  font-size: 25px;
 }
 
 .login_inputs {
   color: white;
   margin: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
 .login_inputs .email_input {
@@ -106,6 +101,7 @@ b {
 
 .login_inputs .name_input {
   width: 140px;
+  background-color: white;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
@@ -115,11 +111,14 @@ b {
 
 .login_inputs input {
   height: 25px;
+  width: 100%;
   outline: 0;
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
+  border-style: none;
+  background-color: white;
 }
 
 .login_button_holder {
@@ -204,6 +203,7 @@ b {
   }
   .login_link {
     color: black;
+    text-align: center;
   }
 }
 /*# sourceMappingURL=Login.css.map */

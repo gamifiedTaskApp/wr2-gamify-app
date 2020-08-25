@@ -6,11 +6,15 @@
   width: 100vw;
   @include flexBaseOptions(none, column);
 };
+.login_password{
+  background-color: white;
+
+}
 
 .login_header_holder {
   height: 100px;
   width: 100vw;
-  background-color:$mainColor;
+  background-color:$complimentary;
   @include flexBaseOptions(center, column);
   margin-bottom:50px;
 }
@@ -28,19 +32,22 @@
 .login_form {
   height: 70vh;
   width: 80vw;
-  background-color:$mainColor;
+  background-color:$complimentary;
   @include borderStyle();
   @include flexBaseOptions(center, column);
   border:none;
+  justify-content: center;
   padding: 10px;
+  b{
+    font-size:25px;
+  
 }
-b{
-  font-size:20px;
+
 }
 .login_inputs {
   color:white;
   margin: 20px;
-  @include flexBaseOptions(center, row);
+  justify-content: center;
   .email_input {
     width: 181px;
     @include inputStyles();
@@ -48,13 +55,18 @@ b{
   };
   .name_input {
     width: 140px;
+    background-color: white;
+
     @include inputStyles();
     @include inputStyleTwo();
   };
   input {
     height:25px;
+    width: 100%;
     @include inputStyles();
     @include inputStyleTwo();
+    border-style: none;
+    background-color: white;
   };
 }
 
@@ -114,5 +126,6 @@ b{
   }
   .login_link{
     color:black;
+    text-align: center;
   }
 }
