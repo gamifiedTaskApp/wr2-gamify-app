@@ -1,4 +1,4 @@
-import { SET_USER, LOGIN_USER, LOGOUT_USER } from "./constraints";
+import { SET_USER, LOGIN_USER, LOGOUT_USER, UPDATE_ACCOUNT } from "./constraints";
 
 const initialState = {
   user: {},
@@ -22,6 +22,12 @@ export default function userReducer(state = initialState, action) {
       return state;
     case LOGOUT_USER:
       return { ...state, user: {}, loggedIn: false };
+    case UPDATE_ACCOUNT + '_PENDING':
+      return state;
+    case UPDATE_ACCOUNT + '_FULFILLED':
+      return { ...state, user: payload, loggedIn: true };
+    case UPDATE_ACCOUNT + '_REJECTED':
+      return state;
     default:
       return state;
   }
