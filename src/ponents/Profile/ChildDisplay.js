@@ -31,24 +31,26 @@ function ChildDisplay(props) {
 
   console.log(props);
   return (
-    <div>
+    <div className="child">
+      <div className="child-info">
       <div className="child-card">
         <section>
           <img className="child-profile-picture" src={userPicture} />
         </section>
         <section>
-          <p>{props.child.child_name}</p>
-          <p className="child-points">
-            <span>Points:</span>
-            <span>{props.child.points}</span>
-          </p>
         </section>
       </div>
       <p>{props.child.child_username}</p>
+      <p className="child-points">
+            <span>Points:</span>
+            <span>{props.child.points}</span>
+          </p>
       <p> level {Math.ceil(props.child.experience / 100)}</p>
       <div className="unfilled-bar">
         <div class="experience-bar" style={{ width: xpbar }}></div>
       </div>
+      </div>
+      <div className="childbuttons">
       {isEditing ? (
         <div>
           <input
@@ -56,13 +58,17 @@ function ChildDisplay(props) {
             placeholder="New Username"
             onChange={(e) => setUsernameInput(e.target.value)}
           />
-          <button onClick={editUsername}>Save</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button className="profile-button" onClick={editUsername}>Save</button>
+          <button className="profile-button" onClick={() => setIsEditing(false)}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsEditing(true)}>Edit Username</button>
-      )}
-      <button onClick={deleteChild}>Delete Child</button>
+        <div>
+        <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Username</button>
+        <button className="profile-button" onClick={deleteChild}>Delete Child</button>
+        </div>
+      )
+      }
+     </div>
     </div>
   );
 }

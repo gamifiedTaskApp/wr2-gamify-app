@@ -78,29 +78,38 @@ function Profile(props) {
         </div>
       ) : (
         <div>
+        <div className="parent">
+          <div className="box">
           <img className="profile-picture" src={userPicture} />
           <p>{user.data ? user.data.username : ""}</p>
+          </div>
+          <div>
+          <div className="box2">
           {isEditing ? (
-            <div>
+              <div>
               <input
                 placeholder="New Username"
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <button onClick={() => changeUsername()}>Submit</button>
-              <button onClick={() => setIsEditing(false)}>Cancel</button>
+              <button className="profile-button" onClick={() => changeUsername()}>Submit</button>
+              <button className="profile-button" onClick={() => setIsEditing(false)}>Cancel</button>
             </div>
           ) : (
-            <button onClick={() => setIsEditing(true)}>Edit Username</button>
+            <div>
+            <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Username</button>
+          <button className="profile-button" onClick={logOut}>Log Out</button>
+          </div>
           )}
-          <button onClick={logOut}>Log Out</button>
-          {mappedChildren}
+          </div>
+        </div></div>
+        {mappedChildren}
         </div>
       )}
 
       <div className="add-child">
         {isParent ? <Parent getChildren={getChildren} /> : ""}
       </div>
-      {isChild ? "" : <button onClick={deleteUser}>Delete Account</button>}
+      {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
 
       {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
