@@ -21,4 +21,10 @@
     border-width: 0 0 2px;
     border-color: black;
     background-color: $mainColor;
-}
+};
+
+@mixin responsive($query) {
+  @media ( min-width: + $query ) {
+      @content;
+  }
+};

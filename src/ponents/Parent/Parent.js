@@ -93,12 +93,14 @@ function Parent(props) {
           {goodPassword ? null : (
             <span>Password must contain at least 8 characters</span>
           )}
+          <span className="holder">
           <button className="button" onClick={createChild}>
             Submit
           </button>
           <button className="button" onClick={Switch}>
             Cancel
           </button>
+          </span>
         </div>
       </div>
     </div>
