@@ -55,7 +55,7 @@ function Tasks(props) {
     })
   }
   function switchTask(isTaskComplete, taskId){
-    let date = selectedDate
+    
     Axios.put('/api/task/complete', {isTaskComplete, taskId})
     .then(res => {
         isTaskComplete = !isTaskComplete
