@@ -42,99 +42,99 @@ function Tasks(props) {
     console.log(userId)
     //const body = { taskName, pointsGained, taskDescription, userId, childId, selectedDate }
     //props.getChildTasks(childId)
-    
+
     Axios.post('/api/add/task', { taskName, pointsGained, taskDescription, userId, childId, date })
-    .then(res => {
-      console.log(res)
-      Axios.post(`/api/child/tasks`, {childId, date})
-      .then(newRes => {
-        console.log(newRes)
-        setTasks(newRes.data)
+      .then(res => {
+        console.log(res)
+        Axios.post(`/api/child/tasks`, { childId, date })
+          .then(newRes => {
+            console.log(newRes)
+            setTasks(newRes.data)
+          })
+          .catch(err => console.log(err))
       })
-      .catch(err => console.log(err))
-    })
   }
-  function switchTask(isTaskComplete, taskId){
-    
-    Axios.put('/api/task/complete', {isTaskComplete, taskId})
-    .then(res => {
+  function switchTask(isTaskComplete, taskId) {
+
+    Axios.put('/api/task/complete', { isTaskComplete, taskId })
+      .then(res => {
         isTaskComplete = !isTaskComplete
       })
-    .catch(err =>{
-      console.log(err)
-    })
+      .catch(err => {
+        console.log(err)
+      })
   }
-  
+
   function remove(taskId, userId) {
-     //props.removeTask(taskId, userId);
+    //props.removeTask(taskId, userId);
     //props.getChildTasks(childId)
     let date = selectedDate
     Axios.delete(`/api/remove/task?id=${taskId}&userId=${userId}`)
-    .then(res =>{
-      Axios.post(`/api/child/tasks`, {childId, date})
-      .then(newRes => {
-        console.log(res)
-        setTasks(newRes.data)
-    })
+      .then(res => {
+        Axios.post(`/api/child/tasks`, { childId, date })
+          .then(newRes => {
+            console.log(res)
+            setTasks(newRes.data)
+          })
+          .catch(err => console.log(err))
+      })
       .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err))
-    
+
   }
 
   return (
     <div className="tasks">
       {selectedDate.toDateString()}
-      {isChild ? 
-      <div>
-        <SetChildTasks setTasks={setTasks} childId={props.user.id} date={selectedDate} />
-        {isOpen ? (
-          <Calender
-            setSelectedDate={setSelectedDate}
-            setIsOpen={setIsOpen}
-            childId={childId}
-            setTasks={setTasks}
-          />
-        ) : (
-          <p onClick={() => setIsOpen(true)}>Select Date</p>
-        )}
-      </div>
-      :
-      <div>
-        <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
-        {isOpen ? (
-          <Calender
-            setSelectedDate={setSelectedDate}
-            setIsOpen={setIsOpen}
-            childId={childId}
-            setTasks={setTasks}
-          />
-        ) : (
-          <p onClick={() => setIsOpen(true)}>Select Date</p>
-        )}
-        <ChildDropdown
-          isChild={isChild}
-          userId={props.user ? props.user.id : ""}
-          title={title}
-          setTitle={setTitle}
-          setChildId={setChildId}
-          setTasks={setTasks}
-          selectedDate={selectedDate}
-        />
+      {isChild ?
+        <div>
+          <SetChildTasks setTasks={setTasks} childId={props.user.id} date={selectedDate} />
+          {isOpen ? (
+            <Calender
+              setSelectedDate={setSelectedDate}
+              setIsOpen={setIsOpen}
+              childId={childId}
+              setTasks={setTasks}
+            />
+          ) : (
+              <p onClick={() => setIsOpen(true)}>Select Date</p>
+            )}
         </div>
-        <TaskPopup
-        taskName={taskName}
-        setTaskName={setTaskName}
-        taskDescription={taskDescription}
-        setDescription={setDescription}
-        pointsGained={pointsGained}
-        setPoints={setPoints}
-        addTask={addTask}
-      />
-      </div>
+        :
+        <div>
+          <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
+            {isOpen ? (
+              <Calender
+                setSelectedDate={setSelectedDate}
+                setIsOpen={setIsOpen}
+                childId={childId}
+                setTasks={setTasks}
+              />
+            ) : (
+                <p onClick={() => setIsOpen(true)}>Select Date</p>
+              )}
+            <ChildDropdown
+              isChild={isChild}
+              userId={props.user ? props.user.id : ""}
+              title={title}
+              setTitle={setTitle}
+              setChildId={setChildId}
+              setTasks={setTasks}
+              selectedDate={selectedDate}
+            />
+          </div>
+          <TaskPopup
+            taskName={taskName}
+            setTaskName={setTaskName}
+            taskDescription={taskDescription}
+            setDescription={setDescription}
+            pointsGained={pointsGained}
+            setPoints={setPoints}
+            addTask={addTask}
+          />
+        </div>
       }
-      
-      
+
+
       {/* <div className='tasks_holder'>
         <div className='add_task_holder'>
           <b className='add_task_button' onClick={() => setAddOpen(!addOpen)}>Create New Task</b>
@@ -169,11 +169,11 @@ function Tasks(props) {
         ? null
         : tasks.map((task, i) => {
           let isTaskComplete = task.completed;
-          
-            return (
-              <TaskMap key={i} task={task} remove={remove} isTaskComplete={isTaskComplete} switchTask={switchTask} isChild={isChild} />
-            );
-          })}
+
+          return (
+            <TaskMap key={i} task={task} remove={remove} isTaskComplete={isTaskComplete} switchTask={switchTask} isChild={isChild} />
+          );
+        })}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
   );

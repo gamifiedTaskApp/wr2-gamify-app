@@ -44,7 +44,7 @@ export function logoutUser() {
 }
 
 //TASKS FUNCTIONS
-export function switchComplete(taskId, isTaskComplete){
+export function switchComplete(taskId, isTaskComplete) {
   axios.put()
 }
 export function getAllTasks(id) {
