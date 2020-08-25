@@ -72,6 +72,14 @@ module.exports={
         let switchedComplete = !isTaskComplete;
         const task = await db.children.switch_task_complete(switchedComplete, taskId);
         console.log(task)
+        if(switchedComplete === true){
+            const addedExperience = await db.children.add_experience(task[0].points_gained, task[0].child_id)
+            const addedPoints = await db.children.add_points(task[0].points_gained, task[0].child_id)
+        }
+        else if (switchedComplete === false){
+            const subtractedExperience = await db.children.add_experience(-task[0].points_gained, task[0].child_id)
+            const subtractedPoints = await db.children.add_points(-task[0].points_gained, task[0].child_id)
+        }
         res.sendStatus(200);
     }
 }

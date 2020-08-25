@@ -6,11 +6,14 @@ import Parent from "../Parent/Parent";
 import Axios from "axios";
 import ChildDisplay from "./ChildDisplay";
 import { logoutUser } from "../../redux/actionCreators";
+import Amazon from '../AmazonDropzone/AmazonDropzone';
+
 function Profile(props) {
-  let [isEditing, setIsEditing] = useState(false);
-  let [username, setUsername] = useState("");
-  let [children, setChildren] = useState("");
   const user = props.userReducer.user;
+  let [isEditing, setIsEditing] = useState(false);
+  let [username, setUsername] = useState('');
+  let [children, setChildren] = useState("");
+  let [photo, setPhoto] = useState('');
   const userId = user.data ? props.userReducer.user.data.id : "";
   const isParent = user.data ? user.data.parental : "";
   const isChild = user.data ? (user.data.isChild ? true : false) : "";
@@ -20,6 +23,8 @@ function Profile(props) {
       ? (user.data.experience % 100) + "%"
       : ""
     : "";
+
+  console.log(user.data)
 
   function changeUsername() {
     if (username.length < 6) {
@@ -68,7 +73,7 @@ function Profile(props) {
   return (
     <div>
       {isChild ? (
-        <div>
+        <div className="childaccount">
           <span>{user.data.username}</span>
           <img className="profile-picture" src={userPicture} />
           <p>level {Math.ceil(user.data.experience / 100)}</p>
@@ -77,30 +82,45 @@ function Profile(props) {
           </div>
         </div>
       ) : (
-        <div>
-          <img className="profile-picture" src={userPicture} />
-          <p>{user.data ? user.data.username : ""}</p>
-          {isEditing ? (
-            <div>
-              <input
-                placeholder="New Username"
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <button onClick={() => changeUsername()}>Submit</button>
-              <button onClick={() => setIsEditing(false)}>Cancel</button>
-            </div>
-          ) : (
-            <button onClick={() => setIsEditing(true)}>Edit Username</button>
-          )}
-          <button onClick={logOut}>Log Out</button>
-          {mappedChildren}
-        </div>
-      )}
+          <div>
+            <div className="parent">
+              <div className="box">
+                <img className="profile-picture" src={userPicture} />
+                <p>{user.data ? user.data.username : ""}</p>
+              </div>
+              <div>
+                <div className="box2">
+                  {isEditing ? (
+                    <div>
+                      <div>
+                        <Amazon photoFn={setPhoto} />
+                      </div>
+                      <input
+                        placeholder="New Username"
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
+                      <button className="profile-button" onClick={() => {
+                        changeUsername()
+                        setIsEditing(false)
+                      }}>Submit</button>
+                      <button className="profile-button" onClick={() => setIsEditing(false)}>Cancel</button>
+                    </div>
+                  ) : (
+                      <div>
+                        <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Username</button>
+                        <button className="profile-button" onClick={logOut}>Log Out</button>
+                      </div>
+                    )}
+                </div>
+              </div></div>
+            {mappedChildren}
+          </div>
+        )}
 
       <div className="add-child">
         {isParent ? <Parent getChildren={getChildren} /> : ""}
       </div>
-      {isChild ? "" : <button onClick={deleteUser}>Delete Account</button>}
+      {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
 
       {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
