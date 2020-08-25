@@ -89,7 +89,7 @@ app.put('/api/buyItem', childCtrl.buyItem)
 app.put('/api/useItem', childCtrl.useItem)
 app.get('/api/storeRewards/:id', childCtrl.getStoreRewards);
 app.get('/api/earnedRewards/:id', childCtrl.getChildEarnedRewards);
-app.put('/api/parent/changeName', parentCtrl.changeUserName);
+app.put('/api/parent/changeAccount', parentCtrl.changeUserName);
 app.get('/api/getPoints/:id', childCtrl.getPoints);
 app.post('/api/child/tasks/', parentCtrl.getChildTasks);
 
