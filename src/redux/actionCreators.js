@@ -21,9 +21,9 @@ export function loginUser(username, password) {
   };
 };
 
-export function logoutUser(){
+export function logoutUser() {
   axios.post('/auth/logout');
-  return{
+  return {
     type: LOGOUT_USER
   }
 }
@@ -39,6 +39,7 @@ export function getAllTasks(id) {
 };
 
 export function addTask(taskName, pointsGained, taskDescription, userId, childId, date) {
+  console.log(userId)
   const body = { taskName, pointsGained, taskDescription, userId, childId, date };
   const addTask = axios.post('/api/add/task', body);
   return {

@@ -10,6 +10,8 @@ import { getAllTasks, addTask, removeTask } from '../../redux/actionCreators';
 
 function Tasks(props) {
 
+  console.log(props.user)
+
   const isChild = props.user ? props.user.isChild ? true : false : "";
   let tasks = props.tasks ? props.tasks : [];
   const [title, setTitle] = useState('');
@@ -35,7 +37,7 @@ function Tasks(props) {
   }, [selectedDate]);
 
   function addTask() {
-    props.addTask(taskName, points, description, props.user.parent, props.user.id, selectedDate);
+    props.addTask(taskName, points, description, props.user.id, selectedDate);
   };
 
   function remove(taskId, userId) {
