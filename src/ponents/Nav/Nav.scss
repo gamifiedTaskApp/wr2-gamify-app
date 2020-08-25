@@ -2,6 +2,7 @@
 @import '../../Sass/variables';
 .nav{
     position:fixed;
+    top:0;
     @include flexBaseOptions(space-between, row);
     height:80px;
     width:100vw;
