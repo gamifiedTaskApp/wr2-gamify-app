@@ -13,6 +13,7 @@
 
 .profile-button{
     background-color:$mainColor;
+    color:white;
     margin:5px;
     width:80px;
     height:40px;
@@ -104,7 +105,32 @@
     height: 20px;
 }
 
+@media only screen and (min-width: 600px) {
+    .parent{
+        margin-top:0;
+        width:100%;
+        padding-bottom:10px;
+        background-color:white;
+        box-shadow:5px 5px 5px rgb(187, 187, 187);
+    }
+    .child{
+        height:150px;
+        margin-top:10px;
+        background-color:white;
+        width:calc(100%-10px);
+        margin-left:0;
+        padding-left:10px;
+        box-shadow:5px 5px 5px rgb(187, 187, 187);
+    }
+    .profile{
+        display:flex;
+        justify-content: center;
+        background-color:rgb(231, 231, 231);
+    }
+    .profile-container{
+        margin-top:90px;
+        width:80vw;
+    }
 
-// .add-child{
-//     height: 
-// }
+
+}

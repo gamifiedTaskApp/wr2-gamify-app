@@ -10,6 +10,7 @@
 
 .profile-button {
   background-color: #F66747;
+  color: white;
   margin: 5px;
   width: 80px;
   height: 40px;
@@ -169,5 +170,39 @@
   background-color: grey;
   width: 100px;
   height: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .parent {
+    margin-top: 0;
+    width: 100%;
+    padding-bottom: 10px;
+    background-color: white;
+    -webkit-box-shadow: 5px 5px 5px #bbbbbb;
+            box-shadow: 5px 5px 5px #bbbbbb;
+  }
+  .child {
+    height: 150px;
+    margin-top: 10px;
+    background-color: white;
+    width: calc(100%-10px);
+    margin-left: 0;
+    padding-left: 10px;
+    -webkit-box-shadow: 5px 5px 5px #bbbbbb;
+            box-shadow: 5px 5px 5px #bbbbbb;
+  }
+  .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: #e7e7e7;
+  }
+  .profile-container {
+    margin-top: 90px;
+    width: 80vw;
+  }
 }
 /*# sourceMappingURL=profile.css.map */
