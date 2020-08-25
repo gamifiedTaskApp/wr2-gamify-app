@@ -5,9 +5,9 @@ import './store.css';
 function RewardPopup(props) {
   console.log(props);
   return (
-    <Popup trigger={<button> Add Reward</button>} modal closeOnDocumentClick>
+    <Popup trigger={<button> Add Reward</button>} modal closeOnDocumentClick className="popup-reward">
       {(close) => (
-        <div>
+        <div className='input-container'>
           <div className='submit-inputs'>
             <label><b>Reward</b></label>
             <input
