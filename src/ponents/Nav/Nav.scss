@@ -1,6 +1,7 @@
 @import '../../Sass/mixins';
 @import '../../Sass/variables';
 .nav{
+    position:fixed;
     @include flexBaseOptions(space-between, row);
     height:80px;
     width:100vw;

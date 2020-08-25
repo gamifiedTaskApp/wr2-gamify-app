@@ -30,6 +30,24 @@
   width: 100px;
 }
 
+.childaccount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 10px;
+  width: 100vw;
+  padding-bottom: 10px;
+  border-bottom: 0.1px solid #f3f3f3;
+}
+
+.childaccount span {
+  font-size: 20px;
+}
+
 .box2 {
   display: -webkit-box;
   display: -ms-flexbox;

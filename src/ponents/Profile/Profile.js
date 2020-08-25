@@ -68,7 +68,7 @@ function Profile(props) {
   return (
     <div>
       {isChild ? (
-        <div>
+        <div className="childaccount">
           <span>{user.data.username}</span>
           <img className="profile-picture" src={userPicture} />
           <p>level {Math.ceil(user.data.experience / 100)}</p>
