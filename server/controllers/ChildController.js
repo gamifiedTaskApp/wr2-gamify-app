@@ -65,5 +65,13 @@ module.exports={
         const childId = req.params.id;
         const getPoints= await db.children.get_points(childId)
         res.send(getPoints).status(200)
+    },
+    switchTaskComplete: async(req, res)=>{
+        const db = req.app.get("db");
+        const {taskId, isTaskComplete} = req.body;
+        let switchedComplete = !isTaskComplete;
+        const task = await db.children.switch_task_complete(switchedComplete, taskId);
+        console.log(task)
+        res.sendStatus(200);
     }
 }
