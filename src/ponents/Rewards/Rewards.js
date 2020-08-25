@@ -19,12 +19,13 @@ function Rewards(props) {
   }
 
   return (
-    <div>
+    <div className='reward-page'>
       <ChildDropdown
         isChild={isChild}
         userId={props.user ? props.user.id : ""}
         setChild={setChild}
         setRewards={setRewards}
+        childName={childName}
       />
       {mappedRewards}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
@@ -36,8 +37,7 @@ function mapStateToProps(state) {
   return {
     loggedIn: state.userReducer.loggedIn,
     user: state.userReducer.user.data,
-    tasks: state.taskReducer.tasks.data,
-    loggedIn: state.userReducer.loggedIn,
+    tasks: state.taskReducer.tasks.data
   };
 }
 
