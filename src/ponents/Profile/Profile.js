@@ -9,11 +9,11 @@ import { logoutUser } from "../../redux/actionCreators";
 import Amazon from '../AmazonDropzone/AmazonDropzone';
 
 function Profile(props) {
+  const user = props.userReducer.user;
   let [isEditing, setIsEditing] = useState(false);
-  let [username, setUsername] = useState("");
+  let [username, setUsername] = useState('');
   let [children, setChildren] = useState("");
   let [photo, setPhoto] = useState('');
-  const user = props.userReducer.user;
   const userId = user.data ? props.userReducer.user.data.id : "";
   const isParent = user.data ? user.data.parental : "";
   const isChild = user.data ? (user.data.isChild ? true : false) : "";
@@ -23,6 +23,8 @@ function Profile(props) {
       ? (user.data.experience % 100) + "%"
       : ""
     : "";
+
+  console.log(user.data)
 
   function changeUsername() {
     if (username.length < 6) {
@@ -97,7 +99,10 @@ function Profile(props) {
                         placeholder="New Username"
                         onChange={(e) => setUsername(e.target.value)}
                       />
-                      <button className="profile-button" onClick={() => changeUsername()}>Submit</button>
+                      <button className="profile-button" onClick={() => {
+                        changeUsername()
+                        setIsEditing(false)
+                      }}>Submit</button>
                       <button className="profile-button" onClick={() => setIsEditing(false)}>Cancel</button>
                     </div>
                   ) : (
