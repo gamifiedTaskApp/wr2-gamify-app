@@ -106,18 +106,53 @@ module.exports = {
   },
   changeUserName: async (req, res) => {
     const db = req.app.get('db');
-    const { username, userId } = req.body;
+    const { username, userId, photo, usersUsername } = req.body;
+
+    if (username === usersUsername) {
+      const updatedUser = await db.parents.change_username(username, userId, photo);
+      const user = updatedUser[0]
+      console.log(user, '125')
+      req.session.user = {
+        id: user.user_id,
+        username: user.username,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email,
+        parental: user.is_parental,
+        points: user.experience_points,
+        picture: user.profile_picture
+      };
+
+      return res.status(200).send(req.session.user);
+    }
 
     const checkChildUsername = await db.auth.check_child_username(username);
     const checkUsername = await db.auth.check_username_exists(username);
     if (checkUsername[0]) {
       res.status(409).send('Username already exists');
+      return
     }
-    else if (checkChildUsername[0]) {
+    if (checkChildUsername[0]) {
       res.status(409).send('Username already exists');
+      return
     }
-    const newUsername = await db.parents.change_username(username, userId);
-    res.sendStatus(200);
+
+    const updatedUser = await db.parents.change_username(username, userId, photo);
+    const user = updatedUser[0]
+    console.log(user, '125')
+    req.session.user = {
+      id: user.user_id,
+      username: user.username,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      parental: user.is_parental,
+      points: user.experience_points,
+      picture: user.profile_picture
+    };
+
+    return res.status(200).send(req.session.user);
+
   },
   getAllChildren: async (req, res) => {
     const db = req.app.get('db');

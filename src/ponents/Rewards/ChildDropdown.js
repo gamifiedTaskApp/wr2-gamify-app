@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import onClickOutside from "react-onclickoutside";
 import axios from "axios";
 import "./rewards.css";
-import Axios from "axios";
 
 function ChildDropdown(props) {
   const [open, setOpen] = useState(false);
@@ -15,7 +14,7 @@ function ChildDropdown(props) {
     axios
       .get(`/api/earnedRewards/${child.child_id}`)
       .then((res) => {
-        setTitle(child.child_username);
+        setTitle(child.child_name);
         props.setChild(child);
         setOpen(false);
         props.setRewards(res.data);
@@ -27,7 +26,7 @@ function ChildDropdown(props) {
     if (!props.isChild) {
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
-        setTitle(res.data[0].child_username);
+        setTitle(res.data[0].child_name);
         props.setChild(res.data[0]);
         axios
           .get(`/api/earnedRewards/${res.data[0].child_id}`)
@@ -44,16 +43,16 @@ function ChildDropdown(props) {
   }, [props.isChild]);
 
   const listChildren = children.map((child, i) => {
-    if (child.child_username !== title) {
+    if (child.child_name !== title) {
       return (
-        <li className="dd-list-item" key={i}>
+        <li className="reward-dd-list" key={i}>
           <button
             className="child-button"
             onClick={() => {
               getRewards(child);
             }}
           >
-            {child.child_username}
+            {child.child_name}
           </button>
         </li>
       );
@@ -86,7 +85,7 @@ function ChildDropdown(props) {
               </p>
             </div>
           </div>
-          {open && <ul className="dd-list">{listChildren}</ul>}
+          {open && <ul className="reward-dd-list">{listChildren}</ul>}
         </div>
       )}
     </div>

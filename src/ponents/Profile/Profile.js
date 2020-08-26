@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Parent from "../Parent/Parent";
 import Axios from "axios";
 import ChildDisplay from "./ChildDisplay";
-import { logoutUser } from "../../redux/actionCreators";
+import { logoutUser, updateAccount } from "../../redux/actionCreators";
 import Amazon from '../AmazonDropzone/AmazonDropzone';
 
 function Profile(props) {
@@ -18,6 +18,7 @@ function Profile(props) {
   const isParent = user.data ? user.data.parental : "";
   const isChild = user.data ? (user.data.isChild ? true : false) : "";
   const userPicture = user.data ? user.data.picture : "";
+  const usersUsername = user.data ? user.data.username : '';
   let xpbar = user.data
     ? user.data.isChild
       ? (user.data.experience % 100) + "%"
@@ -26,20 +27,25 @@ function Profile(props) {
 
   console.log(user.data)
 
+  useEffect(() => {
+    if (user.data) {
+      setUsername(user.data.username)
+      setPhoto(userPicture)
+    }
+  }, [user.data]);
+
   function changeUsername() {
     if (username.length < 6) {
       alert("Username must be longer");
     } else {
-      Axios.put("/api/parent/changeName", { username, userId })
-        .then((res) => {
-          //change props to reflect new username
-        })
-        .catch((err) => alert(err));
+      props.updateAccount(username, userId, photo, usersUsername)
     }
-  }
+  };
+
   function logOut() {
     props.logoutUser();
   }
+
   function deleteUser() {
     Axios.delete(`/auth/delete/user/${userId}`)
       .then((res) => {
@@ -71,7 +77,8 @@ function Profile(props) {
   }
 
   return (
-    <div>
+    <div className="profile"> 
+      <div className="profile-container">
       {isChild ? (
         <div className="childaccount">
           <span>{user.data.username}</span>
@@ -96,18 +103,21 @@ function Profile(props) {
                         <Amazon photoFn={setPhoto} />
                       </div>
                       <input
-                        placeholder="New Username"
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
                       />
                       <button className="profile-button" onClick={() => {
                         changeUsername()
                         setIsEditing(false)
                       }}>Submit</button>
-                      <button className="profile-button" onClick={() => setIsEditing(false)}>Cancel</button>
+                      <button className="profile-button" onClick={() => {
+                        setIsEditing(false)
+                        setUsername(user.data.username)
+                      }}>Cancel</button>
                     </div>
                   ) : (
                       <div>
-                        <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Username</button>
+                        <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Profile</button>
                         <button className="profile-button" onClick={logOut}>Log Out</button>
                       </div>
                     )}
@@ -123,13 +133,14 @@ function Profile(props) {
       {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
 
       {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
-    </div>
+    </div></div>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;
 
 const mapDispatchToProps = {
   logoutUser,
+  updateAccount
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
