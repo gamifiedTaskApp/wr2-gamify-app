@@ -28,15 +28,23 @@ function ChildDropdown(props) {
     });
   }, [props.isChild]);
 
-  const listChildren = children.map((child, i) =>
-    <li key={i}>
+  const listChildren = children.map((child, i) =>{
+    if(child.child_name !== props.title){
+      return(
+        <li key={i}>
       <button onClick={() => {
         props.setTitle(child.child_name)
         props.setChildId(child.child_id)
+        toggle();
       }}>
-        {child.child_username}
+        {child.child_name}
       </button>
     </li>
+      )
+    }
+  }
+  
+    
   )
 
   ChildDropdown.handleClickOutside = () => setOpen(false);

@@ -53,6 +53,8 @@ function ChildDropdown(props) {
   }, [props.isChild]);
 
   const listChildren = children.map((child, i) => {
+    console.log(title)
+    console.log(child.child_name)
     if (child.child_name !== title) {
       return (
         <li className="dd-list-item" key={i}>
