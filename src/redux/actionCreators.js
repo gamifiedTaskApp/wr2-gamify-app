@@ -6,6 +6,7 @@ import {
   REMOVE_TASK,
   LOGOUT_USER,
   GET_CHILD_TASKS,
+  UPDATE_ACCOUNT,
 } from "./constraints";
 import axios from "axios";
 
@@ -25,7 +26,7 @@ export function registerUser(
     type: SET_USER,
     payload: registered,
   };
-}
+};
 
 export function loginUser(username, password) {
   const body = { username, password };
@@ -34,14 +35,23 @@ export function loginUser(username, password) {
     type: LOGIN_USER,
     payload: loggedIn,
   };
-}
+};
 
 export function logoutUser() {
   axios.post("/auth/logout");
   return {
     type: LOGOUT_USER,
   };
-}
+};
+
+export function updateAccount(username, userId, photo, usersUsername) {
+  const body = { username, userId, photo, usersUsername };
+  const updated = axios.put("/api/parent/changeAccount", body);
+  return {
+    type: UPDATE_ACCOUNT,
+    payload: updated
+  }
+};
 
 //TASKS FUNCTIONS
 export function switchComplete(taskId, isTaskComplete) {

@@ -17,6 +17,7 @@
   height: 80px;
   width: 100vw;
   background-color: #52b1ff;
+  z-index: 2;
 }
 
 .nav h1 {
