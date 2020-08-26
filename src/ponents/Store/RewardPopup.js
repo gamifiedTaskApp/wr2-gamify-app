@@ -5,11 +5,11 @@ import './store.css';
 function RewardPopup(props) {
   console.log(props);
   return (
-    <Popup trigger={<button> Add Reward</button>} modal closeOnDocumentClick>
+    <Popup trigger={<button> Add Reward</button>} modal closeOnDocumentClick className="popup-reward">
       {(close) => (
-        <div>
+        <div className='input-container'>
           <div className='submit-inputs'>
-            <label><b>Reward</b></label>
+            <label><b>Reward:</b></label>
             <input
               className='submit-reward'
               value={props.reward}
@@ -17,7 +17,7 @@ function RewardPopup(props) {
             />
         </div>
         <div className='submit-inputs'>
-            <label><b>Points</b></label>
+            <label><b>Points:</b></label>
             <input
               className='submit-task-points'
               value={props.rewardPoints}

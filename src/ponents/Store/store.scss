@@ -40,10 +40,11 @@ table{
     background-color: $highlight1;
     height: 100%;
     width: 100vw;
+    margin-top: 80px;
 }
 
 .dd-wrapper{
-    height:7vh;
+    height:4vh;
     margin-bottom: 0px;
 }
 .submit_inputs {
@@ -66,12 +67,21 @@ table{
       @include inputStyleTwo();
     };
   }
-// .dd-list-item{
-//     width: 100%;
-//     border: black;
-// }
-// .dd-list{
-//     border: transparent;
+.dd-list-item{
+    width: 100%;
+    border: black;
+}
+.dd-list{
+    border: solid 1px black;
+    width:30% !important;
+    background-color:white;
+    border-radius:5px;
+    border:transparent;
+    position: relative;
+    z-index:2;
+}
+// .parent-selection{
+//     height:10vh;
 // }
 
 // .dd-header{
@@ -82,11 +92,12 @@ table{
 //     background-color: white;
 //     width: 135%;
 // }
-// .child-button{
-//     color: $shadow2;
-//     border:transparent;
-//     width: 80%;
-// }
+.child-button{
+    border:solid 1px green;
+    width: 100% !important;
+    border:transparent !important;
+    font-weight: bolder;
+}
 .points{
     @include flexBaseOptions(flex-end,row);
     background-color: $highlight1;
@@ -117,11 +128,13 @@ table{
     @include flexBaseOptions(space-between,row);
     background-color: $mainColor;
     margin:3vh;
+    position: relative;
 }
 
 .reward-info{
     margin-left: 5%;
     color: $highlight2;
+    margin-top:3%;
 }
 
 .buy-button{
@@ -141,19 +154,33 @@ table{
 
 .delete-button{
     background: url(trashIcon.svg);
-    width:8%;
+    background-repeat: no-repeat;
+    width:20px;
     align-self: flex-start;
-    height: 10%;
-    background-size: cover;
-    padding: 0; /* reset */
-    // z-index: 1;
-    // right:0px;
-    // margin-left:30%;
-    // margin-top:2.5%;
+    height: 20px;
+    background-size: contain;
+    position: absolute;
+    padding: 0; 
+    margin-left:6%;
+    margin-top:3% ;
+    border: none;
+
 }
 
 .delete-button:hover{
     cursor: pointer;
+}
+.popup-reward-content{
+    border-radius: 5px;
+    background-color: $highlight1 !important;
+    border-color: $shadow2 !important;
+}
+.popup-reward-content>div>button{
+    background-color: $highlight1 !important;
+    border-radius: 10px;
+    margin-top:7%;
+    margin-bottom: -10px;
+    background-color: $highlight2 !important;
 }
 
 @media (min-width: 1025px){
@@ -172,7 +199,7 @@ table{
       width:100px;
       background:transparent;
     }
-    height: 82.5vh;
+    height: 100%;
     }
     .store-reward{
         width: 22%;
@@ -189,4 +216,47 @@ table{
     .reward-info{
         font-size: 2vw;
     }
+    .delete-button{
+        width:20%;
+        height: 20%;
+        margin-left:6%;
+        margin-top:3%;
+    }
+    // .popup-content{
+    //     height:10vh;
+    //     width: 10%;
+    // }
+    .popup-reward-content{
+        width: 300px !important;
+        padding: 30px !important;
+    }
+    .popup-reward-content>div>button{
+        background-color: $highlight1 !important;
+        border-radius: 10px;
+        margin-top:4%;
+        margin-bottom: -10px;
+    }
+    .popup-reward-content>div>button:hover{
+        background-color: $highlight2 !important;
+        cursor: pointer;
+    }
+    .child-button{
+        margin-bottom:5px;
+    }
+    // .pop-up-reward{
+    //     height:15vh;
+    //     width: 5vw;
+    // }
+    // .submit-inputs{
+    //     width:5vw;
+    // }
+    // .input-container{
+    //     height:15vh;
+    //     width: 5vw;
+    // }
+    // .modalWrapper >div>div{
+    //     width: 300px !important;
+    //     padding: 24px !important;
+    //     border-radius: 10px
+    // }
 }
