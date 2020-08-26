@@ -44,6 +44,9 @@ function TaskPopup(props) {
           <button
             onClick={() => {
               props.addTask();
+              props.setTaskName("");
+              props.setDescription("");
+              props.setPoints(0);
               close();
             }}
           >

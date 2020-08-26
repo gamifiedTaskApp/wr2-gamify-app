@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import axios from "axios"
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { loginUser } from "../../redux/actionCreators";
@@ -9,9 +10,17 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
-
+  const [isTaken, setIsTaken] = useState(false);
+ 
   function login() {
-    props.loginUser(username, password);
+    //props.loginUser(username, password);
+    axios.post("/auth/login", {username, password})
+    .then(res => {
+      props.loginUser(res);
+    })
+    .catch(err => {
+      setIsTaken(true)
+    })
   }
 
   const checkInfo = () => {
@@ -87,7 +96,7 @@ function Login(props) {
           </div>
           <p className="err" >{passwordErr}</p>
         </div>
-
+        {isTaken ? <p className="err" >Username or Password Incorrect</p> : ""}
         <div className="login_button_holder">
           <button className="login_button" onClick={() => checkInfo()}>
             Login

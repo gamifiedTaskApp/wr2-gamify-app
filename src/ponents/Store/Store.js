@@ -9,7 +9,6 @@ import ChildDropdown from "./ChildDropdown";
 import RewardPopup from './RewardPopup';
 
 const Store = (props) => {
-  console.log(props);
   const [store, setStore] = useState([]);
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
   const [child, setChild] = useState({});
@@ -21,7 +20,6 @@ const Store = (props) => {
   const fade = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, margin:'3vh'} });
   const fadePoints = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, marginRight:'5%'} });
   // const fade = useSpring({opacity: store? 1:0})
-  console.log(fade)
 
   // onDragEnd=(result)=>{
   //   const {destination, source, reason}=result;
@@ -31,7 +29,7 @@ const Store = (props) => {
 
   useEffect(() => {
     // console.log("use effect working");
-    retrieveStoreRewards();
+    //retrieveStoreRewards(); This line caused an error, dont use it
   }, []);
 
   const submitReward = () => {
