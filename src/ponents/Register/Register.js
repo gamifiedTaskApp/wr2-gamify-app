@@ -10,7 +10,7 @@ function Register(props) {
   const [lName, setLName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [parentAccount, setParentAccount] = useState(false);
+  const [parentAccount, setParentAccount] = useState(true);
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
@@ -42,17 +42,26 @@ function Register(props) {
 
   return (
     <div className="register_holder">
+
+
+            
+      
       <div className="register_header_holder">
-        <b className="register_header">Welcome</b>
-        <b className="register_header"> To TheTaskApp</b>
+        <div className="header-text" >
+          <b className="register_header">Welcome</b>
+          <b className="register_header"> To TheTaskApp</b>
+        </div>
+        <Link className="register_link" to="/login">
+              LOG IN HERE
+            </Link>
       </div>
       <div className="register_form">
+        <h1 className="header" >Register your account</h1>
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            <label>
-              <b>Username:</b>
-            </label>
+            
             <input
+              placeholder="Username"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -60,15 +69,14 @@ function Register(props) {
               }}
             />
           </div>
-          <p>{usernameErr}</p>
+          <p className="err" >{usernameErr}</p>
         </div>
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            <label>
-              <b>First Name:</b>
-            </label>
+            
             <input
+              placeholder="First Name"
               className="name_input"
               value={fName}
               onChange={(e) => setFName(e.target.value)}
@@ -78,10 +86,9 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            <label>
-              <b>Last Name:</b>
-            </label>
+            
             <input
+              placeholder="Last Name"
               className="name_input"
               value={lName}
               onChange={(e) => setLName(e.target.value)}
@@ -91,10 +98,9 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            <label>
-              <b>Email:</b>
-            </label>
+            
             <input
+              placeholder="Email"
               className="email_input"
               value={email}
               onChange={(e) => {
@@ -103,15 +109,14 @@ function Register(props) {
               }}
             />
           </div>
-          <p>{emailErr}</p>
+          <p className="err" >{emailErr}</p>
         </div>
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            <label>
-              <b>Password:</b>
-            </label>
+            
             <input
+              placeholder="Password"
               type="password"
               value={password}
               onChange={(e) => {
@@ -120,31 +125,14 @@ function Register(props) {
               }}
             />
           </div>
-          <p>{passwordErr}</p>
-        </div>
-
-        <div className="register_inputs">
-          <label>
-            <b>Parental Account?</b>
-          </label>
-          <input
-            className="checkbox_input"
-            type="checkbox"
-            checked={parentAccount}
-            onChange={(e) => setParentAccount(!parentAccount)}
-          />
+          <p className="err" >{passwordErr}</p>
         </div>
 
         <div className="register_button_holder">
           <button className="register_button" onClick={() => checkInfo()}>
             Register!
           </button>
-          <h5>
-            Already checking off tasks?{" "}
-            <Link className="register_link" to="/login">
-              LOGIN HERE
-            </Link>
-          </h5>
+          
         </div>
       </div>
       {props.userReducer.loggedIn ? <Redirect to={"/tasks"} /> : null}
