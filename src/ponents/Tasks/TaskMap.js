@@ -6,7 +6,7 @@ function TaskMap(props){
     const [isTaskComplete, setTaskComplete] = useState(props.isTaskComplete)
     let userId = props.task.user_id
     return(
-    <div >
+    <div className="tasksmap">
         <div className="task_display">
             <input className="check" type="checkbox" checked={isTaskComplete} onClick={() => {
                 props.switchTask(isTaskComplete, taskId);
