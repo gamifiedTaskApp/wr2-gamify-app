@@ -14,7 +14,7 @@ function ChildDropdown(props) {
     axios
       .get(`/api/storeRewards/${child.child_id}`)
       .then((res) => {
-        setTitle(child.child_username);
+        setTitle(child.child_name);
         props.setChild(child);
         setOpen(false);
         props.setStore(res.data);
@@ -31,16 +31,19 @@ function ChildDropdown(props) {
       console.log(props);
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
-        setTitle(res.data[0].child_username);
+        setTitle(res.data[0] ? res.data[0].child_name : "");
         props.setChild(res.data[0]);
-        props.setPoints(res.data[0].points);
+        props.setPoints(res.data[0] ? res.data[0].points : "");
         console.log(res.data);
-        axios
+        if(res.data[0]){
+          axios
           .get(`/api/storeRewards/${res.data[0].child_id}`)
           .then((newRes) => {
             console.log(newRes.data); //I hate this line
             props.setStore(newRes.data);
           });
+        }
+        
       });
     } else {
       axios.get(`/api/storeRewards/${props.userId}`).then((res) => {
@@ -50,7 +53,9 @@ function ChildDropdown(props) {
   }, [props.isChild]);
 
   const listChildren = children.map((child, i) => {
-    if (child.child_username !== title) {
+    console.log(title)
+    console.log(child.child_name)
+    if (child.child_name !== title) {
       return (
         <li className="dd-list-item" key={i}>
           <button
@@ -59,7 +64,7 @@ function ChildDropdown(props) {
               getRewards(child);
             }}
           >
-            {child.child_username}
+            {child.child_name}
           </button>
         </li>
       );
