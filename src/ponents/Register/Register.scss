@@ -5,18 +5,38 @@
   height: 100vh;
   width: 100vw;
   @include flexBaseOptions(none, column);
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
 };
-
-.register_header_holder {
-  height: 100px;
-  width: 100vw;
-  background-color:$mainColor;
-  @include flexBaseOptions(center, column);
-  margin-bottom:50px;
+::placeholder{
+  color: #DFDFDF;
 }
+.register_header_holder {
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  background-color:$complimentary;
+  justify-content: space-between;
+  align-items: center;
+  //@include flexBaseOptions(center, row);
+  //margin-bottom:50px;
+
+}
+.header-text{
+  margin-left: 10px;
+  
+}
+.header{
+  color: white;
+  font-size: 30px;
+
+}
+
 .register_link{
   color:white;
   text-decoration:none;
+  margin-right: 10px;
 }
 
 .register_header {
@@ -24,12 +44,14 @@
   font-size: 20px;
   margin-bottom: 5px;
 };
-
+.register_inputs_holder{
+  margin-top: 30px;
+}
 .register_form {
-  height: 70vh;
-  width: 80vw;
-  background-color:$mainColor;
-  @include borderStyle();
+  height: 90vh;
+  width: 100vw;
+  background-color:$complimentary;
+  //@include borderStyle();
   @include flexBaseOptions(center, column);
   border:none;
   padding: 10px;
@@ -42,19 +64,34 @@ b{
   margin: 10px;
   @include flexBaseOptions(center, row);
   .email_input {
-    width: 181px;
+    height: 45px;
+    width: 100%;
     @include inputStyles();
     @include inputStyleTwo();
+    border-color: white;
+    font-size: large;
+    color: white;
+    background-color: transparent;
   };
   .name_input {
-    width: 140px;
+    height: 45px;
+    width: 100%;
     @include inputStyles();
     @include inputStyleTwo();
+    border-color: white;
+    font-size: large;
+    color: white;
+    background-color: transparent;
   };
   input {
-    height:25px;
+    height: 45px;
+    width: 100%;
     @include inputStyles();
     @include inputStyleTwo();
+    border-color: white;
+    font-size: large;
+    color: white;
+    background-color: transparent;
   };
 }
 
@@ -66,22 +103,38 @@ b{
   button{
     outline:none;
     border:1.5px solid white;
-    background-color:$mainColor;
+    background-color:#00e39e;
     color:white;
     font-size:17px;
     height:50px;
     width:150px;
     border-radius:10px;
   }
+  button:hover{
+    background-color: #00b670;
+  }
+  button:active{
+    background-color: #00834b;
+  }
+}
+.err{
+  color: white;
 }
 @media only screen and (min-width: 600px) {
+  ::placeholder{
+    color: grey;
+  }
+  .err{
+    color: black;
+  }
   .register_header{
     text-align:left;
     width:200px;
     margin-left:30px; 
   }
   .register_header_holder{
-    align-items:flex-start;
+    justify-content: space-between;
+    align-items: center;
   }
   button{
     margin-bottom:20px;
@@ -90,7 +143,7 @@ b{
   .register_form{
     align-items:flex-start;
     background-color:transparent;
-    height:500px;
+    height:90vh;
     width:60vw;
     box-shadow:none;
   }
@@ -98,12 +151,15 @@ b{
     font-size:20px;
     color:black;
     input{
+      border-color: black;
       background-color:transparent;
     }
     .email_input{
+      border-color: black;
       background-color:transparent;
     }
     .name_input{
+      border-color: black;
       background-color:transparent;
     }
   }
@@ -119,5 +175,12 @@ b{
   }
   .register_link{
     color:black;
+    margin: 30px;
+  }
+  input{
+    border-color: black;
+  }
+  .header{
+    color: black;
   }
 }
