@@ -64,7 +64,7 @@ function Register(props) {
           <b className="register_header"> To TheTaskApp</b>
         </div>
         <Link className="register_link" to="/login">
-              LOG IN HERE
+              Log In Here
             </Link>
       </div>
       <div className="register_form">
