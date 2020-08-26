@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import {useSpring, animated} from 'react-spring';
+// import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import "./store.css";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -16,20 +18,28 @@ const Store = (props) => {
   );
   const [reward, setReward] = useState("");
   const [rewardPoints, setRewardPoints] = useState(0);
+  const fade = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, margin:'3vh'} });
+  const fadePoints = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, marginRight:'5%'} });
+  // const fade = useSpring({opacity: store? 1:0})
+  console.log(fade)
 
-  console.log(store, child, points);
+  // onDragEnd=(result)=>{
+  //   const {destination, source, reason}=result;
+  // }
+
+  // console.log(store, child, points);
 
   useEffect(() => {
-    console.log("use effect working");
+    // console.log("use effect working");
     retrieveStoreRewards();
   }, []);
 
   const submitReward = () => {
-    console.log("submit reward");
+    // console.log("submit reward");
     let childId = child.child_id;
     let parentId = child.u_id;
-    console.log(typeof parseInt(rewardPoints));
-    console.log(reward.length);
+    // console.log(typeof parseInt(rewardPoints));
+    // console.log(reward.length);
     if (reward.length > 0) {
       axios
         .post(`/api/add/reward/one`, {
@@ -48,16 +58,16 @@ const Store = (props) => {
   };
 
   const retrieveStoreRewards = () => {
-    console.log("retrieve store rewards");
+    // console.log("retrieve store rewards");
     let userId = props.userReducer.user.data
       ? props.userReducer.user.data.id
       : "";
     console.log(userId);
     axios.get(`/api/storeRewards/${userId}`).then((res) => {
-      console.log("retrieve store rewards working");
-      console.log(res);
+      // console.log("retrieve store rewards working");
+      // console.log(res);
       setStore(res.data);
-      console.log(store);
+      // console.log(store);
     });
   };
 
@@ -93,15 +103,20 @@ const Store = (props) => {
         })
     }
 
+
     const storeRewards= store.map((storeReward, i)=>(
-        <div className="store-reward" key={i}>
+      // <Draggable draggableId={storeReward.reward_id} index={i}>
+      //   {(provided, snapshot) => (
+        <animated.div className="store-reward" key={i} style={fade}>
             {/* delete reward */}
             {props.userReducer.user.data.parental?
                 <button className="delete-button" value={[storeReward.kid_id, storeReward.reward_id]}
                 onClick={e=>deleteItem(e.target.value)}>
             </button> :null}
             {console.log(storeReward)}
-            {console.log(store)}
+            {/* {console.log(provided)} */}
+            {/* {console.log(snapshot)} */}
+            {/* {console.log(store)} */}
             <div className="reward-info">
             <div className='reward-name'>
                 {storeReward.name}
@@ -116,12 +131,14 @@ const Store = (props) => {
                 onClick={e=>buyItem(e.target.value)}>
                 Buy!
             </button>
-        </div>
-
-        
-
+        </animated.div>  
+        // )} 
+        // </Draggable> 
     ))
-    return(
+
+
+  return(
+  // <DragDropContext onDragEnd={onDragEnd}>
     <div className='store-page'>
         {props.userReducer.loggedIn? 
         props.userReducer.user.data.parental?
@@ -160,12 +177,14 @@ const Store = (props) => {
         :<Redirect to={'/login'} />
         }
         <div className='points'>
-            <div className = 'text-points'>
-            Total Points: {points}</div>
+            <animated.div className = 'text-points' style={fadePoints}>
+            Total Points: {points}</animated.div>
          </div>
+         {/* <Droppable droppableId={}> */}
         <div className='store-rewards'>
         {storeRewards}
         </div>
+        {/* </Droppable> */}
     </div>
   );
 };
