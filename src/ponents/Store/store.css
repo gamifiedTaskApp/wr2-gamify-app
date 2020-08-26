@@ -70,7 +70,7 @@ table {
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
-  background-color: #F66747;
+  background-color: #00E39E;
 }
 
 .submit_inputs .name_input {
@@ -79,7 +79,7 @@ table {
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
-  background-color: #F66747;
+  background-color: #00E39E;
 }
 
 .submit_inputs input {
@@ -88,7 +88,7 @@ table {
   border: 1px solid #bdbdbd;
   border-width: 0 0 2px;
   border-color: black;
-  background-color: #F66747;
+  background-color: #00E39E;
 }
 
 .dd-list-item {
@@ -183,7 +183,7 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #F66747;
+  background-color: #00E39E;
   margin: 3vh;
   position: relative;
 }
