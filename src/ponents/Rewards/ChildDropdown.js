@@ -23,7 +23,8 @@ function ChildDropdown(props) {
   }
 
   useEffect(() => {
-    if (!props.isChild) {
+    console.log(props.isChild)
+    if (props.isChild) {
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
         setTitle(res.data[0].child_name);
@@ -65,29 +66,29 @@ function ChildDropdown(props) {
       {props.isChild ? (
         ""
       ) : (
-        <div>
-          <div
-            className="dd-header"
-            tabIndex={0}
-            onKeyPress={() => toggle(!open)}
-            onClick={() => toggle(!open)}
-          >
-            <div className="dd-header__title">
-              <p className="dd-header__title--bold">{title}</p>
+          <div>
+            <div
+              className="dd-header"
+              tabIndex={0}
+              onKeyPress={() => toggle(!open)}
+              onClick={() => toggle(!open)}
+            >
+              <div className="dd-header__title">
+                <p className="dd-header__title--bold">{title}</p>
+              </div>
+              <div className="dd-header__action">
+                <p>
+                  {open ? (
+                    <i className="arrow up"></i>
+                  ) : (
+                      <i className="arrow down"></i>
+                    )}
+                </p>
+              </div>
             </div>
-            <div className="dd-header__action">
-              <p>
-                {open ? (
-                  <i className="arrow up"></i>
-                ) : (
-                  <i className="arrow down"></i>
-                )}
-              </p>
-            </div>
+            {open && <ul className="reward-dd-list">{listChildren}</ul>}
           </div>
-          {open && <ul className="reward-dd-list">{listChildren}</ul>}
-        </div>
-      )}
+        )}
     </div>
   );
 }
