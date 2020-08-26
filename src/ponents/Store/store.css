@@ -13,6 +13,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 body {
+  margin-top: 80px;
   line-height: 1;
 }
 

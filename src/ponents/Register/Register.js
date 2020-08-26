@@ -135,7 +135,7 @@ function Register(props) {
           
         </div>
       </div>
-      {props.userReducer.loggedIn ? <Redirect to={"/tasks"} /> : null}
+      {props.userReducer.loggedIn ? <Redirect to={"/profile"} /> : null}
     </div>
   );
 }
