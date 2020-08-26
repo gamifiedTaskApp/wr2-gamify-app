@@ -4,43 +4,71 @@
 .login_holder {
   height: 100vh;
   width: 100vw;
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
   @include flexBaseOptions(none, column);
 };
+.login_password{
+  background-color: white;
+
+}
 
 .login_header_holder {
-  height: 100px;
+  height: 10vh;
   width: 100vw;
-  background-color:$mainColor;
+  background-color:$complimentary;
   @include flexBaseOptions(center, column);
-  margin-bottom:50px;
+  display: flex;
+  flex-direction: row;
+  //margin-bottom:50px;
+  justify-content: space-between;
+}
+.header-text{
+  @include flexBaseOptions(center, column);
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  
 }
 .login_link{
   color:white;
   text-decoration:none;
+  margin-right: 10px;
 }
 
 .login_header {
   color: white;
   font-size: 20px;
   margin-bottom: 5px;
+  .login-link{
+    color: white;
+  }
 };
 
 .login_form {
-  height: 70vh;
-  width: 80vw;
-  background-color:$mainColor;
-  @include borderStyle();
+  height: 90vh;
+  width: 100vw;
+  background-color:$complimentary;
+  //@include borderStyle();
   @include flexBaseOptions(center, column);
   border:none;
+  justify-content: center;
   padding: 10px;
+  b{
+    font-size:25px;
+  }
+  h1{
+    color: white;
+    font-size: 30px;
+  }
 }
-b{
-  font-size:20px;
-}
+
+
 .login_inputs {
   color:white;
   margin: 20px;
-  @include flexBaseOptions(center, row);
+  justify-content: center;
   .email_input {
     width: 181px;
     @include inputStyles();
@@ -48,13 +76,21 @@ b{
   };
   .name_input {
     width: 140px;
+    background-color: white;
+
     @include inputStyles();
     @include inputStyleTwo();
   };
   input {
-    height:25px;
+    height: 45px;
+    width: 70vw;
     @include inputStyles();
     @include inputStyleTwo();
+    border-color: white;
+    font-size: large;
+    color: white;
+    background-color: transparent;
+
   };
 }
 
@@ -66,7 +102,7 @@ b{
   button{
     outline:none;
     border:1.5px solid white;
-    background-color:$mainColor;
+    background-color:#00e39e;
     color:white;
     font-size:17px;
     height:50px;
@@ -75,6 +111,17 @@ b{
     margin-top:50px;
   }
 }
+button:hover{
+  background-color: #00b670;
+}
+button:active{
+  background-color: #00834b;
+}
+.login_link:hover{
+  color: red;
+}
+
+
 @media only screen and (min-width: 600px) {
   .login_header{
     text-align:left;
@@ -83,6 +130,11 @@ b{
   }
   .login_header_holder{
     align-items:flex-start;
+    align-items: center;
+    .login_link{
+      color: white;
+      margin-right: 30px;
+    }
   }
   button{
     margin-right:15px;
@@ -90,10 +142,21 @@ b{
   }
   .login_form{
     align-items:flex-start;
+    color: black;
     background-color:transparent;
     height:500px;
     width:60vw;
     box-shadow:none;
+    display: flex;
+    justify-content: center;
+    h1{
+      color: black;
+    }
+    input{
+      color: black;
+      border-color: black;
+      width: 100%;
+    }
   }
   .login_inputs{
     font-size:20px;
@@ -114,5 +177,12 @@ b{
   }
   .login_link{
     color:black;
+    text-align: center;
+  }
+  h1{
+    color: black;
+  }
+  .register_link{
+    color: white;
   }
 }
