@@ -58,7 +58,7 @@ function Login(props) {
               <b className="login_header"> To TheTaskApp</b>
             </div>
             <Link className="login_link" to="/register">
-              REGISTER HERE
+              Register Here
             </Link>
             
       </div>

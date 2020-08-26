@@ -190,7 +190,6 @@ function Tasks(props) {
 
 const mapDispatchToProps = {
   getAllTasks,
-  addTask,
   removeTask,
   getChildTasks,
 };

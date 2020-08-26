@@ -3,7 +3,7 @@ import React, {useState} from "react";
 function TaskMap(props){
 
     let taskId = props.task.task_id
-    const [isTaskComplete, setTaskComplete] = useState(props.isTaskComplete)
+    const [isTaskComplete, setTaskComplete] = useState(props.task.completed)
     let userId = props.task.user_id
     return(
     <div className="tasksmap">
