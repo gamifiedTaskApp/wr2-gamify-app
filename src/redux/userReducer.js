@@ -10,13 +10,14 @@ export default function userReducer(state = initialState, action) {
   switch (type) {
     case SET_USER + "_PENDING":
       return state;
-    case SET_USER + "_FULFILLED":
+    case SET_USER:
+      console.log("user set")
       return { ...state, user: payload, loggedIn: true };
     case SET_USER + "_REJECTED":
       return state;
     case LOGIN_USER + "_PENDING":
       return state;
-    case LOGIN_USER + "_FULFILLED":
+    case LOGIN_USER:
       return { ...state, user: payload, loggedIn: true };
     case LOGIN_USER + "_REJECTED":
       return state;
