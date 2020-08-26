@@ -38,7 +38,7 @@ table{
 }
 
 .store-page{
-    background-color: $highlight1;
+    // background-color: $highlight1;
     height: 100vh;
     width: 100vw;
     margin-top: 80px;
@@ -109,7 +109,7 @@ table{
 }
 .points{
     @include flexBaseOptions(flex-end,row);
-    background-color: $highlight1;
+    // background-color: $highlight1;
     font-size: xx-large;
     color: $shadow2;
     font-family: Apple Chancery, cursive;
@@ -120,7 +120,7 @@ table{
 
 .store-rewards{
     @include flexBaseOptions(flex-start,column);
-    background-color: $highlight1;
+    // background-color: $highlight1;
     font-size: xx-large;
     overflow:scroll;
     height:95vh;
@@ -135,14 +135,14 @@ table{
     @include borderStyle();
     width:95%;
     @include flexBaseOptions(space-between,row);
-    background-color: $mainColor;
+    background-color: $color;
     margin:3vh;
     position: relative;
 }
 
 .reward-info{
     margin-left: 5%;
-    color: $highlight2;
+    // color: white;
     margin-top:3%;
 }
 
@@ -192,6 +192,25 @@ table{
     margin-bottom: -10px;
     background-color: $highlight2 !important;
 }
+.add-reward {
+    margin-right: 0;
+    color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    background-color: #00E39E;
+  }
 
 @media (min-width: 1025px){
     .points{
@@ -249,4 +268,5 @@ table{
     .child-button{
         margin-bottom:5px;
     }
+
 }
