@@ -12,7 +12,7 @@ function ChildDropdown(props) {
     axios.get(`/api/parents/children/${props.userId}`).then((res) => {
       if (res.data.length > 0) {
         setChildren(res.data);
-        props.setTitle(res.data[0].child_username);
+        props.setTitle(res.data[0].child_name);
         props.setChildId(res.data[0].child_id);
         let childId = res.data[0].child_id;
         let date = props.selectedDate;
@@ -31,7 +31,7 @@ function ChildDropdown(props) {
   const listChildren = children.map((child, i) =>
     <li key={i}>
       <button onClick={() => {
-        props.setTitle(child.child_username)
+        props.setTitle(child.child_name)
         props.setChildId(child.child_id)
       }}>
         {child.child_username}
