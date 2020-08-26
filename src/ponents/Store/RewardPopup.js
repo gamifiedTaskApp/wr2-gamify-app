@@ -9,7 +9,7 @@ function RewardPopup(props) {
       {(close) => (
         <div className='input-container'>
           <div className='submit-inputs'>
-            <label><b>Reward</b></label>
+            <label><b>Reward:</b></label>
             <input
               className='submit-reward'
               value={props.reward}
@@ -17,7 +17,7 @@ function RewardPopup(props) {
             />
         </div>
         <div className='submit-inputs'>
-            <label><b>Points</b></label>
+            <label><b>Points:</b></label>
             <input
               className='submit-task-points'
               value={props.rewardPoints}

@@ -42,7 +42,7 @@ table {
 }
 
 .dd-wrapper {
-  height: 7vh;
+  height: 4vh;
   margin-bottom: 0px;
 }
 
@@ -89,6 +89,28 @@ table {
   border-width: 0 0 2px;
   border-color: black;
   background-color: #F66747;
+}
+
+.dd-list-item {
+  width: 100%;
+  border: black;
+}
+
+.dd-list {
+  border: solid 1px black;
+  width: 30% !important;
+  background-color: white;
+  border-radius: 5px;
+  border: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.child-button {
+  border: solid 1px green;
+  width: 100% !important;
+  border: transparent !important;
+  font-weight: bolder;
 }
 
 .points {
@@ -163,6 +185,7 @@ table {
           flex-direction: row;
   background-color: #F66747;
   margin: 3vh;
+  position: relative;
 }
 
 .reward-info {
@@ -190,20 +213,34 @@ table {
 .delete-button {
   background: url(trashIcon.svg);
   background-repeat: no-repeat;
-  width: 25px;
+  width: 20px;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  height: 25px;
+  height: 20px;
   background-size: contain;
   position: absolute;
   padding: 0;
-  margin-left: 4.5%;
+  margin-left: 6%;
   margin-top: 3%;
   border: none;
 }
 
 .delete-button:hover {
   cursor: pointer;
+}
+
+.popup-reward-content {
+  border-radius: 5px;
+  background-color: #FF9F52 !important;
+  border-color: #1C4755 !important;
+}
+
+.popup-reward-content > div > button {
+  background-color: #FF9F52 !important;
+  border-radius: 10px;
+  margin-top: 7%;
+  margin-bottom: -10px;
+  background-color: #EFC458 !important;
 }
 
 @media (min-width: 1025px) {
@@ -233,7 +270,7 @@ table {
         -ms-flex-pack: center;
             justify-content: center;
     overflow: scroll;
-    height: 82.5vh;
+    height: 100%;
   }
   .store-rewards ::-webkit-scrollbar {
     width: 100px;
@@ -254,10 +291,27 @@ table {
     font-size: 2vw;
   }
   .delete-button {
-    width: 2.5%;
-    height: 5.5%;
-    margin-left: 1%;
-    margin-top: 1.5%;
+    width: 20%;
+    height: 20%;
+    margin-left: 6%;
+    margin-top: 3%;
+  }
+  .popup-reward-content {
+    width: 300px !important;
+    padding: 30px !important;
+  }
+  .popup-reward-content > div > button {
+    background-color: #FF9F52 !important;
+    border-radius: 10px;
+    margin-top: 4%;
+    margin-bottom: -10px;
+  }
+  .popup-reward-content > div > button:hover {
+    background-color: #EFC458 !important;
+    cursor: pointer;
+  }
+  .child-button {
+    margin-bottom: 5px;
   }
 }
 /*# sourceMappingURL=store.css.map */
