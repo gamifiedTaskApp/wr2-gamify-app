@@ -25,6 +25,7 @@
 }
 
 .show {
+  z-index: 1;
   position: absolute;
   left: 0;
   top: 80px;
