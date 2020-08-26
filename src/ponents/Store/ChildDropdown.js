@@ -28,13 +28,12 @@ function ChildDropdown(props) {
 
   useEffect(() => {
     if (!props.isChild) {
-      console.log(props);
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
         setTitle(res.data[0] ? res.data[0].child_name : "");
         props.setChild(res.data[0]);
         props.setPoints(res.data[0] ? res.data[0].points : "");
-        console.log(res.data);
+        console.log(res.data[0]);
         if(res.data[0]){
           axios
           .get(`/api/storeRewards/${res.data[0].child_id}`)
@@ -53,8 +52,6 @@ function ChildDropdown(props) {
   }, [props.isChild]);
 
   const listChildren = children.map((child, i) => {
-    console.log(title)
-    console.log(child.child_name)
     if (child.child_name !== title) {
       return (
         <li className="dd-list-item" key={i}>
