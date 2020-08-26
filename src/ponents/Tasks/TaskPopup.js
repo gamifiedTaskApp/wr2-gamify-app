@@ -46,7 +46,7 @@ function TaskPopup(props) {
               props.addTask();
               props.setTaskName("");
               props.setDescription("");
-              props.setDescription(0);
+              props.setPoints(0);
               close();
             }}
           >
