@@ -36,6 +36,12 @@ function ChildDropdown(props) {
         props.setTitle(child.child_name)
         props.setChildId(child.child_id)
         toggle();
+        let childId = child.child_id;
+        let date = props.selectedDate
+        axios.post(`/api/child/tasks`, { childId, date }).then((newRes) => {
+          console.log(newRes.data); //I hate this line
+          props.setTasks(newRes.data);
+        });
       }}>
         {child.child_name}
       </button>
