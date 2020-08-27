@@ -81,12 +81,15 @@ function Profile(props) {
       <div className="profile-container">
       {isChild ? (
         <div className="childaccount">
+          <div>
           <img className="profile-picture" src={userPicture} />
           <span>{user.data.username}</span>
           <p>level {Math.ceil(user.data.experience / 100)}</p>
           <div className="unfilled-bar">
             <div class="experience-bar" style={{ width: xpbar }}></div>
           </div>
+          </div>
+          <button className="profile-button" onClick={logOut}>Log Out</button>
         </div>
       ) : (
           <div>
@@ -119,6 +122,7 @@ function Profile(props) {
                       <div>
                         <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Profile</button>
                         <button className="profile-button" onClick={logOut}>Log Out</button>
+                        {isChild ? "" : <button className="delete" onClick={deleteUser}>Delete Account</button>}
                       </div>
                     )}
                 </div>
@@ -130,8 +134,6 @@ function Profile(props) {
       <div className="add-child">
         {isParent ? <Parent getChildren={getChildren} /> : ""}
       </div>
-      {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
-
       {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
     </div></div>
   );
