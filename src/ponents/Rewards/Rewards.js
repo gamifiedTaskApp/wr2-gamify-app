@@ -31,8 +31,10 @@ function Rewards(props) {
         setChildId={setchildId}
         count={count}
       />
+      <div className='rewards-page-holder'>
+        {mappedRewards}
+      </div>
 
-      {mappedRewards}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
   );
