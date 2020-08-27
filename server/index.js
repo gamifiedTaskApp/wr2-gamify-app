@@ -4,6 +4,7 @@ const aws = require('aws-sdk');
 const parentCtrl = require("./controllers/ParentController");
 const childCtrl = require("./controllers/ChildController");
 const emailCtrl = require("./controllers/emailController");
+const path = require("path")
 const Axios = require('axios')
 const express = require('express'),
   massive = require('massive'),
@@ -108,6 +109,12 @@ app.delete('/auth/delete/child/:id', authCtrl.deleteChild);
 
 //EMAIL ENDPOINTS
 app.post(`/api/email`, emailCtrl.email);
+
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req, res) =>{
+  res.sendFile(path.join(__dirname + '../build/index.html'))
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`Rating on port ${SERVER_PORT}!!`));
 
