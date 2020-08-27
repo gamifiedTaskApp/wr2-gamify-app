@@ -65,13 +65,13 @@ function ChildDropdown(props) {
   ChildDropdown.handleClickOutside = () => setOpen(false);
 
   return (
-    <div className="dd-wrapper">
+    <div className="dd-wrapper-dropdown">
       {props.isChild ? (
         ""
       ) : (
-          <div>
+          <div className='dd-header-dropdown'>
             <div
-              className="dd-header"
+              className="dd-header-dropdown"
               tabIndex={0}
               onKeyPress={() => toggle(!open)}
               onClick={() => toggle(!open)}
