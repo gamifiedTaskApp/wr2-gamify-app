@@ -9,6 +9,7 @@ import ChildDropdown from "./ChildDropdown";
 import RewardPopup from './RewardPopup';
 
 const Store = (props) => {
+  console.log(props)
   const [store, setStore] = useState([]);
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
   const [child, setChild] = useState({});
@@ -28,16 +29,16 @@ const Store = (props) => {
   // console.log(store, child, points);
 
   useEffect(() => {
-    // console.log("use effect working");
-    //retrieveStoreRewards(); This line caused an error, dont use it
-  }, []);
+
+    if(!props.userReducer.user.data.parental){
+      retrieveStoreRewards()
+    }
+}, []);
 
   const submitReward = () => {
-    // console.log("submit reward");
+    console.log("submit reward");
     let childId = child.child_id;
     let parentId = child.u_id;
-    // console.log(typeof parseInt(rewardPoints));
-    // console.log(reward.length);
     if (reward.length > 0) {
       axios
         .post(`/api/add/reward/one`, {
@@ -56,7 +57,7 @@ const Store = (props) => {
   };
 
   const retrieveStoreRewards = () => {
-    // console.log("retrieve store rewards");
+    console.log("retrieve store rewards");
     let userId = props.userReducer.user.data
       ? props.userReducer.user.data.id
       : "";

@@ -77,7 +77,7 @@ function Profile(props) {
   }
 
   return (
-    <div className="profile"> 
+    <div className="profile">
       <div className="profile-container">
       {isChild ? (
         <div className="childaccount">
@@ -125,11 +125,11 @@ function Profile(props) {
                         {isChild ? "" : <button className="delete" onClick={deleteUser}>Delete Account</button>}
                       </div>
                     )}
-                </div>
-              </div></div>
-            {mappedChildren}
-          </div>
-        )}
+                  </div>
+                </div></div>
+              {mappedChildren}
+            </div>
+          )}
 
       <div className="add-child">
         {isParent ? <Parent getChildren={getChildren} /> : ""}

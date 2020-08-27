@@ -5,7 +5,7 @@ import taskReducer from "./taskReducer";
 
 const rootReducer = combineReducers({
   userReducer,
-  taskReducer,
+  taskReducer
 });
 
 export default createStore(rootReducer, applyMiddleware(promiseMiddleware));

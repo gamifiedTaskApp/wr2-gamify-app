@@ -8,13 +8,15 @@ function Rewards(props) {
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
   const [child, setChild] = useState({});
   const [rewards, setRewards] = useState([]);
+  const [childId, setchildId] = useState(null);
+  const [count, setCount] = useState(0);
   const childName = child ? child.child_username : "";
-  console.log(rewards);
   let mappedRewards = "";
+
 
   if (rewards[0]) {
     mappedRewards = rewards.map((reward) => {
-      return <MappedRewards reward={reward} />;
+      return <MappedRewards reward={reward} setCount={setCount} count={count} key={reward} />;
     });
   }
 
@@ -26,7 +28,10 @@ function Rewards(props) {
         setChild={setChild}
         setRewards={setRewards}
         childName={childName}
+        setChildId={setchildId}
+        count={count}
       />
+
       {mappedRewards}
       {props.loggedIn ? null : <Redirect to={"/login"} />}
     </div>
