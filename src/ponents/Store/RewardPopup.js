@@ -25,21 +25,27 @@ function RewardPopup(props) {
               onChange={(e) => props.setRewardPoints(e.target.value)}
             />
         </div>
-        <button 
+        <div className="popup-buttons">
+        <button className="popup-button"
           onClick={() => {
             props.submitReward()
+            props.setReward("")
+            props.setRewardPoints(0)
             close()
           }}
         >
           Add reward
           </button>
-          <button
+          <button className="popup-button"
             onClick={() => {
+              props.setReward("")
+              props.setRewardPoints(0)
               close();
             }}
           >
             Cancel
           </button>
+        </div>
         </div>
       )}
     </Popup>

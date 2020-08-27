@@ -9,6 +9,7 @@ import ChildDropdown from "./ChildDropdown";
 import RewardPopup from './RewardPopup';
 
 const Store = (props) => {
+  console.log(props)
   const [store, setStore] = useState([]);
   const isChild = props.user ? (props.user.isChild ? true : false) : "";
   const [child, setChild] = useState({});
@@ -28,9 +29,11 @@ const Store = (props) => {
   // console.log(store, child, points);
 
   useEffect(() => {
-    // console.log("use effect working");
-    //retrieveStoreRewards(); This line caused an error, dont use it
-  }, []);
+
+    if(!props.userReducer.user.data.parental){
+      retrieveStoreRewards()
+    }
+}, []);
 
   const submitReward = () => {
     console.log("submit reward");
