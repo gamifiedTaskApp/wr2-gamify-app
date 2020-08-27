@@ -97,6 +97,7 @@ app.post('/api/child/tasks/', parentCtrl.getChildTasks);
 app.post('/auth/register/child', authCtrl.registerChild);
 app.post('/auth/login/child', authCtrl.loginChild);
 app.put('/api/child/changeName', childCtrl.changeUserName);
+app.delete('/api/delete/reward/:rewardId', childCtrl.deleteReward);
 
 //AUTH ENDPOINTS
 

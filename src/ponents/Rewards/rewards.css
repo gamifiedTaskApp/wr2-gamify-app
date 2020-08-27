@@ -32,7 +32,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
-  width: 95vw;
+  width: 100vw;
   padding: 0 20px;
   background-color: #00e39e;
   font-size: 20px;
@@ -110,5 +110,55 @@
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.rewards-div {
+  background-color: white;
+  border-radius: 4px;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  padding-left: 10px;
+  border-top: .1px solid lightgrey;
+  padding-top: 10px;
+  margin-top: 10px;
+  height: 11vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reward-text {
+  font-weight: 900;
+  font-size: large;
+}
+
+.reward-remove-button {
+  margin-right: 0;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 40px;
+  width: 150px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  background-color: #00E39E;
+  margin-right: 5px;
 }
 /*# sourceMappingURL=rewards.css.map */

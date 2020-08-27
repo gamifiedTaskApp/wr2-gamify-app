@@ -28,22 +28,23 @@ function ChildDropdown(props) {
         setChildren(res.data);
         setTitle(res.data[0] ? res.data[0].child_name : "");
         props.setChild(res.data[0]);
-        if(res.data[0]){
+        if (res.data[0]) {
           axios
-          .get(`/api/earnedRewards/${res.data[0].child_id}`)
-          .then((newRes) => {
-            console.log(newRes.data); //I hate this line
-            props.setRewards(newRes.data);
-          });
+            .get(`/api/earnedRewards/${res.data[0].child_id}`)
+            .then((newRes) => {
+              console.log(newRes.data); //I hate this line
+              props.setRewards(newRes.data);
+            });
         }
-        
+
       });
     } else {
+      console.log('hit')
       axios.get(`/api/earnedRewards/${props.userId}`).then((res) => {
         props.setRewards(res.data);
       });
     }
-  }, [props.isChild]);
+  }, [props.isChild, props.count]);
 
   const listChildren = children.map((child, i) => {
     if (child.child_name !== title) {
@@ -68,29 +69,29 @@ function ChildDropdown(props) {
       {props.isChild ? (
         ""
       ) : (
-        <div>
-          <div
-            className="dd-header"
-            tabIndex={0}
-            onKeyPress={() => toggle(!open)}
-            onClick={() => toggle(!open)}
-          >
-            <div className="dd-header__title">
-              <p className="dd-header__title--bold">{title}</p>
+          <div>
+            <div
+              className="dd-header"
+              tabIndex={0}
+              onKeyPress={() => toggle(!open)}
+              onClick={() => toggle(!open)}
+            >
+              <div className="dd-header__title">
+                <p className="dd-header__title--bold">{title}</p>
+              </div>
+              <div className="dd-header__action">
+                <p>
+                  {open ? (
+                    <i className="arrow up"></i>
+                  ) : (
+                      <i className="arrow down"></i>
+                    )}
+                </p>
+              </div>
             </div>
-            <div className="dd-header__action">
-              <p>
-                {open ? (
-                  <i className="arrow up"></i>
-                ) : (
-                  <i className="arrow down"></i>
-                )}
-              </p>
-            </div>
+            {open && <ul className="reward-dd-list">{listChildren}</ul>}
           </div>
-          {open && <ul className="reward-dd-list">{listChildren}</ul>}
-        </div>
-      )}
+        )}
     </div>
   );
 }
