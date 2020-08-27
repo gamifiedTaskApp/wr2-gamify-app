@@ -15,9 +15,9 @@ function TaskPopup(props) {
   // TasksPopup.handleClickOutside = () => setOpen(false);
   console.log(props);
   return (
-    <Popup trigger={<button> New Task</button>} modal closeOnDocumentClick>
+    <Popup trigger={<button className="selectdate"> New Task</button>} modal closeOnDocumentClick>
       {(close) => (
-        <div>
+        <div className="taskpopup">
           <div>
             <label>Enter Task:</label>
             <input
@@ -40,9 +40,13 @@ function TaskPopup(props) {
               onChange={(e) => props.setPoints(e.target.value)}
             />
           </div>
+          <div className="taskbuttons">
           <button
             onClick={() => {
               props.addTask();
+              props.setTaskName("");
+              props.setDescription("");
+              props.setPoints(0);
               close();
             }}
           >
@@ -55,6 +59,7 @@ function TaskPopup(props) {
           >
             Cancel
           </button>
+          </div>
         </div>
       )}
     </Popup>

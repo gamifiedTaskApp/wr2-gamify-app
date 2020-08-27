@@ -1,3 +1,5 @@
+@import '../../Sass/mixins';
+@import '../../Sass/variables';
 /* Reset
 =======================================================*/
 
@@ -53,24 +55,55 @@ table{
 .dd-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 38px;
     flex-wrap: wrap;
+    width:190px;
+}
+.dropdown_holder{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+}
+.selectdate{
+    margin-right:0;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    width:150px;
+    border-radius:5px;
+    border:none;
+    font-size:20px;
+    background-color:$mainColor;
+}
+.flex{
+    overflow:scroll;
+    display:flex;
+    width:100vw;
+    justify-content:space-around;
+    margin-bottom:15px;
+}
+.dropdown{
+    margin-top:10px;
+    width:190px;
 }
 
-    .dd-header {
+.dd-header {
         @include styling();
         display: flex;
         justify-content: space-between;
         cursor: pointer;
-        width: 30%;
-        padding: 0 20px;
+        width:140px !important;
+        margin-right:0px;
 
         &__title--bold {
             font-weight: bold;
-        }
     }
+ }
+ 
 
     .dd-list {
+        position:relative;
         box-shadow: 0 1px 1px rgba(0,0,0,.075);
         padding: 0;
         margin: 0;
@@ -78,6 +111,15 @@ table{
         // margin-top: 20px;
 
         li{
+            button{
+                width:180px;
+                margin-top:0px;
+                outline:none;
+                border:none;
+                background-color:$complimentary;
+                font-size:20px;
+                height:30px;
+            }
             list-style-type: none;
 
             &:first-of-type {
@@ -112,6 +154,16 @@ table{
         background-color: #ccc;
     }
 }
+.date{
+    display:flex;
+    align-items:center;
+    font-size:25px;
+    width:190px;
+}
+.tasks{
+    margin-top:90px;
+    font-size:20px;
+}
 
 .arrow {
     border: solid black;
@@ -130,4 +182,83 @@ table{
     -webkit-transform: rotate(45deg);
   }
 
+// Task pop-up
 
+.popup-content{
+    width:60vw !important;
+    height:260px !important;
+    border-radius:5px;
+}
+.taskpopup{
+    width:100%;
+    height:100%;
+    padding-top:10px;
+    label{
+        font-size:25px;
+    }
+    input{
+        border:1px solid rgb(160, 159, 159);
+        border-radius:5px;
+        height:20px;
+        width:95%;
+        margin-bottom:10px;
+    }
+    button{
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    width:100px;
+    margin:0 !important;
+    border-radius:5px;
+    border:none;
+    font-size:20px;
+    background-color:$mainColor;
+    }
+    .taskbuttons{
+        display:flex;
+        justify-content:space-around;
+    }
+}
+//mapped tasks
+.task_display{
+    padding-left:10px;
+    border-top: .1px solid lightgrey;
+    padding-top:10px;
+    margin-top:10px;
+    .selectdate{
+        margin-left:65vw;
+        width:100px;
+        border-radius:10px;
+        font-size:15px;
+    }
+    .check{
+        margin-left:90vw;
+        height:20px;
+        width:20px;
+    }
+    b{
+        font-weight:bold;
+    }
+   
+}
+@media (min-width: 600px){
+    .task_display{
+        width:80vw;
+    }
+    .tasksmap{
+        margin-top:10px;
+        width:100vw;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        b{
+            text-align:left;
+        }
+        .check{
+            margin-left:75vw;
+        }
+        
+    }
+}

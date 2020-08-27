@@ -29,14 +29,17 @@ function ChildDropdown(props) {
     if (!props.isChild) {
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
-        setTitle(res.data[0].child_name);
+        setTitle(res.data[0] ? res.data[0].child_name : "");
         props.setChild(res.data[0]);
-        axios
+        if(res.data[0]){
+          axios
           .get(`/api/earnedRewards/${res.data[0].child_id}`)
           .then((newRes) => {
             console.log(newRes.data); //I hate this line
             props.setRewards(newRes.data);
           });
+        }
+        
       });
     } else {
       console.log('hit')

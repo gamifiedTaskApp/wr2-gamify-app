@@ -9,7 +9,7 @@
 }
 
 .profile-button {
-  background-color: #F66747;
+  background-color: #00E39E;
   color: white;
   margin: 5px;
   width: 80px;
@@ -40,6 +40,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 10px;
+  margin-top: 70px;
   width: 100vw;
   padding-bottom: 10px;
   border-bottom: 0.1px solid #f3f3f3;

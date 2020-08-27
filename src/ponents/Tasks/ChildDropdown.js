@@ -12,7 +12,7 @@ function ChildDropdown(props) {
     axios.get(`/api/parents/children/${props.userId}`).then((res) => {
       if (res.data.length > 0) {
         setChildren(res.data);
-        props.setTitle(res.data[0].child_username);
+        props.setTitle(res.data[0].child_name);
         props.setChildId(res.data[0].child_id);
         let childId = res.data[0].child_id;
         let date = props.selectedDate;
@@ -28,15 +28,29 @@ function ChildDropdown(props) {
     });
   }, [props.isChild]);
 
-  const listChildren = children.map((child, i) =>
-    <li key={i}>
+  const listChildren = children.map((child, i) =>{
+    if(child.child_name !== props.title){
+      return(
+        <li key={i}>
       <button onClick={() => {
-        props.setTitle(child.child_username)
+        props.setTitle(child.child_name)
         props.setChildId(child.child_id)
+        toggle();
+        let childId = child.child_id;
+        let date = props.selectedDate
+        axios.post(`/api/child/tasks`, { childId, date }).then((newRes) => {
+          console.log(newRes.data); //I hate this line
+          props.setTasks(newRes.data);
+        });
       }}>
-        {child.child_username}
+        {child.child_name}
       </button>
     </li>
+      )
+    }
+  }
+  
+    
   )
 
   ChildDropdown.handleClickOutside = () => setOpen(false);
@@ -46,7 +60,7 @@ function ChildDropdown(props) {
       {props.isChild ? (
         ""
       ) : (
-          <div>
+          <div className="dropdown">
             <div
               className="dd-header"
               tabIndex={0}

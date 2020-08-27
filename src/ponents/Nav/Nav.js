@@ -1,12 +1,17 @@
 import React, {useState} from "react";
 import { withRouter, Link } from "react-router-dom";
+import onClickOutside from "react-onclickoutside";
 import "./Nav.css";
 
-const Nav = (props) => {
+function Nav(props) {
   const [show, setShow] = useState(true);
+
   function toggle(){
     show?setShow(false):setShow(true)
   }
+
+  Nav.myClickOutsideHandler = () => setShow(true);
+
   return (
     <div>
       {props.location.pathname !== "/login" &&
@@ -48,4 +53,8 @@ const Nav = (props) => {
   );
 };
 
-export default withRouter(Nav);
+const clickOutsideConfig = {
+  handleClickOutside: () => Nav.myClickOutsideHandler
+};
+
+export default withRouter(onClickOutside(Nav, clickOutsideConfig));

@@ -14,6 +14,7 @@
     }
 }
 .show {
+    z-index:1;
     position:absolute;
     left:0;
     top:80px;
@@ -52,7 +53,7 @@
     justify-content:space-around;
         height:50px;
         width:70px;
-        background-color:$mainColor;
+        background-color:transparent !important;
         border-radius:5px;
             outline:none;
             border:none;
@@ -63,9 +64,10 @@
             border-radius:3px;
             height:5px;
             width:50px;
-            background-color:black;
+            background-color:white;
         }
 }
+
 @media only screen and (min-width: 600px) {
     .nav{
         justify-content:space-around;

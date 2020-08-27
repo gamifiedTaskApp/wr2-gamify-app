@@ -84,34 +84,42 @@ function Tasks(props) {
 
   return (
     <div className="tasks">
-      {selectedDate.toDateString()}
       {isChild ?
         <div>
           <SetChildTasks setTasks={setTasks} childId={props.user.id} date={selectedDate} />
           {isOpen ? (
+            <div className="flex">
             <Calender
               setSelectedDate={setSelectedDate}
               setIsOpen={setIsOpen}
               childId={childId}
               setTasks={setTasks}
-            />
+            /></div>
           ) : (
-              <p onClick={() => setIsOpen(true)}>Select Date</p>
+            <div className="flex">
+            <span className="date"> {selectedDate.toDateString()}</span>
+            <p  className="selectdate" onClick={() => setIsOpen(true)}>Select Date</p>
+            </div>
             )}
         </div>
         :
         <div>
+          <div className="flex">
+          {isOpen ? (
+          <Calender
+            setSelectedDate={setSelectedDate}
+            setIsOpen={setIsOpen}
+            childId={childId}
+            setTasks={setTasks}
+          />
+        ) : (
+            <div className="flex">
+            <span className="date"> {selectedDate.toDateString()}</span>
+            <p  className="selectdate" onClick={() => setIsOpen(true)}>Select Date</p>
+            </div>
+          )}</div>
+        
           <div className="dropdown_holder" onKeyPress={() => setIsOpen(false)}>
-            {isOpen ? (
-              <Calender
-                setSelectedDate={setSelectedDate}
-                setIsOpen={setIsOpen}
-                childId={childId}
-                setTasks={setTasks}
-              />
-            ) : (
-                <p onClick={() => setIsOpen(true)}>Select Date</p>
-              )}
             <ChildDropdown
               isChild={isChild}
               userId={props.user ? props.user.id : ""}
@@ -121,8 +129,7 @@ function Tasks(props) {
               setTasks={setTasks}
               selectedDate={selectedDate}
             />
-          </div>
-          <TaskPopup
+            <TaskPopup
             taskName={taskName}
             setTaskName={setTaskName}
             taskDescription={taskDescription}
@@ -131,6 +138,8 @@ function Tasks(props) {
             setPoints={setPoints}
             addTask={addTask}
           />
+          </div>
+          
         </div>
       }
 
@@ -181,7 +190,6 @@ function Tasks(props) {
 
 const mapDispatchToProps = {
   getAllTasks,
-  addTask,
   removeTask,
   getChildTasks,
 };
