@@ -71,7 +71,7 @@ function ChildDropdown(props) {
       ) : (
           <div>
             <div
-              className="dd-header"
+              className="reward-dd-header"
               tabIndex={0}
               onKeyPress={() => toggle(!open)}
               onClick={() => toggle(!open)}

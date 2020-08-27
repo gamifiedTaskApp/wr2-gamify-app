@@ -181,6 +181,7 @@ table {
 
 .dd-list {
   width: 100vw !important;
+  background-color: white;
 }
 
 .child-button {
