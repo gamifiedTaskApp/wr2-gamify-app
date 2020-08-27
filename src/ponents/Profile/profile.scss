@@ -1,5 +1,11 @@
 @import '../../Sass/mixins';
 @import '../../Sass/variables';
+
+.profile {
+  height: 100vh;
+
+}
+
 .profile-picture {
     border-radius: 50%;
     border-color: black;

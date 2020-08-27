@@ -1,1 +1,11 @@
-/* No CSS *//*# sourceMappingURL=AmazonDropzone.css.map */
+.submitPhoto {
+  background-color: #00E39E;
+  color: white;
+  margin: 5px;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+/*# sourceMappingURL=AmazonDropzone.css.map */

@@ -12,6 +12,7 @@ function Amazon(props) {
 
   const [files, setFiles] = useState([]);
   const [isUploading, setUploading] = useState(upload);
+  const [disabled, setDisabled] = useState(false)
   // const [photo, setPhoto] = useState('');
 
   // We are creating a file name that consists of a random string, and the name of the file that was just uploaded with the spaces removed and hyphens inserted instead. This is done using the .replace function with a specific regular expression. This will ensure that each file uploaded has a unique name which will prevent files from overwriting other files due to duplicate names.
@@ -75,6 +76,7 @@ function Amazon(props) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
       accept: "image/*",
       onDrop: (acceptedFiles) => {
+        setDisabled(true)
         setFiles(
           acceptedFiles.map((file) => Object.assign(file, {
             preview: URL.createObjectURL(file)
@@ -84,7 +86,7 @@ function Amazon(props) {
       }
     })
 
-
+    console.log(disabled)
     const images = files.map((file) =>
       <div key={file.name} >
         <div className='amazonHoldImage'>
@@ -92,7 +94,6 @@ function Amazon(props) {
         </div>
       </div>
     )
-
     return (
       <div className='dropzonePhotoHolder' >
         <h2 className='dropzoneAddPhotoHolder'>Upload Photo</h2>
@@ -107,7 +108,7 @@ function Amazon(props) {
         </div>
 
         <div className='amazonDropzoneButtonHolder' >
-          <button className='submitPhoto' onClick={(e) => getSignedRequest(e, files)} >Submit Photo</button>
+          <button className='submitPhoto' disabled={!disabled} onClick={(e) => getSignedRequest(e, files)} >Submit Photo</button>
         </div>
       </div>
     )
