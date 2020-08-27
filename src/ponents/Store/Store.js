@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useSpring, animated} from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 // import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import "./store.css";
 import axios from "axios";
@@ -18,8 +18,8 @@ const Store = (props) => {
   );
   const [reward, setReward] = useState("");
   const [rewardPoints, setRewardPoints] = useState(0);
-  const fade = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, margin:'3vh'} });
-  const fadePoints = useSpring({from:{opacity:0, marginLeft:-1000},to:{opacity:1, marginRight:'5%'} });
+  const fade = useSpring({ from: { opacity: 0, marginLeft: -1000 }, to: { opacity: 1, margin: '3vh' } });
+  const fadePoints = useSpring({ from: { opacity: 0, marginLeft: -1000 }, to: { opacity: 1, marginRight: '5%' } });
   // const fade = useSpring({opacity: store? 1:0})
 
   // onDragEnd=(result)=>{
@@ -30,10 +30,10 @@ const Store = (props) => {
 
   useEffect(() => {
 
-    if(!props.userReducer.user.data.parental){
+    if (!props.userReducer.user.data.parental) {
       retrieveStoreRewards()
     }
-}, []);
+  }, []);
 
   const submitReward = () => {
     console.log("submit reward");
@@ -88,72 +88,78 @@ const Store = (props) => {
     }
   };
 
-    const deleteItem = (deleteButton)=>{
-        deleteButton = deleteButton.split(',')
-        console.log(deleteButton)
-        let childId = deleteButton[0]
-        let rewardId = deleteButton[1]
-        axios.delete(`/api/remove/reward/${rewardId}`)
-        .then((res)=>{
-            axios.get(`/api/storeRewards/${childId}`)
-            .then((res)=>{
-                setStore(res.data)
-            })
-        })
-    }
+  const deleteItem = (deleteButton) => {
+    deleteButton = deleteButton.split(',')
+    console.log(deleteButton)
+    let childId = deleteButton[0]
+    let rewardId = deleteButton[1]
+    axios.delete(`/api/remove/reward/${rewardId}`)
+      .then((res) => {
+        axios.get(`/api/storeRewards/${childId}`)
+          .then((res) => {
+            setStore(res.data)
+          })
+      })
+  }
 
 
-    const storeRewards= store.map((storeReward, i)=>(
-      // <Draggable draggableId={storeReward.reward_id} index={i}>
-      //   {(provided, snapshot) => (
-        <animated.div className="store-reward" key={i} style={fade}>
-            {/* delete reward */}
-            {props.userReducer.user.data.parental?
-                <button className="delete-button" value={[storeReward.kid_id, storeReward.reward_id]}
-                onClick={e=>deleteItem(e.target.value)}>
-            </button> :null}
-            {console.log(storeReward)}
-            {/* {console.log(provided)} */}
-            {/* {console.log(snapshot)} */}
-            {/* {console.log(store)} */}
-            <div className="reward-info">
-            <div className='reward-name'>
-                {storeReward.name}
-            </div>
-            <div className='reward-price'>
-                {storeReward.rewards_price}
-            </div>
+  const storeRewards = store.map((storeReward, i) => (
+    // <Draggable draggableId={storeReward.reward_id} index={i}>
+    //   {(provided, snapshot) => (
+    <animated.div className="store-reward" key={i} style={fade}>
+      {/* delete reward */}
+      {props.userReducer.user.data.parental ?
+        <button className="delete-button" value={[storeReward.kid_id, storeReward.reward_id]}
+          onClick={e => deleteItem(e.target.value)}>
+        </button> : null}
+      {console.log(storeReward)}
+      {/* {console.log(provided)} */}
+      {/* {console.log(snapshot)} */}
+      {/* {console.log(store)} */}
+      <div className="reward-info">
+        <div className='reward-name'>
+          {storeReward.name}
+        </div>
+        <div className='reward-price'>
+          {storeReward.rewards_price}
+        </div>
 
-            </div>
+      </div>
 
-            <button className="buy-button" value={[storeReward.kid_id,storeReward.rewards_price, storeReward.reward_id]}
-                onClick={e=>buyItem(e.target.value)}>
-                Buy!
+      <button className="buy-button" value={[storeReward.kid_id, storeReward.rewards_price, storeReward.reward_id]}
+        onClick={e => buyItem(e.target.value)}>
+        Buy!
             </button>
-        </animated.div>  
-        // )} 
-        // </Draggable> 
-    ))
+    </animated.div>
+    // )} 
+    // </Draggable> 
+  ))
 
 
-  return(
-  // <DragDropContext onDragEnd={onDragEnd}>
+  return (
+    // <DragDropContext onDragEnd={onDragEnd}>
     <div className='store-page'>
-        {props.userReducer.loggedIn? 
-        props.userReducer.user.data.parental?
-        <div className='parent-selection'>
-        <ChildDropdown 
-            isChild={isChild} 
-            userId={props.userReducer.user.data ?
-            props.userReducer.user.data.id : ""} 
-            setChild={setChild} setStore={setStore} setPoints={setPoints} />
-        <RewardPopup
-            reward={reward}
-            setReward={setReward}
-            rewardPoints={rewardPoints}
-            setRewardPoints={setRewardPoints}
-            submitReward={submitReward}/>
-        {/* <div className='submit-inputs'>
+      {props.userReducer.loggedIn ?
+        props.userReducer.user.data.parental ?
+          <div className='parent-selection'>
+            <ChildDropdown
+              isChild={isChild}
+              userId={props.userReducer.user.data ?
+                props.userReducer.user.data.id : ""}
+              setChild={setChild} setStore={setStore} setPoints={setPoints} />
+            <div className='store-info'>
+              <RewardPopup
+                reward={reward}
+                setReward={setReward}
+                rewardPoints={rewardPoints}
+                setRewardPoints={setRewardPoints}
+                submitReward={submitReward} />
+              <div className='points'>
+                <animated.div className='text-points' style={fadePoints}>
+                  Total Points: {points}</animated.div>
+              </div>
+            </div>
+            {/* <div className='submit-inputs'>
             <label><b>Reward</b></label>
             <input
               className='submit-reward'
@@ -171,19 +177,15 @@ const Store = (props) => {
             />
         </div>
         <button onClick={submitReward}>Add reward</button> */}
-         </div>
-        :null
-        :<Redirect to={'/login'} />
-        }
-        <div className='points'>
-            <animated.div className = 'text-points' style={fadePoints}>
-            Total Points: {points}</animated.div>
-         </div>
-         {/* <Droppable droppableId={}> */}
-        <div className='store-rewards'>
+          </div>
+          : null
+        : <Redirect to={'/login'} />
+      }
+      {/* <Droppable droppableId={}> */}
+      <div className='store-rewards'>
         {storeRewards}
-        </div>
-        {/* </Droppable> */}
+      </div>
+      {/* </Droppable> */}
     </div>
   );
 };

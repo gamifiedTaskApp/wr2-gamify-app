@@ -21,15 +21,15 @@ function Register(props) {
     // console.log(parentAccount)
     //props.registerUser(username, fName, lName, email, password, parentAccount);
     //const body = { username, fName, lName, email, password, parentAccount };
-    let registered = axios.post("/auth/register", {username, fName, lName, email, password, parentAccount})
-    .then(res =>{
-      props.registerUser(res);
-      
-    })
-    .catch(err =>{
-      
-      setIsTaken(true)
-    })
+    let registered = axios.post("/auth/register", { username, fName, lName, email, password, parentAccount })
+      .then(res => {
+        props.registerUser(res);
+
+      })
+      .catch(err => {
+
+        setIsTaken(true)
+      })
   };
 
   const checkInfo = () => {
@@ -56,22 +56,22 @@ function Register(props) {
     <div className="register_holder">
 
 
-            
-      
+
+
       <div className="register_header_holder">
         <div className="header-text" >
           <b className="register_header">Welcome</b>
-          <b className="register_header"> To TheTaskApp</b>
+          <b className="register_header"> To Choreio</b>
         </div>
         <Link className="register_link" to="/login">
-              Log In Here
+          Log In Here
             </Link>
       </div>
       <div className="register_form">
         <h1 className="header" >Register your account</h1>
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            
+
             <input
               placeholder="Username"
               value={username}
@@ -86,7 +86,7 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            
+
             <input
               placeholder="First Name"
               className="name_input"
@@ -98,7 +98,7 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            
+
             <input
               placeholder="Last Name"
               className="name_input"
@@ -110,7 +110,7 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            
+
             <input
               placeholder="Email"
               className="email_input"
@@ -126,7 +126,7 @@ function Register(props) {
 
         <div className="register_inputs_holder">
           <div className="register_inputs">
-            
+
             <input
               placeholder="Password"
               type="password"
@@ -144,7 +144,7 @@ function Register(props) {
           <button className="register_button" onClick={() => checkInfo()}>
             Register!
           </button>
-          
+
         </div>
       </div>
       {props.userReducer.loggedIn ? <Redirect to={"/profile"} /> : null}

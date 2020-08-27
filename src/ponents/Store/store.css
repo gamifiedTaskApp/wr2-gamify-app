@@ -193,12 +193,11 @@ table {
 }
 
 .add-reward {
-  margin-right: 0;
-  margin-top: 30px;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 15px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -211,6 +210,7 @@ table {
   border: none;
   font-size: 20px;
   background-color: #00E39E;
+  margin-left: 70px;
 }
 
 .popup-reward-content {
@@ -287,6 +287,32 @@ table {
   background-color: #00E39E;
 }
 
+.store-info {
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.parent-selection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 @media only screen and (min-width: 600px) {
   .points {
     font-size: 4vw;
@@ -347,6 +373,30 @@ table {
     height: 25vh !important;
     width: 20vw !important;
     border: 25px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .store-info {
+    width: 100vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .add-reward {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .text-points {
+    margin: 0 !important;
+    margin-top: 20px !important;
   }
 }
 /*# sourceMappingURL=store.css.map */

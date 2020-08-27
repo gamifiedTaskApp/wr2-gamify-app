@@ -28,29 +28,29 @@ function ChildDropdown(props) {
     });
   }, [props.isChild]);
 
-  const listChildren = children.map((child, i) =>{
-    if(child.child_name !== props.title){
-      return(
-        <li key={i}>
-      <button className='task-child-button' onClick={() => {
-        props.setTitle(child.child_name)
-        props.setChildId(child.child_id)
-        toggle();
-        let childId = child.child_id;
-        let date = props.selectedDate
-        axios.post(`/api/child/tasks`, { childId, date }).then((newRes) => {
-          console.log(newRes.data); //I hate this line
-          props.setTasks(newRes.data);
-        });
-      }}>
-        {child.child_name}
-      </button>
-    </li>
+  const listChildren = children.map((child, i) => {
+    if (child.child_name !== props.title) {
+      return (
+        <li className='task-child-button' key={i}>
+          <button className='task-child-button' onClick={() => {
+            props.setTitle(child.child_name)
+            props.setChildId(child.child_id)
+            toggle();
+            let childId = child.child_id;
+            let date = props.selectedDate
+            axios.post(`/api/child/tasks`, { childId, date }).then((newRes) => {
+              console.log(newRes.data); //I hate this line
+              props.setTasks(newRes.data);
+            });
+          }}>
+            {child.child_name}
+          </button>
+        </li>
       )
     }
   }
-  
-    
+
+
   )
 
   ChildDropdown.handleClickOutside = () => setOpen(false);

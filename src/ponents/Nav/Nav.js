@@ -19,7 +19,7 @@ function Nav(props) {
         props.location.pathname !== "/register" && props.loggedIn ? (
           <nav>
             <div className="nav">
-              <h1>App Name</h1>
+              <h1>Choreio</h1>
               <button onClick={toggle} className="burger"><div></div><div></div><div></div></button>
               <Link onClick={toggle} className="links" to="/tasks">
                 Tasks
