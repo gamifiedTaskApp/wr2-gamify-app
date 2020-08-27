@@ -1,4 +1,5 @@
 @import '../../Sass/mixins';
+@import '../../Sass/variables';
 
 .reward-page {
     margin-top: 80px;
@@ -130,6 +131,11 @@
     -webkit-transform: rotate(45deg);
   }
 
+  .reward-page {
+    background-color: $highlight1;
+    height: 90vh;
+  }
+
   .rewards-div {
     @include styling();
     padding-left:10px;
@@ -140,6 +146,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: $highlight2;
   }
 
   .reward-text {
