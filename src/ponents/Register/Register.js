@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
+import axios from "axios"
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { registerUser } from "../../redux/actionCreators";
@@ -14,10 +15,21 @@ function Register(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
-
+  const [isTaken, setIsTaken] = useState(false)
   const reg = () => {
+    console.log("help")
     // console.log(parentAccount)
-    props.registerUser(username, fName, lName, email, password, parentAccount);
+    //props.registerUser(username, fName, lName, email, password, parentAccount);
+    //const body = { username, fName, lName, email, password, parentAccount };
+    let registered = axios.post("/auth/register", {username, fName, lName, email, password, parentAccount})
+    .then(res =>{
+      props.registerUser(res);
+      
+    })
+    .catch(err =>{
+      
+      setIsTaken(true)
+    })
   };
 
   const checkInfo = () => {
@@ -52,7 +64,7 @@ function Register(props) {
           <b className="register_header"> To TheTaskApp</b>
         </div>
         <Link className="register_link" to="/login">
-              LOG IN HERE
+              Log In Here
             </Link>
       </div>
       <div className="register_form">
@@ -127,7 +139,7 @@ function Register(props) {
           </div>
           <p className="err" >{passwordErr}</p>
         </div>
-
+        {isTaken ? <p className="err" >Username or Email Taken</p> : ""}
         <div className="register_button_holder">
           <button className="register_button" onClick={() => checkInfo()}>
             Register!
