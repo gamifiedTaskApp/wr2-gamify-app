@@ -77,63 +77,63 @@ function Profile(props) {
   }
 
   return (
-    <div className="profile"> 
+    <div className="profile">
       <div className="profile-container">
-      {isChild ? (
-        <div className="childaccount">
-          <img className="profile-picture" src={userPicture} />
-          <span>{user.data.username}</span>
-          <p>level {Math.ceil(user.data.experience / 100)}</p>
-          <div className="unfilled-bar">
-            <div class="experience-bar" style={{ width: xpbar }}></div>
+        {isChild ? (
+          <div className="childaccount">
+            <img className="profile-picture" src={userPicture} />
+            <span>{user.data.username}</span>
+            <p>level {Math.ceil(user.data.experience / 100)}</p>
+            <div className="unfilled-bar">
+              <div class="experience-bar" style={{ width: xpbar }}></div>
+            </div>
           </div>
-        </div>
-      ) : (
-          <div>
-            <div className="parent">
-              <div className="box">
-                <img className="profile-picture" src={userPicture} />
-                <p>{user.data ? user.data.username : ""}</p>
-              </div>
-              <div>
-                <div className="box2">
-                  {isEditing ? (
-                    <div>
-                      <div>
-                        <Amazon photoFn={setPhoto} />
-                      </div>
-                      <input
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                      />
-                      <button className="profile-button" onClick={() => {
-                        changeUsername()
-                        setIsEditing(false)
-                      }}>Submit</button>
-                      <button className="profile-button" onClick={() => {
-                        setIsEditing(false)
-                        setUsername(user.data.username)
-                      }}>Cancel</button>
-                    </div>
-                  ) : (
-                      <div>
-                        <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Profile</button>
-                        <button className="profile-button" onClick={logOut}>Log Out</button>
-                      </div>
-                    )}
+        ) : (
+            <div>
+              <div className="parent">
+                <div className="box">
+                  <img className="profile-picture" src={userPicture} />
+                  <p>{user.data ? user.data.username : ""}</p>
                 </div>
-              </div></div>
-            {mappedChildren}
-          </div>
-        )}
+                <div>
+                  <div className="box2">
+                    {isEditing ? (
+                      <div>
+                        <div>
+                          <Amazon photoFn={setPhoto} />
+                        </div>
+                        <input
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <button className="profile-button" onClick={() => {
+                          changeUsername()
+                          setIsEditing(false)
+                        }}>Submit</button>
+                        <button className="profile-button" onClick={() => {
+                          setIsEditing(false)
+                          setUsername(user.data.username)
+                        }}>Cancel</button>
+                      </div>
+                    ) : (
+                        <div>
+                          <button className="profile-button" onClick={() => setIsEditing(true)}>Edit Profile</button>
+                          <button className="profile-button" onClick={logOut}>Log Out</button>
+                        </div>
+                      )}
+                  </div>
+                </div></div>
+              {mappedChildren}
+            </div>
+          )}
 
-      <div className="add-child">
-        {isParent ? <Parent getChildren={getChildren} /> : ""}
-      </div>
-      {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
+        <div className="add-child">
+          {isParent ? <Parent getChildren={getChildren} /> : ""}
+        </div>
+        {isChild ? "" : <button className="profile-button" onClick={deleteUser}>Delete Account</button>}
 
-      {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
-    </div></div>
+        {props.userReducer.loggedIn ? null : <Redirect to={"/login"} />}
+      </div></div>
   );
 }
 const mapStateToProps = (reduxState) => reduxState;

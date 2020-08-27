@@ -11,7 +11,6 @@ function ChildDropdown(props) {
   const [title, setTitle] = useState("");
 
   function getRewards(child) {
-    console.log(child.child_id)
     axios
       .get(`/api/earnedRewards/${child.child_id}`)
       .then((res) => {
@@ -23,23 +22,21 @@ function ChildDropdown(props) {
       .catch((err) => alert(err));
   }
 
-  console.log(props.isChild)
-
   useEffect(() => {
     if (!props.isChild) {
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
         setTitle(res.data[0] ? res.data[0].child_name : "");
         props.setChild(res.data[0]);
-        if(res.data[0]){
+        if (res.data[0]) {
           axios
-          .get(`/api/earnedRewards/${res.data[0].child_id}`)
-          .then((newRes) => {
-            console.log(newRes.data); //I hate this line
-            props.setRewards(newRes.data);
-          });
+            .get(`/api/earnedRewards/${res.data[0].child_id}`)
+            .then((newRes) => {
+              console.log(newRes.data); //I hate this line
+              props.setRewards(newRes.data);
+            });
         }
-        
+
       });
     } else {
       console.log('hit')
@@ -47,7 +44,7 @@ function ChildDropdown(props) {
         props.setRewards(res.data);
       });
     }
-  }, [props.isChild]);
+  }, [props.isChild, props.count]);
 
   const listChildren = children.map((child, i) => {
     if (child.child_name !== title) {
