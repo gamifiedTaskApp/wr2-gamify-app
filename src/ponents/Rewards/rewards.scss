@@ -43,6 +43,24 @@
     //         font-weight: bold;
     //     }
     // }
+    .dd-header {
+      @include styling();
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      width: 100vw;
+      padding: 0 20px;
+      background-color: #00e39e;
+      font-size: 20px;
+
+      &__title--bold {
+          font-weight: bold;
+      }
+  }
+
+  .dd-holder {
+    width: 100vw;
+  }
 
     .dd-header-dropdown {
         @include styling();
@@ -59,20 +77,6 @@
         }
     }
 
-    .dd-header {
-      @include styling();
-      display: flex;
-      justify-content: center;
-      cursor: pointer;
-      width: 100vw;
-      padding: 0 20px;
-      background-color: #00e39e;
-      font-size: 20px;
-
-      &__title--bold {
-          font-weight: bold;
-      }
-  }
 
     .reward-dd-list {
         box-shadow: 0 1px 1px rgba(0,0,0,.075);
