@@ -74,9 +74,9 @@ function ChildDropdown(props) {
       {props.isChild ? (
         ""
       ) : (
-        <div>
+        <div className="dropdown">
           <div
-            className="dd-header"
+            className="dd-store-header"
             tabIndex={0}
             onKeyPress={() => toggle(!open)}
             onClick={() => toggle(!open)}

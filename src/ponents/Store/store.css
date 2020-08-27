@@ -35,82 +35,9 @@ table {
 }
 
 .store-page {
-  background-color: #FF9F52;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   margin-top: 80px;
-}
-
-.dd-wrapper {
-  height: 4vh;
-  margin-bottom: 0px;
-}
-
-.submit_inputs {
-  color: white;
-  margin: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.submit_inputs .email_input {
-  width: 181px;
-  outline: 0;
-  border: 1px solid #bdbdbd;
-  border-width: 0 0 2px;
-  border-color: black;
-  background-color: #00E39E;
-}
-
-.submit_inputs .name_input {
-  width: 140px;
-  outline: 0;
-  border: 1px solid #bdbdbd;
-  border-width: 0 0 2px;
-  border-color: black;
-  background-color: #00E39E;
-}
-
-.submit_inputs input {
-  height: 25px;
-  outline: 0;
-  border: 1px solid #bdbdbd;
-  border-width: 0 0 2px;
-  border-color: black;
-  background-color: #00E39E;
-}
-
-.dd-list-item {
-  width: 100%;
-  border: black;
-}
-
-.dd-list {
-  border: solid 1px black;
-  width: 30% !important;
-  background-color: white;
-  border-radius: 5px;
-  border: transparent;
-  position: relative;
-  z-index: 2;
-}
-
-.child-button {
-  border: solid 1px green;
-  width: 100% !important;
-  border: transparent !important;
-  font-weight: bolder;
 }
 
 .points {
@@ -127,7 +54,6 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #FF9F52;
   font-size: xx-large;
   color: #1C4755;
   font-family: Apple Chancery, cursive;
@@ -151,7 +77,6 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #FF9F52;
   font-size: xx-large;
   overflow: scroll;
   height: 95vh;
@@ -190,24 +115,7 @@ table {
 
 .reward-info {
   margin-left: 5%;
-  color: #EFC458;
   margin-top: 3%;
-}
-
-.buy-button {
-  background-color: #52b1ff;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  height: 70%;
-  width: 25%;
-  margin-right: 5%;
-  border-radius: 10px;
-  font-size: xx-large;
-  color: white;
-}
-
-.buy-button:hover {
-  cursor: pointer;
 }
 
 .delete-button {
@@ -229,21 +137,154 @@ table {
   cursor: pointer;
 }
 
+.buy-button {
+  background-color: #52b1ff;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  height: 70%;
+  width: 25%;
+  margin-right: 5%;
+  border-radius: 10px;
+  font-size: xx-large;
+  color: white;
+}
+
+.buy-button:hover {
+  cursor: pointer;
+}
+
+.dd-wrapper {
+  height: 4vh;
+  margin-bottom: 0px;
+}
+
+.dd-store-header {
+  background-color: white;
+  border-radius: 4px;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100vw !important;
+  margin-top: 0px;
+  background-color: #00e39e;
+  font-size: 20px;
+}
+
+.dd-list {
+  width: 100vw !important;
+}
+
+.child-button {
+  border: solid 1px green;
+  width: 100% !important;
+  border: transparent !important;
+  font-weight: bolder;
+}
+
+.add-reward {
+  margin-right: 0;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 40px;
+  width: 150px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  background-color: #00E39E;
+}
+
+.popup-content {
+  height: 22.5vh !important;
+  border: 25px !important;
+}
+
 .popup-reward-content {
   border-radius: 5px;
-  background-color: #FF9F52 !important;
+  background-color: #52b1ff !important;
   border-color: #1C4755 !important;
 }
 
-.popup-reward-content > div > button {
-  background-color: #FF9F52 !important;
+.popup-buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popup-button {
   border-radius: 10px;
-  margin-top: 7%;
-  margin-bottom: -10px;
+  height: 4vh;
+  font-weight: bold;
+  margin: auto;
   background-color: #EFC458 !important;
 }
 
-@media (min-width: 1025px) {
+.submit-inputs {
+  color: white;
+  margin: 10%;
+  margin-left: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.submit-inputs .submit-reward {
+  width: 90%;
+  outline: 0;
+  border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #00E39E;
+  background-color: #52b1ff;
+}
+
+.submit-inputs .submit-task-points {
+  width: 90%;
+  outline: 0;
+  border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #00E39E;
+  background-color: #52b1ff;
+}
+
+.submit-inputs input {
+  height: 25px;
+  outline: 0;
+  border: 1px solid #bdbdbd;
+  border-width: 0 0 2px;
+  border-color: black;
+  background-color: #00E39E;
+}
+
+@media only screen and (min-width: 600px) {
   .points {
     font-size: 4vw;
   }
@@ -296,22 +337,13 @@ table {
     margin-left: 6%;
     margin-top: 3%;
   }
-  .popup-reward-content {
-    width: 300px !important;
-    padding: 30px !important;
+  .input-container {
+    background-color: #52b1ff;
   }
-  .popup-reward-content > div > button {
-    background-color: #FF9F52 !important;
-    border-radius: 10px;
-    margin-top: 4%;
-    margin-bottom: -10px;
-  }
-  .popup-reward-content > div > button:hover {
-    background-color: #EFC458 !important;
-    cursor: pointer;
-  }
-  .child-button {
-    margin-bottom: 5px;
+  .popup-content {
+    height: 25vh !important;
+    width: 20vw !important;
+    border: 25px !important;
   }
 }
 /*# sourceMappingURL=store.css.map */
