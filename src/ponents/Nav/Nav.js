@@ -12,7 +12,7 @@ function Nav(props) {
 
   Nav.myClickOutsideHandler = () => setShow(true);
 
-  return (
+  return ( //change this so that it fires for components its on and doesnt for ones its not
     <div>
       {props.location.pathname !== "/login" &&
       props.location.pathname !== "/register" ? (
