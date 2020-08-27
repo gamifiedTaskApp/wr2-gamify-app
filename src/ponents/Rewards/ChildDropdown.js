@@ -69,7 +69,7 @@ function ChildDropdown(props) {
       {props.isChild ? (
         ""
       ) : (
-          <div className='dd-header-dropdown'>
+          <div className='dd-holder'>
             <div
               className="dd-header-dropdown"
               tabIndex={0}
