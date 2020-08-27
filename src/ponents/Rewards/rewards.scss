@@ -2,10 +2,42 @@
 @import '../../Sass/variables';
 
 .reward-page {
-    margin-top: 80px;
+    margin-top: 90px;
 }
 
-/* Dropdown styling
+  .rewards-div {
+    // @include styling();
+    padding-left:10px;
+    border-top: .1px solid lightgrey;
+    padding-top:10px;
+    margin-top:10px;
+    height: 11vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .reward-text {
+    font-weight: 900;
+    font-size: large;
+  }
+
+  .reward-remove-button {
+    margin-right: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    background-color: #00E39E;
+    margin-right: 5px;
+  }
+
+  /* Dropdown styling
 ================================================== */
 
 @mixin styling() {
@@ -22,6 +54,10 @@
     flex-direction: column;
     min-height: 38px;
     flex-wrap: wrap;
+    width: 100vw;
+}
+
+.dd-holder{
     width: 100vw;
 }
 
@@ -47,10 +83,13 @@
     .dd-header-dropdown {
         @include styling();
         display: flex;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         cursor: pointer;
         width: 100vw;
-        padding: 0 20px;
+        height: 25px;
+        // padding: 0 20px;
         background-color: #00e39e;
         font-size: 20px;
 
@@ -75,17 +114,19 @@
   }
 
     .reward-dd-list {
+        // position: relative;
         box-shadow: 0 1px 1px rgba(0,0,0,.075);
         padding: 0px 0px;
         margin: 0px;
         // width: 200px;
         width: 100vw;
-        background-color: rgb(240, 238, 238);
+        background-color: white;
         margin-bottom: 0px;
+        z-index: 100;
 
-        @include responsive( 600px ) {
-            width: 250px;
-        }
+        // @include responsive( 600px ) {
+        //     width: 250px;
+        // }
 
         li{
             list-style-type: none;
@@ -105,9 +146,9 @@
         }
     }
 
-.child-button {
-    background-color: transparent;
-    font-size: 16px;
+    .child-button {
+    background-color:#52b1ff;
+    font-size: 20px;
     // padding: 15px 20px 15px 20px;
     border: 0;
     border-bottom: 1px solid #ccc;
@@ -118,9 +159,9 @@
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
 
-    @include responsive( 600px ) {
-        width: 250px;
-    }
+    // @include responsive( 600px ) {
+    //     width: 250px;
+    // }
     
     &:hover, &:focus {
         cursor: pointer;
@@ -169,10 +210,6 @@
     justify-content: space-between;
     align-items: center;
     width: 80vw;
-  }
-
-  .rewards-page-button {
-
   }
 
   .reward-text {

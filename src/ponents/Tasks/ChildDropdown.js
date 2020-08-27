@@ -32,7 +32,7 @@ function ChildDropdown(props) {
     if(child.child_name !== props.title){
       return(
         <li key={i}>
-      <button onClick={() => {
+      <button className='task-child-button' onClick={() => {
         props.setTitle(child.child_name)
         props.setChildId(child.child_id)
         toggle();
