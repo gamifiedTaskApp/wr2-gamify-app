@@ -1,4 +1,5 @@
 @import '../../Sass/mixins';
+@import '../../Sass/variables';
 
 .reward-page {
     margin-top: 90px;
@@ -48,11 +49,12 @@
     box-shadow: 0 1px 1px rgba(0,0,0,.075);
 }
 
-.dd-wrapper {
+.dd-wrapper-dropdown {
     display: flex;
     flex-direction: column;
     min-height: 38px;
     flex-wrap: wrap;
+    width: 100vw;
 }
 
     // .dd-header {
@@ -74,7 +76,7 @@
     //     }
     // }
 
-    .reward-dd-header {
+    .dd-header-dropdown {
         @include styling();
         display: flex;
         -webkit-box-pack: center;
@@ -91,6 +93,21 @@
             font-weight: bold;
         }
     }
+
+    .dd-header {
+      @include styling();
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      width: 100vw;
+      padding: 0 20px;
+      background-color: #00e39e;
+      font-size: 20px;
+
+      &__title--bold {
+          font-weight: bold;
+      }
+  }
 
     .reward-dd-list {
         position: relative;
@@ -165,4 +182,48 @@
   .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+  }
+
+  .reward-page {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rewards-div {
+    // @include styling();
+    padding-left: 10px;
+    border-top: .1px solid lightgrey;
+    padding-top: 10px;
+    margin-top: 10px;
+    // padding-left:10px;
+    // border-top: .1px solid lightgrey;
+    // padding-top:10px;
+    // margin-top:10px;
+    height: 11vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+  }
+
+  .reward-text {
+    font-weight: 900;
+    font-size: large;
+  }
+
+  .reward-remove-button {
+    margin-right: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    background-color: #00E39E;
+    margin-right: 5px;
   }
