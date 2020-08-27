@@ -19,6 +19,17 @@
   border: none;
 }
 
+.delete {
+  background-color: #ff4444;
+  color: white;
+  margin: 5px;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+
 .box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,18 +39,23 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin-left: 10px;
-  width: 100px;
+  width: 90px;
 }
 
 .childaccount {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: 10px;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-top: 70px;
   width: 100vw;
   padding-bottom: 10px;
@@ -47,7 +63,26 @@
 }
 
 .childaccount span {
+  margin-left: 10px;
+  width: 200px;
   font-size: 20px;
+}
+
+.childaccount p {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.childaccount .unfilled-bar {
+  margin-left: 10px;
+}
+
+.childaccount .profile-picture {
+  margin-left: 10px;
+}
+
+.childaccount .profile-button {
+  margin-right: 20px;
 }
 
 .box2 {
@@ -65,7 +100,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   align-items: center;
-  width: 200px;
+  width: 275px;
 }
 
 .box2 div {
@@ -78,14 +113,14 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 200px;
+  width: 275px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .box2 div input {
   margin-left: 7px;
-  width: 155px;
+  width: 200px;
 }
 
 .child {
