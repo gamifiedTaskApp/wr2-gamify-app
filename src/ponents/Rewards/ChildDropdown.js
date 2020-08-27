@@ -11,6 +11,7 @@ function ChildDropdown(props) {
   const [title, setTitle] = useState("");
 
   function getRewards(child) {
+    console.log(child.child_id)
     axios
       .get(`/api/earnedRewards/${child.child_id}`)
       .then((res) => {
@@ -22,9 +23,10 @@ function ChildDropdown(props) {
       .catch((err) => alert(err));
   }
 
+  console.log(props.isChild)
+
   useEffect(() => {
-    console.log(props.isChild)
-    if (props.isChild) {
+    if (!props.isChild) {
       axios.get(`/api/parents/children/${props.userId}`).then((res) => {
         setChildren(res.data);
         setTitle(res.data[0].child_name);
@@ -37,6 +39,7 @@ function ChildDropdown(props) {
           });
       });
     } else {
+      console.log('hit')
       axios.get(`/api/earnedRewards/${props.userId}`).then((res) => {
         props.setRewards(res.data);
       });
