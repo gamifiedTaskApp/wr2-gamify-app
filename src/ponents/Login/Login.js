@@ -11,16 +11,16 @@ function Login(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [isTaken, setIsTaken] = useState(false);
- 
+
   function login() {
     //props.loginUser(username, password);
-    axios.post("/auth/login", {username, password})
-    .then(res => {
-      props.loginUser(res);
-    })
-    .catch(err => {
-      setIsTaken(true)
-    })
+    axios.post("/auth/login", { username, password })
+      .then(res => {
+        props.loginUser(res);
+      })
+      .catch(err => {
+        setIsTaken(true)
+      })
   }
 
   const checkInfo = () => {
@@ -51,26 +51,26 @@ function Login(props) {
 
   return (
     <div className="login_holder">
-      
+
       <div className="login_header_holder">
-      <div className="header-text">
-              <b className="login_header">Welcome Back</b>
-              <b className="login_header"> To TheTaskApp</b>
-            </div>
-            <Link className="login_link" to="/register">
-              Register Here
-            </Link>
-            
-      </div>
-        <div>
-          
+        <div className="header-text">
+          <b className="login_header">Welcome Back</b>
+          <b className="login_header"> To Choreio</b>
         </div>
+        <Link className="login_link" to="/register">
+          Register Here
+            </Link>
+
+      </div>
+      <div>
+
+      </div>
       <div className="login_form">
-          <h1>Log in to your account</h1>
+        <h1>Log in to your account</h1>
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              
+
             </label>
             <input
               placeholder="Username"
@@ -84,7 +84,7 @@ function Login(props) {
         <div className="login_inputs_holder">
           <div className="login_inputs">
             <label>
-              
+
             </label>
             <input
               placeholder="Password"
@@ -101,7 +101,7 @@ function Login(props) {
           <button className="login_button" onClick={() => checkInfo()}>
             Login
           </button>
-          
+
         </div>
       </div>
       {props.userReducer.loggedIn ? <Redirect to={"/tasks"} /> : null}

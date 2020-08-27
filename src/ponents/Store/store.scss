@@ -140,6 +140,7 @@ table{
             justify-content: center;
     cursor: pointer;
     width: 100vw !important;
+    height: 25px;
     // padding: 0 20px !important;
     margin-top:0px ;
     background-color: #00e39e;
@@ -156,13 +157,21 @@ table{
 //     margin-bottom: 0px;
 //   }
 .dd-list{
-    width: 100vw !important;
+    width: 100vw;
+    background-color: white;
+    
 }
+
+.dd-list-item {
+  border-bottom: solid 1px black;
+}
+
 .child-button{
     border:solid 1px green;
     width: 100% !important;
     border:transparent !important;
     font-weight: bolder;
+    margin-bottom: 0px;
 }
 // .dd-list-item{
 //     width: 100%;
@@ -182,7 +191,6 @@ table{
 // }
 
 .add-reward {
-    margin-right: 0;
     color: white;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -200,6 +208,7 @@ table{
     border: none;
     font-size: 20px;
     background-color: #00E39E;
+    margin-left: 70px;
   }
 
 //popup reward
@@ -228,7 +237,7 @@ table{
     color:white;
     margin: 10%;
     margin-left:0%;
-    @include flexBaseOptions(center, row);
+    @include flexBaseOptions(flex-start row);
     .submit-reward {
       width: 90%;
       @include inputStyles();
@@ -246,6 +255,19 @@ table{
       @include inputStyles();
       @include inputStyleTwo();
     };
+  }
+
+  .store-info {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .parent-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
 @media only screen and (min-width: 600px){
@@ -268,7 +290,7 @@ table{
     }
     .store-reward{
         width: 22%;
-        height:35vh;
+        height:20vh;
         margin:1vh;
         
     }
@@ -284,8 +306,8 @@ table{
     .delete-button{
         width:20%;
         height: 20%;
-        margin-left:6%;
-        margin-top:3%;
+        margin-left:10%;
+        margin-top:5%;
     }
     .input-container{
         background-color: $complimentary;
@@ -295,4 +317,24 @@ table{
         width:20vw !important;
         border: 25px !important;
     }
+}
+
+
+@media (max-width: 800px) {
+  .store-info {
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .add-reward {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .text-points {
+    margin: 0 !important;
+    margin-top: 20px !important;
+  }
 }
