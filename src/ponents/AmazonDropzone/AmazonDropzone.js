@@ -88,7 +88,7 @@ function Amazon(props) {
     const images = files.map((file) =>
       <div key={file.name} >
         <div className='amazonHoldImage'>
-          <img className='amazonImage' src={file.preview} style={{ width: "150px" }} alt="preview" />
+          <img className='amazonImage' src={file.preview} style={{ width: "50px", height: '50px' }} alt="preview" />
         </div>
       </div>
     )
