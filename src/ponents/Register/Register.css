@@ -251,14 +251,17 @@ b {
   }
   .register_inputs input {
     border-color: black;
+    color: black;
     background-color: transparent;
   }
   .register_inputs .email_input {
     border-color: black;
+    color: black;
     background-color: transparent;
   }
   .register_inputs .name_input {
     border-color: black;
+    color: black;
     background-color: transparent;
   }
   .register_button_holder {
