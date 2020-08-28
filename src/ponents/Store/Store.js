@@ -154,10 +154,7 @@ const Store = (props) => {
                 rewardPoints={rewardPoints}
                 setRewardPoints={setRewardPoints}
                 submitReward={submitReward} />
-              <div className='points'>
-                <animated.div className='text-points' style={fadePoints}>
-                  Total Points: {points}</animated.div>
-              </div>
+              
             </div>
             {/* <div className='submit-inputs'>
             <label><b>Reward</b></label>
@@ -182,6 +179,10 @@ const Store = (props) => {
         : <Redirect to={'/login'} />
       }
       {/* <Droppable droppableId={}> */}
+      <div className='points'>
+                <animated.div className='text-points' style={fadePoints}>
+                  Total Points: {points}</animated.div>
+              </div>
       <div className='store-rewards'>
         {storeRewards}
       </div>
